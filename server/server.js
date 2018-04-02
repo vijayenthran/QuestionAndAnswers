@@ -3,21 +3,31 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const authRouter = require('./auth/auth');
-const mongoose = require('mongoose');
+const {authRouter} = require('./auth');
+const {userRouter} = require('./user');
+const bodyParser = require('body-parser');
 const config = require('../config/default');
 const logger = require('../logger');
+const db = require('./db');
 let server;
 
-app.use(express.static(path.resolve('./client')));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.resolve('./src')));
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve('./client'));
+// app.get('/', (req, res) => {
+//     res.sendFile(path.resolve('./src'));
+// });
+app.use((error, req, res, next) =>  {
+    console.log('I am error');
+    console.log(error);
+    res.status(error.statusCode).json({message : error});
 });
 
 function startServer() {
-    return mongoose.connect(config.database)
+    return db.mongooseConnect(config.database)
         .then(() => {
         return new Promise((resolve, reject) => {
             server = app.listen(config.Port, () => {
@@ -33,7 +43,7 @@ function startServer() {
 }
 
 function stopServer() {
-    return mongoose.disconnect().then(() => {
+    return db.mongooseDisconnect().then(() => {
         return new Promise((resolve, reject) => {
             server.close('error', (err) => {
                 if (err) {
@@ -43,7 +53,7 @@ function stopServer() {
                     resolve();
                     return;
                 }
-            })
+            });
         });
     });
 }
