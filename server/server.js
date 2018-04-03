@@ -3,7 +3,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const {authRouter} = require('./auth');
+const {authRouter, verifyTokenProtected} = require('./auth');
 const {userRouter} = require('./user');
 const bodyParser = require('body-parser');
 const config = require('../config/default');
@@ -17,13 +17,18 @@ app.use(express.static(path.resolve('./src')));
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 
-// app.get('/', (req, res) => {
-//     res.sendFile(path.resolve('./src'));
-// });
-app.use((error, req, res, next) =>  {
-    console.log('I am error');
-    console.log(error);
-    res.status(error.statusCode).json({message : error});
+
+
+app.get('/a/protected', verifyTokenProtected, (req, res) => {
+    res.status(200).send('Protected Route is working');
+});
+
+app.use((error, req, res, next) => {
+    if (Object.keys(error).indexOf('statusCode') < 0 || Object.keys(error).indexOf('message') < 0) {
+        next(error);
+    } else {
+        res.status(error.statusCode).json({message: error});
+    }
 });
 
 function startServer() {

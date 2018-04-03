@@ -1,7 +1,7 @@
 'use strict';
 
-const {authRouter} = require('./router');
+const {authRouter, verifyTokenProtected} = require('./router');
 
-module.exports = {authRouter};
+module.exports = {authRouter, verifyTokenProtected};
 
 
