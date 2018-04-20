@@ -3,9 +3,11 @@ const path = require('path');
 
 module.exports = () => {
     return {
-        entry: './src/components/index',
+        mode: 'development',
+        context : path.resolve(__dirname, 'src'), // Point to the src as the context as that has the entry point to start bundling - Needs to be a relative path
+        entry: './index.js', // Since the context is mentioned above we just specify our entry file name here. Needs to be an absolute path
         output: {
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(__dirname, 'dist'), // Where the bundle should be.
             filename: 'bundle.js'
         },
         module: {
@@ -23,8 +25,9 @@ module.exports = () => {
         },
         devServer: {
             contentBase: path.join(__dirname, "dist"),
-            compress: true,
-            port: 9000
-        }
+            port: 9000,
+            historyApiFallback: true
+        },
+        devtool : 'source-map',
     }
 };

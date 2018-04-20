@@ -1,7 +1,6 @@
 const express = require('express');
 const authRouter = express.Router();
 const jwt = require('jsonwebtoken');
-const path = require('path');
 const config = require('../../config/default');
 const {User} = require('../user/model');
 
@@ -20,7 +19,7 @@ Error object to be sent to frontend client
 let errorObj = {
     failedLoginErr: function () {
         let err = new Error();
-        err.statusCode = 400;
+        err.statusCode = 401;
         err.message = `Either the UserName or Password is not correct`;
         return err;
     },
@@ -32,7 +31,7 @@ let errorObj = {
     },
     badRequest: function () {
         let err = new Error();
-        err.statusCode = 400;
+        err.statusCode = 401;
         err.message = `Bad request User Not Found`;
         return err;
     },
@@ -129,9 +128,9 @@ function signToken(req, res, next) {
         })
         .catch(err => {
             if (err) {
-                next(err);
+                return next(err);
             } else {
-                next(errorObj.failedLoginErr());
+                return next(errorObj.failedLoginErr());
             }
         });
 }
@@ -155,9 +154,9 @@ function verifyTokenforRefresh(req, res, next) {
         })
         .catch(err => {
             if (err) {
-                next(err);
+                return next(err);
             } else {
-                next(errorObj.forbiddenErr());
+                return next(errorObj.forbiddenErr());
             }
         });
 }
@@ -174,12 +173,12 @@ function verifyTokenProtected(req, res, next) {
         .then(validateToken => {
             return validateUserExistence(validateToken.user)
         }).then(() => {
-            next();
+            return next();
         }).catch(err => {
             if (err) {
-                next(err);
+                return next(err);
             } else {
-                next(errorObj.forbiddenErr());
+                return next(errorObj.forbiddenErr());
             }
         });
 }

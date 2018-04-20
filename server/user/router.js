@@ -30,22 +30,22 @@ userRouter.post('/signUp', (req, res, next) => {
         err.location = _reqBodyValidation;
         err.statusCode = 422;
         err.detailMessage = `Missing Field`;
-        next(err);
+        return next(err);    // Make sure to have a return here to have the control come out of this function,OtherWise the Below Code will be executed. Resulting in Un wanted Server error.
     }
 
     //---------------------------------------------------------------- ----------------------------------------------------------------
 
     // 2) Check for non string fields, because if we store non string fields our db will throw error.
-    let _reqBodyStingValidation = commonValidationFields.find(field => typeof req.body[field] !== 'string');
+    let _reqBodyStringValidation = commonValidationFields.find(field => typeof req.body[field] !== 'string');
 
 
-    if (_reqBodyStingValidation) {
+    if (_reqBodyStringValidation) {
         let err = new Error();
         err.reason = 'ValidationError';
-        err.location = _reqBodyStingValidation;
+        err.location = _reqBodyStringValidation;
         err.statusCode = 422;
         err.detailMessage = `Incorrect field type: expected string`;
-        next(err);
+        return next(err);
     }
 
     //---------------------------------------------------------------- ----------------------------------------------------------------
@@ -67,7 +67,7 @@ userRouter.post('/signUp', (req, res, next) => {
         err.location = _reqBodyTrimValidation;
         err.statusCode = 422;
         err.detailMessage = 'Cannot start or end with whitespace';
-        next(err);
+        return next(err);
     }
 
     //---------------------------------------------------------------- ----------------------------------------------------------------
@@ -92,7 +92,7 @@ userRouter.post('/signUp', (req, res, next) => {
             err.location = errField;
             err.statusCode = 422;
             err.detailMessage = `${errField} should be a minimum of ${minormax.min}, but not more than ${minormax.max} Characters`;
-            next(err);
+            return next(err);
         },
         validateMinorMax: function (string, validateField) {
             let length = this.calculateLength(string);
@@ -116,14 +116,14 @@ userRouter.post('/signUp', (req, res, next) => {
     // 5) Check if the userName has already been taken.
 
     return User.find({username: req.body.username})
-        .then(count => {
-            if (count.length > 0) {
+        .then(users => {
+            if (users.length > 0) {
                 let err = new Error();
                 err.reason = 'ValidationError';
-                err.location = 'userName';
+                err.location = 'username';
                 err.statusCode = 422;
                 err.detailMessage = `User name already taken`;
-                next(err);
+                return next(err);
             } else {
                 return User.hashPassword(req.body.password);
             }
