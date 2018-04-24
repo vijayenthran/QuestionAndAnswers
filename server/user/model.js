@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({
     password: {type: String, required: true},
     firstName: {type: String, default: ''},
     lastName: {type: String, default: ''},
-});
+},{timestamps: true});
 
 // The statics method is like attaching the hashPassword function to the Schema itself.
 // Returns a Promise. Please refer the original Bcrypt.js file. If there is no callback provided they return a promise.
@@ -15,6 +15,7 @@ userSchema.statics.hashPassword = function (password) {
 
 userSchema.methods.serialize = function () {
     return {
+        userId  : this._id,
         username: this.username,
         firstName: this.firstName,
         lastName: this.lastName

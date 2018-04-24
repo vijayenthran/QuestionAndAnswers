@@ -8,7 +8,7 @@ import HeaderBar from "../headerBar";
 import {FooterBar} from "../footerBar";
 
 export function SignUpPage(props) {
-    if (props.loggedIn) {
+    if (props.loginStatus) {
         return <Redirect to="/app"/>;
     }
     return (
@@ -23,7 +23,7 @@ export function SignUpPage(props) {
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.loggedIn
+    loginStatus: state.auth.loggedIn
 });
 
 export default connect(mapStateToProps)(SignUpPage)

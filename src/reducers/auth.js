@@ -1,3 +1,5 @@
+'use strict';
+
 import {
     SET_AUTH_TOKEN,
     CLEAR_AUTH,
@@ -7,24 +9,26 @@ import {
 const initialState = {
     authToken: null, // authToken !== null does not mean it has been validated
     loading: false,
-    loggedIn : null,
-    error: null
+    loggedIn: null,
+    error: null,
+    userInfo: null
 };
 
-export default function reducer(state=initialState, action){
-    if(action.type === CLEAR_AUTH){
+export default function reducer(state = initialState, action) {
+    if (action.type === CLEAR_AUTH) {
         return Object.assign({}, state, {
-            authToken:null
+            authToken: null
         });
     }
-    if(action.type === SET_AUTH_TOKEN){
+    if (action.type === SET_AUTH_TOKEN) {
         return Object.assign({}, state, {
             authToken: action.authToken
         });
     }
-    if(action.type === SET_LOGGED_IN){
+    if (action.type === SET_LOGGED_IN) {
         return Object.assign({}, state, {
-            loggedIn: action.loggedInValue
+            loggedIn: action.loggedIn,
+            userInfo: action.userInfo
         });
     }
     return state;

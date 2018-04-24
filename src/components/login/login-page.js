@@ -8,7 +8,7 @@ import {FooterBar} from "../footerBar";
 import {Link} from 'react-router-dom';
 
 export function LoginPage(props) {
-    if (props.loggedIn) {
+    if (props.loginStatus) {
         return <Redirect to="/app"/>;
     }
     return (
@@ -23,7 +23,7 @@ export function LoginPage(props) {
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.loggedIn
+    loginStatus: state.auth.loggedIn
 });
 
 export default connect(mapStateToProps)(LoginPage)

@@ -134,7 +134,7 @@ userRouter.post('/signUp', (req, res, next) => {
                 username, password: hashpassword, firstName, lastName
             })
         }).then(doc => {
-            res.status(201).json(doc);
+            res.status(201).json(doc.serialize());
         });
 });
 

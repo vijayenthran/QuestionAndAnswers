@@ -142,7 +142,12 @@ Middle Ware function used in /auth/refresh route to refresh a JWT token
 
 // TODO Discuss how to get the author token from the header. Enquire if there is a better way to do that.
 function verifyTokenforRefresh(req, res, next) {
-    let token = req.headers.author.split(' ')[1];
+    let token;
+    if (!req.headers.authorization) {
+        return next(errorObj.badRequest());
+    } else {
+        token = req.headers.authorization.split(' ')[1];
+    }
     return validateAuthToken(token)
         .then(validateToken => {
             return validateUserExistence(validateToken.user)
@@ -156,7 +161,7 @@ function verifyTokenforRefresh(req, res, next) {
             if (err) {
                 return next(err);
             } else {
-                return next(errorObj.forbiddenErr());
+                return next(errorObj.badRequest());
             }
         });
 }
@@ -168,7 +173,12 @@ Middle Ware function used in protected routes
 
 // TODO Discuss how to get the author token from the header. Enquire if there is a better way to do that.
 function verifyTokenProtected(req, res, next) {
-    let token = req.headers.author.split(' ')[1];
+    let token;
+    if (!req.headers.authorization) {
+        return next(errorObj.badRequest());
+    } else {
+        token = req.headers.authorization.split(' ')[1];
+    }
     return validateAuthToken(token)
         .then(validateToken => {
             return validateUserExistence(validateToken.user)
@@ -178,7 +188,7 @@ function verifyTokenProtected(req, res, next) {
             if (err) {
                 return next(err);
             } else {
-                return next(errorObj.forbiddenErr());
+                return next(errorObj.badRequest());
             }
         });
 }

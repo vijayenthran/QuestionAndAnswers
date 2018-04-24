@@ -1,22 +1,24 @@
 'use strict';
 
 
-
-export const saveAuthToken = (key,authToken) => {
-    try{
+export const saveAuthToken = (key, authToken) => {
+    try {
         return localStorage.setItem(key, authToken);
-    }catch(e){}
+    } catch (e) {
+    }
 };
 
 export const clearAuthToken = (key) => {
-    try{
+    try {
         return localStorage.removeItem(key);
-    }catch(e){}
+    } catch (e) {
+    }
 };
 
 
 export const getAuthToken = (key) => {
-    try{
+    try {
         return localStorage.getItem(key);
-    }catch(e){}
+    } catch (e) {
+    }
 };

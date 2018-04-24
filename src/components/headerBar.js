@@ -5,12 +5,12 @@ import {HeaderNav} from "./NavBar/headerNav"
 
 export function HeaderBar(props) {
     function logoutUser() {
-        const logInValue = false;
-        props.dispatch(logOut(logInValue));
+        const logoutObj = {userInfo: null, loggedIn: false};
+        props.dispatch(logOut(logoutObj));
         return;
     }
 
-    if (props.loggedIn) {
+    if (props.loginStatus) {
         return (
             <section className="HeaderBar">
                 <HeaderNav />
@@ -23,7 +23,7 @@ export function HeaderBar(props) {
 
 
 const mapStateToProps = state => ({
-      loggedIn : state.auth.loggedIn
+    loginStatus: state.auth.loggedIn
 });
 
 export default connect(mapStateToProps)(HeaderBar)
