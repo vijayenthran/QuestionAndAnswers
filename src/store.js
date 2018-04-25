@@ -38,6 +38,5 @@ if (authToken) {
     store.dispatch(setLoggedIn({userInfo: userInfo, loggedIn: true}));
 }
 
-store.dispatch(getCategories());
 
 module.exports = {store};

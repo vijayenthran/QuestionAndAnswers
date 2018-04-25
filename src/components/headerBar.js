@@ -26,5 +26,5 @@ const mapStateToProps = state => ({
     loginStatus: state.auth.loggedIn
 });
 
-export default connect(mapStateToProps)(HeaderBar)
+export default connect(mapStateToProps)(HeaderBar);
 

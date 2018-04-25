@@ -4,6 +4,12 @@ const express = require('express');
 const postRouter = express.Router();
 const {Post} = require('./model');
 
+postRouter.get('/all', (req, res, next) => {
+    return Post.find({})
+        .then(postdocs => res.status(200).json(postdocs))
+        .catch(error => res.status(500).send(error));
+});
+
 postRouter.get('/:categoryId', (req, res, next) => {
     if (!Post.checkObjectId(req.params.categoryId)) {
         let err = new Error();
