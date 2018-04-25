@@ -2,8 +2,9 @@
 
 import {
     SET_CATEGORIES_LIST,
-    SET_POSTS_LIST
-} from '../action/ama'
+    SET_POSTS_LIST,
+    CLEAR_POST_LIST
+} from '../action/ama';
 
 const initialState = {
     categories: [],
@@ -19,6 +20,11 @@ export default function reducer(state = initialState, action) {
     if (action.type === SET_POSTS_LIST) {
         return Object.assign({}, state, {
             posts : state.posts.concat(action.posts)
+        });
+    }
+    if (action.type === CLEAR_POST_LIST) {
+        return Object.assign({}, state, {
+            posts : []
         });
     }
     return state;

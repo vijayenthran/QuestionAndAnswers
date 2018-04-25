@@ -13,7 +13,13 @@ export const set_categories_list = categoryList => ({
 export const SET_POSTS_LIST = 'SET_POSTS_LIST';
 export const set_posts_list = postList => ({
     type: SET_POSTS_LIST,
-    posts: postList.posts,
+    posts: postList.posts
+});
+
+
+export const CLEAR_POST_LIST = 'CLEAR_POST_LIST';
+export const clear_post_list = () => ({
+    type: CLEAR_POST_LIST,
 });
 
 
@@ -27,7 +33,7 @@ export const getCategories = () => dispatch => {
         }).then(categoriesObj => {
             dispatch(set_categories_list({categories: categoriesObj.data}));
             return;
-        }).catch(error => console.log(error))
+        }).catch(error => console.log(error));
     } else {
         return;
     }
@@ -43,9 +49,16 @@ export const getPosts = categoryId => dispatch => {
             url: `${config.BaseURL}/app/posts/${categoryId}`,
             headers: {authorization: `bearer ${authToken}`}
         }).then(postsObj => {
-            dispatch(set_posts_list(postsObj.data));
-            return;
-        }).catch(error => console.log(error))
+            // check if post Object contains an array of items returned
+            // if no items are returned then just simply return without calling the dispatch action
+            // My be When there are no items show that there is no content there. add that in the else box
+            if (postsObj.data.length >= 0) {
+                dispatch(set_posts_list({posts: postsObj.data}));
+                return;
+            } else {
+                return;
+            }
+        }).catch(error => console.log(error));
     } else if (authToken && !categoryId) {
         return axios({
             method: 'get',
@@ -56,7 +69,7 @@ export const getPosts = categoryId => dispatch => {
             console.log(postsObj);
             dispatch(set_posts_list({posts: postsObj.data}));
             return;
-        }).catch(error => console.log(error))
+        }).catch(error => console.log(error));
     } else {
         return;
     }
