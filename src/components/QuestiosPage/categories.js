@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getCategories, getPosts, clear_post_list} from "../../action/ama";
+import {getCategories, getPosts, clear_post_list, clear_categories_list} from "../../action/ama";
 import {Link, Route} from 'react-router-dom';
 // import {PostComponent} from './posts';
 // console.log(PostComponent);
@@ -36,7 +36,8 @@ export class Categories extends React.Component {
     }
 
     componentDidMount() {
-        return this.props.dispatch(getCategories());
+        return Promise.resolve(this.props.dispatch(clear_categories_list()))
+            .then(() => this.props.dispatch(getCategories()));
     }
 
     render() {

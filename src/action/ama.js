@@ -10,6 +10,11 @@ export const set_categories_list = categoryList => ({
     categories: categoryList.categories,
 });
 
+export const CLEAR_CATEGORIES_LIST = 'CLEAR_CATEGORIES_LIST';
+export const clear_categories_list = () => ({
+    type: CLEAR_CATEGORIES_LIST
+});
+
 export const SET_POSTS_LIST = 'SET_POSTS_LIST';
 export const set_posts_list = postList => ({
     type: SET_POSTS_LIST,

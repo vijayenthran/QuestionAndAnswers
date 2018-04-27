@@ -3,7 +3,8 @@
 import {
     SET_CATEGORIES_LIST,
     SET_POSTS_LIST,
-    CLEAR_POST_LIST
+    CLEAR_POST_LIST,
+    CLEAR_CATEGORIES_LIST
 } from '../action/ama';
 
 const initialState = {
@@ -15,6 +16,11 @@ export default function reducer(state = initialState, action) {
     if (action.type === SET_CATEGORIES_LIST) {
         return Object.assign({}, state, {
             categories : state.categories.concat(action.categories)
+        });
+    }
+    if (action.type === CLEAR_CATEGORIES_LIST) {
+        return Object.assign({}, state, {
+            categories : []
         });
     }
     if (action.type === SET_POSTS_LIST) {
