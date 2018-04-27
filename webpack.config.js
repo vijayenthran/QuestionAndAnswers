@@ -8,7 +8,7 @@ module.exports = () => {
         entry: './index.js', // Since the context is mentioned above we just specify our entry file name here. Needs to be an absolute path
         output: {
             path: path.resolve(__dirname, 'dist'), // Where the bundle should be.
-            filename: 'bundle.js'
+            filename: 'bundle.js',
         },
         module: {
             rules: [
@@ -26,8 +26,9 @@ module.exports = () => {
         devServer: {
             contentBase: path.join(__dirname, "dist"),
             port: 9000,
-            historyApiFallback: true
+            historyApiFallback: true,
+            publicPath: '/dist'
         },
         devtool : 'source-map',
-    }
+    };
 };

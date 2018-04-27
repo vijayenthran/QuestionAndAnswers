@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getCategories, getPosts, clear_post_list} from "../../action/ama";
-import {Link} from 'react-router-dom';
-
+import {Link, Route} from 'react-router-dom';
+// import {PostComponent} from './posts';
+// console.log(PostComponent);
 export class Categories extends React.Component {
 
     constructor() {
@@ -40,26 +41,31 @@ export class Categories extends React.Component {
 
     render() {
         return (
-            <aside className="CategoriesBar">
-                <ul className="CategoryList">
-                    {this.props.categories.map(category =>
-                        <li key={category._id}
-                            className={`category${category.name}`}
-                            data-categoryid={category._id}
-                            onClick={this.categoryHandleClick}>
-                            {category.name}
-                        </li>
-                    )}
-                </ul>
-                <ul>
-                    {this.props.posts.map(postData =>
-                        <li key={postData._id}
-                            onClick={this.postsHandleClick}
-                            data-post-id={postData._id}>{postData.post}
-                        </li>
-                    )}
-                </ul>
-            </aside>
+            <section className="LandingPageContent">
+                <aside className="CategoriesBar">
+                    <ul className="CategoryList">
+                        {this.props.categories.map(category =>
+                            <li key={category._id}
+                                className={`category${category.name}`}
+                                data-categoryid={category._id}
+                                onClick={this.categoryHandleClick}>
+                                {category.name}
+                            </li>
+                        )}
+                    </ul>
+                </aside>
+                <aside className="PostLists">
+                    <ul>
+                        {this.props.posts.map(postData =>
+                            <li key={postData._id}
+                                onClick={this.postsHandleClick}
+                                data-post-id={postData._id}>
+                                <Link to={`app/post/${postData._id}`}>{postData.post}</Link>
+                            </li>
+                        )}
+                    </ul>
+                </aside>
+            </section>
         )
     }
 }
