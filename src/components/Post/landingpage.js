@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderBar from '../headerBar';
-import {PostComponent} from './posts';
+import PostComponent from './posts';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 

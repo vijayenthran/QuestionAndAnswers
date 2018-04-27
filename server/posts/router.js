@@ -4,23 +4,37 @@ const express = require('express');
 const postRouter = express.Router();
 const {Post} = require('./model');
 
-postRouter.get('/all', (req, res, next) => {
-    return Post.find({})
-        .then(postdocs => res.status(200).json(postdocs))
+
+postRouter.get('/post/:postId', (req, res, next) => {
+    if (!Post.checkObjectId(req.params.postId)) {
+        let err = new Error();
+        err.reason = 'Request Error';
+        err.statusCode = 500;
+        err.detailMessage = `Post Id should be an ObjectId`;
+        return next(err);
+    }
+    return Post.findOne({_id: req.params.postId})
+        .then(postdoc => res.status(200).json(postdoc))
         .catch(error => res.status(500).send(error));
 });
 
 postRouter.get('/:categoryId', (req, res, next) => {
-    if (!Post.checkObjectId(req.params.categoryId)) {
-        let err = new Error();
-        err.reason = 'Request Error';
-        err.statusCode = 500;
-        err.detailMessage = `Category Id should be an ObjectId`;
-        return next(err);
+    if (req.params.categoryId !== 'null') {
+        if (!Post.checkObjectId(req.params.categoryId)) {
+            let err = new Error();
+            err.reason = 'Request Error';
+            err.statusCode = 500;
+            err.detailMessage = `Category Id should be an ObjectId`;
+            return next(err);
+        }
+        return Post.find({categoryId: req.params.categoryId})
+            .then(postdocs => res.status(200).json(postdocs))
+            .catch(error => res.status(500).send(error));
+    } else {
+        return Post.find({})
+            .then(postdocs => res.status(200).json(postdocs))
+            .catch(error => res.status(500).send(error));
     }
-    return Post.find({categoryId: req.params.categoryId})
-        .then(postdocs => res.status(200).json(postdocs))
-        .catch(error => res.status(500).send(error));
 });
 
 postRouter.post('/', (req, res) => {
