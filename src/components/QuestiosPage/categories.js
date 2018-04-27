@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getCategories, getPosts, clear_post_list, clear_categories_list} from "../../action/ama";
-import {Link, Route} from 'react-router-dom';
-// import {PostComponent} from './posts';
-// console.log(PostComponent);
+import {Link} from 'react-router-dom';
+
 export class Categories extends React.Component {
 
     constructor() {
