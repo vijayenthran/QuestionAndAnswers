@@ -9,6 +9,7 @@ module.exports = () => {
         output: {
             path: path.resolve(__dirname, 'dist'), // Where the bundle should be.
             filename: 'bundle.js',
+            // publicPath: path.join(__dirname, 'dist')
         },
         module: {
             rules: [
@@ -26,8 +27,7 @@ module.exports = () => {
         devServer: {
             contentBase: path.join(__dirname, "dist"),
             port: 9000,
-            historyApiFallback: true,
-            publicPath: '/dist'
+            historyApiFallback: true
         },
         devtool : 'source-map',
     };
