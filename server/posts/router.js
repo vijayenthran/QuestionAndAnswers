@@ -14,6 +14,8 @@ postRouter.get('/post/:postId', (req, res, next) => {
         return next(err);
     }
     return Post.findOne({_id: req.params.postId})
+        .lean()
+        .populate('commentsList')
         .then(postdoc => res.status(200).json(postdoc))
         .catch(error => res.status(500).send(error));
 });
@@ -28,10 +30,16 @@ postRouter.get('/:categoryId', (req, res, next) => {
             return next(err);
         }
         return Post.find({categoryId: req.params.categoryId})
+            .sort('-createdAt')
+            .lean()
+            .populate('commentsList')
             .then(postdocs => res.status(200).json(postdocs))
             .catch(error => res.status(500).send(error));
     } else {
         return Post.find({})
+            .sort('-createdAt')
+            .lean()
+            .populate('commentsList')
             .then(postdocs => res.status(200).json(postdocs))
             .catch(error => res.status(500).send(error));
     }
@@ -51,7 +59,7 @@ postRouter.put('/:postId', (req, res) => {
         err.detailMessage = `PostId should be an ObjectId`;
         return next(err);
     }
-    return Post.updateOne({_id: req.params.postId},{ $set: { post: req.body.post }})// Fill in the Update Fields option.
+    return Post.findOneAndUpdate({_id: req.params.postId},{...req.body})// Fill in the Update Fields option.
         .then(updatedPostdoc => res.status(200).json(updatedPostdoc))
         .catch(error => res.status(500).json(error));
 });

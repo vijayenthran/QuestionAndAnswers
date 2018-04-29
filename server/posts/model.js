@@ -9,12 +9,15 @@ const mongoose = require('mongoose');
 
 
 const postsSchema = mongoose.Schema({
-    post: {type:String, required:true},
-    categoryId : {type:mongoose.Schema.Types.ObjectId, required:true},
-    userId : {type:mongoose.Schema.Types.ObjectId, required:true},
-    userName :{type: String},
-    likeCount : {type:Number}
-},{timestamps: true});
+    postTitle: {type: String, required: true},
+    postBody: {type: String, required: true},
+    categoryId: {type: mongoose.Schema.Types.ObjectId, required: true},
+    categoryName: {type: String, required: true},
+    commentsList: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comments'}],
+    userId: {type: mongoose.Schema.Types.ObjectId, required: true},
+    userName: {type: String},
+    likeCount: {type: Number}
+}, {timestamps: true});
 
 postsSchema.statics.checkObjectId = function (value) {
     return mongoose.Types.ObjectId.isValid(value);

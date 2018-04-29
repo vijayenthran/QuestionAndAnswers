@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
 import {connect} from 'react-redux';
-import {getSinglePost, clear_single_post, getComments, clear_comment_list} from '../../action/ama';
+import {getSinglePost, clear_single_post} from '../../action/ama';
 
 export class PostComponent extends React.Component {
     constructor() {
@@ -13,9 +13,7 @@ export class PostComponent extends React.Component {
         let postId = this.props.match.params.postId;
         if (postId) {
             return Promise.resolve(this.props.dispatch(clear_single_post()))
-                .then(() => this.props.dispatch(getSinglePost(postId)))
-                .then(() => this.props.dispatch(clear_comment_list()))
-                .then(() => this.props.dispatch(getComments(postId)));
+                .then(() => this.props.dispatch(getSinglePost(postId)));
         } else {
             return;
         }
@@ -25,7 +23,7 @@ export class PostComponent extends React.Component {
         return (
             <div>
                 <h2>I am the post</h2>
-                <div><i>{this.props.post.map(elem => elem.post)}</i></div>
+                <div><i>{this.props.post.map(elem => elem.postBody)}</i></div>
                 <h2>I am the comments</h2>
                 <div>
                     <ul>
@@ -40,7 +38,7 @@ export class PostComponent extends React.Component {
 
 const mapStateToProps = state => ({
     post: state.ama.singlePost,
-    commentsList : state.ama.comments
+    commentsList: state.ama.comments
 });
 
 export default connect(mapStateToProps)(PostComponent)

@@ -41,7 +41,7 @@ export const clear_single_post = () => ({
 export const SET_COMMENTS_LIST = 'SET_COMMENTS_LIST';
 export const set_comment_list = commentList => ({
     type: SET_COMMENTS_LIST,
-    comments : commentList.comments
+    comments: commentList.comments
 });
 
 export const CLEAR_COMMENTS_LIST = 'CLEAR_COMMENTS_LIST';
@@ -86,7 +86,6 @@ export const getComments = postId => dispatch => {
 };
 
 
-
 // This action is used to get a post based on its object id
 export const getSinglePost = postId => dispatch => {
     let authToken = getAuthToken('auth');
@@ -95,7 +94,19 @@ export const getSinglePost = postId => dispatch => {
         url: `${config.BaseURL}/app/posts/post/${postId}`,
         headers: {authorization: `bearer ${authToken}`}
     }).then(postObj => {
+        dispatch(clear_comment_list());
+        dispatch(set_comment_list({comments: postObj.data.commentsList}));
         dispatch(set_single_post({singlePost: postObj.data}));
+    }).catch(error => console.log(error));
+};
+
+export const updatePosts = (postId, putObj) => dispatch => {
+    let authToken = getAuthToken('auth');
+    return axios({
+        method: 'put',
+        url: `${config.BaseURL}/app/posts/${postId}`,
+        headers: {authorization: `bearer ${authToken}`},
+        data: {...putObj}
     }).catch(error => console.log(error));
 };
 

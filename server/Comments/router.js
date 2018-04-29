@@ -13,6 +13,7 @@ commentsRouter.get('/:postId', (req, res, next) => {
         return next(err);
     }
     return Comments.find({postId: req.params.postId})
+        .lean()
         .then(commentDocs => res.status(200).json(commentDocs))
         .catch(error => res.status(500).send(error));
 });
