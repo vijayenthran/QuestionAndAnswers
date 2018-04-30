@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom';
 import CategorySection from './categories';
 import PostCardsSection from './PostCards/postCards';
+import NewPost from './NewPosts/landingpage';
 
 export function QuestionLandingPage(props) {
     if (!props.loginStatus) {
@@ -16,6 +17,7 @@ export function QuestionLandingPage(props) {
             <HeaderBar/>
             <div>Successful Login Showing Landing Page</div>
             <CategorySection/>
+            <NewPost/>
             <PostCardsSection/>
         </section>
     )

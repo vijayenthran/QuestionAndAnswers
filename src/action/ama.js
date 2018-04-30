@@ -22,6 +22,12 @@ export const set_posts_list = postList => ({
     posts: postList.posts
 });
 
+export const SET_SHOW_ADD_POST_FORM = 'SET_SHOW_ADD_POST_FORM';
+export const set_show_add_post_form = val => ({
+    type: SET_SHOW_ADD_POST_FORM,
+    showAddPost: val
+});
+
 export const CLEAR_POST_LIST = 'CLEAR_POST_LIST';
 export const clear_post_list = () => ({
     type: CLEAR_POST_LIST,

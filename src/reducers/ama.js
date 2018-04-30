@@ -8,14 +8,16 @@ import {
     SET_SINGLE_POST,
     CLEAR_SINGLE_POST,
     SET_COMMENTS_LIST,
-    CLEAR_COMMENTS_LIST
+    CLEAR_COMMENTS_LIST,
+    SET_SHOW_ADD_POST_FORM,
 } from '../action/ama';
 
 const initialState = {
     categories: [],
     posts: [],
     singlePost: [],
-    comments : []
+    comments: [],
+    showAddPost: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -57,6 +59,11 @@ export default function reducer(state = initialState, action) {
     if (action.type === CLEAR_COMMENTS_LIST) {
         return Object.assign({}, state, {
             comments: []
+        });
+    }
+    if (action.type === SET_SHOW_ADD_POST_FORM) {
+        return Object.assign({}, state, {
+            showAddPost: action.showAddPost
         });
     }
     return state;
