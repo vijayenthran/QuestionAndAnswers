@@ -46,6 +46,7 @@ postRouter.get('/:categoryId', (req, res, next) => {
 });
 
 postRouter.post('/', (req, res) => {
+    console.log('I am being hit');
     return Post.create(req.body)
         .then(postdocs => res.status(201).json(postdocs))
         .catch(error => res.status(500).send(error));

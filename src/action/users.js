@@ -26,8 +26,9 @@ const _registerUser = userInfo => dispatch => {
         firstName: userInfo.FirstNameSignUp,
         lastName: userInfo.LastNameSignUp,
     })
-    // .then(value => console.log(value))
+        // .then(value => )
         .catch(error => {
+            console.log(error);
             if (Object.keys(error.response.data).length > 0 && error.response.data.reason === 'ValidationError') {
                 return Promise.reject(new SubmissionError(errorMappingUtil(error)));
             } else {

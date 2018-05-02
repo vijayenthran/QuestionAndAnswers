@@ -20,10 +20,14 @@ export const PostCardData = props => {
         verticalAlign: 'top',
     };
 
-    let likeStyle = {
-        marginRight: '10px',
+    let validateLike = {
+        pointerEvents: props.postData.likedBy.indexOf(props.userId) >= 0 ? 'none' : 'auto'
     };
 
+    let cursorNotAllowed = {
+        cursor: props.postData.likedBy.indexOf(props.userId) >= 0 ? "not-allowed" : 'pointer',
+        verticalAlign: 'top',
+    };
 
     function handleLikeClick(event) {
         event.preventDefault();
@@ -33,6 +37,7 @@ export const PostCardData = props => {
         let closestPostCardParent = findAncestor(event.currentTarget, 'postCardsLists');
         let postCardId = closestPostCardParent.dataset.postId;
         event.currentTarget.lastElementChild.innerHTML = incrementLikeCount;
+        event.currentTarget.setAttribute("style", "pointer-events: none");
         updatePostCardBody['likeCount'] = incrementLikeCount;
         if (!props.postData.likedBy.indexOf(props.userId) >= 0) {
             updatePostCardBody['likedBy'].push(props.userId);
@@ -40,10 +45,6 @@ export const PostCardData = props => {
         props.dispatch(updatePosts(postCardId, updatePostCardBody));
         return;
     }
-
-    console.log(props.postData);
-    console.log(props.userId);
-    console.log(props.postData.likedBy.indexOf(props.userId) >= 0);
 
     return (
         <div className="postCardData">
@@ -54,12 +55,14 @@ export const PostCardData = props => {
                 <Link to={`app/post/${props.postData._id}`}>{props.postData.postBody}</Link>
             </p>
             <div className="postCardData-footer">
-                <a href="#" style={likeStyle}
-                   className="postCardData-footer-UpVote" onClick={handleLikeClick}>
+                <span className="postCardData-like-Wrapper" style={cursorNotAllowed}>
+                    <a href="#" style={validateLike}
+                       className="postCardData-footer-UpVote" onClick={handleLikeClick}>
                     <img style={imgStyle} src={likeImg} alt="Like image is missing"/>
                     <span style={spanStyle}
                           className="postCardData-footer-UpVote-text">{props.postData.likeCount}</span>
                 </a>
+                </span>
                 <Link to={`app/post/${props.postData._id}`} className="postCardData-footer-Comments">
                     <img style={imgStyle} src={commentsImg} alt="comments image is missing"/>
                     <span style={spanStyle} className="postCardData-footer-Comments-Link">

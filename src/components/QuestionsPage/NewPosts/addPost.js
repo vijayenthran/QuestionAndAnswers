@@ -2,13 +2,14 @@
 
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import input from '../../reusableForm/inputField';
+// import input from '../../reusableForm/inputField';
+import textArea from '../../reusableForm/textArea';
 import {set_show_add_post_form, addPosts} from "../../../action/ama";
 import {SelectDDMenu} from "../../reusableForm/selectField";
 import {connect} from 'react-redux';
 
 function AddPostForm(props) {
-    console.log(props);
+
     function handleOnSubmit(formValue) {
         let categoryArr = formValue.CategoryDropDown.split('-');
         let createPostObj;
@@ -33,8 +34,8 @@ function AddPostForm(props) {
     return (
         <section className="AddPostForm">
             <form onSubmit={props.handleSubmit(handleOnSubmit)}>
-                <Field name="PostTitle" id="post-title" type="text" component={input}/>
-                <Field name="PostBody" id="post-body" type="text" component={input}/>
+                <Field name="PostTitle" placeholderValue="Add Post Title" id="post-title" component={textArea}/>
+                <Field name="PostBody" placeholderValue="Add Post Body" id="post-body" component={textArea}/>
                 <Field name="CategoryDropDown" id="category-drop-down" generatelist={props.categories} filter={'All'}
                        component={SelectDDMenu}/>
                 <button type="submit" disabled={props.submitting}>+ CreatePost</button>

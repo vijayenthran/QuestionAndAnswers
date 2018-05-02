@@ -37,9 +37,6 @@ app.use('/app/categories', verifyTokenProtected, categoryRouter);
 app.use('/app/posts', verifyTokenProtected, postRouter);
 app.use('/app/comments', verifyTokenProtected, commentsRouter);
 
-// app.get('/a/protected', verifyTokenProtected, (req, res) => {
-//     res.status(200).send('Protected Route is working');
-// });
 
 app.use((error, req, res, next) => {
     console.log(error);
