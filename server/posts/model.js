@@ -16,6 +16,7 @@ const postsSchema = mongoose.Schema({
     commentsList: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comments'}],
     userId: {type: mongoose.Schema.Types.ObjectId, required: true},
     userName: {type: String},
+    likedBy : [{type: mongoose.Schema.Types.ObjectId}],
     likeCount: {type: Number}
 }, {timestamps: true});
 

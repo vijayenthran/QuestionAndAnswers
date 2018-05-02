@@ -117,6 +117,24 @@ export const updatePosts = (postId, putObj) => dispatch => {
 };
 
 
+export const addPosts = createPostObj => dispatch => {
+    let authToken = getAuthToken('auth');
+    return axios({
+        method: 'post',
+        url: `${config.BaseURL}/app/posts`,
+        headers: {authorization: `bearer ${authToken}`},
+        data: {...createPostObj}
+    })
+        .then(createPostObj => {
+            console.log('I am the server docs');
+            console.log(createPostObj);
+            dispatch(set_posts_list({posts:createPostObj.data}));
+        })
+        .catch(err => console.log(err));
+
+};
+
+
 // This action is used to get all the posts based on the category id
 export const getPosts = categoryId => dispatch => {
     let authToken = getAuthToken('auth');

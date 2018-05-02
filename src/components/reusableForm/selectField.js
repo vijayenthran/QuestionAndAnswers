@@ -3,11 +3,13 @@ import React from 'react';
 
 
 export function SelectDDMenu(props) {
+    // Make sure the name and the id are present in the value attribute
+    // for the select because that is what gets passed when the form is submitted.
     function generateOptions() {
         if(props.filter){
-            return props.generatelist.filter(elem => elem.name !== `${props.filter}`).map(elem => <option value={elem.name}>{elem.name}</option>)
+            return props.generatelist.filter(elem => elem.name !== `${props.filter}`).map(elem => <option value={`${elem.name}-${elem._id}`}>{elem.name}</option>)
         }
-        return props.generatelist.map(elem => <option value={elem._id}>{elem.name}</option>)
+        return props.generatelist.map(elem => <option value={`${elem.name}-${elem._id}`}>{elem.name}</option>)
     }
 
     return (

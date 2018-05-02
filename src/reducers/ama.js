@@ -32,9 +32,15 @@ export default function reducer(state = initialState, action) {
         });
     }
     if (action.type === SET_POSTS_LIST) {
-        return Object.assign({}, state, {
-            posts: state.posts.concat(action.posts)
-        });
+        if (Array.isArray(action.posts)) {
+            return Object.assign({}, state, {
+                posts: state.posts.concat(action.posts)
+            });
+        } else {
+            return Object.assign({}, state, {
+                posts: [action.posts, ...state.posts]
+            });
+        }
     }
     if (action.type === CLEAR_POST_LIST) {
         return Object.assign({}, state, {

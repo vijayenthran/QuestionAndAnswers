@@ -3,13 +3,27 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import input from '../../reusableForm/inputField';
-import {set_show_add_post_form} from "../../../action/ama";
+import {set_show_add_post_form, addPosts} from "../../../action/ama";
 import {SelectDDMenu} from "../../reusableForm/selectField";
 import {connect} from 'react-redux';
 
 function AddPostForm(props) {
-    function handleOnSubmit(values) {
-        console.log(values);
+    console.log(props);
+    function handleOnSubmit(formValue) {
+        let categoryArr = formValue.CategoryDropDown.split('-');
+        let createPostObj;
+        if (categoryArr.length > 0) {
+            createPostObj = {
+                postTitle: formValue.PostTitle,
+                postBody: formValue.PostBody,
+                categoryId: categoryArr[1],
+                categoryName: categoryArr[0],
+                userId: props.userId,
+                likeCount : 0,
+                userName: props.userName
+            }
+        }
+        return props.dispatch(addPosts(createPostObj))
     }
 
     function handleCancel() {
@@ -21,7 +35,8 @@ function AddPostForm(props) {
             <form onSubmit={props.handleSubmit(handleOnSubmit)}>
                 <Field name="PostTitle" id="post-title" type="text" component={input}/>
                 <Field name="PostBody" id="post-body" type="text" component={input}/>
-                <Field name="CategoryDropDown" id="category-drop-down" generatelist={props.categories} filter={'All'} component={SelectDDMenu}/>
+                <Field name="CategoryDropDown" id="category-drop-down" generatelist={props.categories} filter={'All'}
+                       component={SelectDDMenu}/>
                 <button type="submit" disabled={props.submitting}>+ CreatePost</button>
                 <button type="button" onClick={handleCancel} disabled={props.submitting}>Cancel</button>
             </form>
@@ -34,7 +49,9 @@ const AddPost = reduxForm({
 })(AddPostForm);
 
 const mapstateToProps = state => ({
-   categories : state.ama.categories
+    categories: state.ama.categories,
+    userId: state.auth.userInfo.user.userId,
+    userName: state.auth.userInfo.user.username
 });
 
 export default connect(mapstateToProps)(AddPost)
