@@ -38,10 +38,11 @@ export function HeaderBar(props) {
 const manipulateUserInfo = state => {
     let userName;
     if(state.auth.userInfo !== null){
-        return state.auth.userInfo.user.username
+        userName=state.auth.userInfo.user.username
     }else{
         userName = null;
     }
+    return userName;
 };
 
 const mapStateToProps = state => ({
