@@ -13,18 +13,27 @@ import {updatePosts} from "../../../action/ama";
 
 export const PostCardData = props => {
     let imgStyle = {
-        width: '20px',
+        width: '25px',
         size: 'auto',
     };
 
     let imgStyle1 = {
-        width: '20px',
+        width: '25px',
         size: 'auto',
         marginLeft: '3%',
     };
 
     let spanStyle = {
         verticalAlign: 'top',
+    };
+
+    let editPostStyle = {
+        display: 'none',
+    };
+
+    let spanStyleEdit ={
+        verticalAlign: 'top',
+        marginRight: '2%',
     };
 
     let validateLike = {
@@ -39,17 +48,22 @@ export const PostCardData = props => {
         cursor: props.postData.likedBy.indexOf(props.userId) >= 0 ? "not-allowed" : 'pointer',
         verticalAlign: 'top',
     };
-    
 
-    function handleLikeClick(event) {
-        event.preventDefault();
-        let incrementLikeCount = Number(event.currentTarget.lastElementChild.innerHTML) + 1;
-        let updatePostCardBody = Object.assign({}, props.postData);
-        delete updatePostCardBody._id;
+    let alignTop = {
+        verticalAlign: 'top'
+    };
+
+    function updateElementStyle(event) {
+        event.currentTarget.setAttribute("style", "pointer-events: none;");
+        findAncestor(event.currentTarget, 'postCardData-like-Wrapper').setAttribute("style", "cursor: not-allowed; vertical-align:top;");
+        return;
+    }
+
+    function dispatchUpdatePostsCall(event, incrementLikeCount) {
         let closestPostCardParent = findAncestor(event.currentTarget, 'postCardsLists');
         let postCardId = closestPostCardParent.dataset.postId;
-        event.currentTarget.lastElementChild.innerHTML = incrementLikeCount;
-        event.currentTarget.setAttribute("style", "pointer-events: none, cursor: not-allowed");
+        let updatePostCardBody = Object.assign({}, props.postData);
+        delete updatePostCardBody._id;
         updatePostCardBody['likeCount'] = incrementLikeCount;
         if (props.postData.likedBy.indexOf(props.userId) < 0) {
             updatePostCardBody['likedBy'].push(props.userId);
@@ -58,10 +72,31 @@ export const PostCardData = props => {
         return;
     }
 
+    function incrementCount(event) {
+        let incrementLikeCount = Number(event.currentTarget.lastElementChild.innerHTML) + 1;
+        event.currentTarget.lastElementChild.innerHTML = incrementLikeCount;
+        dispatchUpdatePostsCall(event, incrementLikeCount);
+        return;
+    }
+
+    function handleLikeClick(event) {
+        event.preventDefault();
+        incrementCount(event);
+        updateElementStyle(event);
+        return;
+    }
+
     function handleEditClick(event) {
+        event.preventDefault();
+        console.log(props);
+        return;
+    }
+
+    function handleDeleteClick(event) {
         event.preventDefault();
         return;
     }
+
 
     return (
         <div className="postCardData">
@@ -88,7 +123,12 @@ export const PostCardData = props => {
                 </Link>
                 <a href="#" style={validateVisible} className="postCardData-footer-Edit" onClick={handleEditClick}>
                     <img style={imgStyle1} src={editImg} alt="Edit image is missing"/>
+                    <span style={spanStyleEdit} className="postCardData-footer-Edit-text">EditPost</span>
                 </a>
+                <span style={editPostStyle} className="postCardData-footer-Delete-Wrapper">
+                    <a href="#" style={alignTop} className="postCardData-footer-Delete-btn" onClick={handleDeleteClick}>DeletePost</a>
+                    <a href="#" style={alignTop} className="postCardData-footer-Cancel-link">cancel</a>
+                </span>
             </div>
         </div>
     );

@@ -10,6 +10,7 @@ import {
     SET_COMMENTS_LIST,
     CLEAR_COMMENTS_LIST,
     SET_SHOW_ADD_POST_FORM,
+    SET_SHOW_DELETE_POST
 } from '../action/ama';
 
 const initialState = {
@@ -17,7 +18,8 @@ const initialState = {
     posts: [],
     singlePost: [],
     comments: [],
-    showAddPost: null
+    showAddPost: null,
+    showDeletePosts: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -70,6 +72,11 @@ export default function reducer(state = initialState, action) {
     if (action.type === SET_SHOW_ADD_POST_FORM) {
         return Object.assign({}, state, {
             showAddPost: action.showAddPost
+        });
+    }
+    if (action.type === SET_SHOW_DELETE_POST) {
+        return Object.assign({}, state, {
+            showDeletePosts: action.showDeletePosts
         });
     }
     return state;

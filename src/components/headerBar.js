@@ -35,10 +35,18 @@ export function HeaderBar(props) {
     return <div className="headerBar">HeaderContent</div>
 }
 
+const manipulateUserInfo = state => {
+    let userName;
+    if(state.auth.userInfo !== null){
+        return state.auth.userInfo.user.username
+    }else{
+        userName = null;
+    }
+};
 
 const mapStateToProps = state => ({
     loginStatus: state.auth.loggedIn,
-    userName : state.auth.userInfo.user.username
+    userName : manipulateUserInfo(state)
 });
 
 export default connect(mapStateToProps)(HeaderBar);

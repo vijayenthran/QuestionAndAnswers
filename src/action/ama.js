@@ -22,6 +22,12 @@ export const set_posts_list = postList => ({
     posts: postList.posts
 });
 
+export const SET_SHOW_DELETE_POST = 'SET_SHOW_DELETE_POST';
+export const set_show_delete_post = value => ({
+    type: SET_SHOW_DELETE_POST,
+    showDeletePosts : value
+});
+
 export const SET_SHOW_ADD_POST_FORM = 'SET_SHOW_ADD_POST_FORM';
 export const set_show_add_post_form = val => ({
     type: SET_SHOW_ADD_POST_FORM,
