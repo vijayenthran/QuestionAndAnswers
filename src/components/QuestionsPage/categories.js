@@ -4,6 +4,7 @@ import {getCategories, getPosts, clear_post_list, clear_categories_list} from ".
 
 export class Categories extends React.Component {
 
+
     constructor() {
         super();
         this.categoryHandleClick = this.categoryHandleClick.bind(this);
@@ -36,8 +37,13 @@ export class Categories extends React.Component {
     }
 
     render() {
+        let categorysection = {
+            display: 'inline-block',
+            width : '25%',
+            verticalAlign :'top',
+        };
         return (
-            <aside className="CategoriesBar">
+            <aside style={categorysection} className="CategoriesBar">
                 <ul className="CategoryList">
                     {this.props.categories.map(category =>
                         <li key={category._id}

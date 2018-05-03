@@ -11,7 +11,7 @@ const textArea = (props) => {
             {/*Spread operator to get all the events on input field like on click. Those events are passed down**/}
             {/*as props. from the decarator component redux Form.*/}
             {/*The input events should be given to the input fields in order to for the track events triggered on that input field*/}
-            <textarea placeholder={props.placeholderValue} id={props.id} {...props.input}/>
+            <textarea style={props.style} placeholder={props.placeholderValue} id={props.id} {...props.input}/>
             {props.meta.error && props.meta.touched ? <span>{props.meta.error}</span> : null}
         </section>
     );

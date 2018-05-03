@@ -4,6 +4,19 @@ import {connect} from 'react-redux';
 import {HeaderNav} from "./NavBar/headerNav"
 
 export function HeaderBar(props) {
+    let headernav={
+        display : 'inline-block',
+    };
+
+    let logoutbtn ={
+        display : 'inline-block',
+        marginLeft : '1%',
+    };
+
+    let welcomeText ={
+        marginLeft : '5%',
+    };
+
     function logoutUser() {
         const logoutObj = {userInfo: null, loggedIn: false};
         props.dispatch(logOut(logoutObj));
@@ -13,8 +26,9 @@ export function HeaderBar(props) {
     if (props.loginStatus) {
         return (
             <section className="HeaderBar">
-                <HeaderNav />
-                <button className="Logout-btn" onClick={logoutUser}>{'Logout'}</button>
+                <div style={headernav}><HeaderNav className="header-nav"/></div>
+                <span style={welcomeText} className="welcome-text">{`Hi ${props.userName}`}</span>
+                <div style={logoutbtn}><button className="Logout-btn" onClick={logoutUser}>{'Logout'}</button></div>
             </section>
         )
     }
@@ -23,7 +37,8 @@ export function HeaderBar(props) {
 
 
 const mapStateToProps = state => ({
-    loginStatus: state.auth.loggedIn
+    loginStatus: state.auth.loggedIn,
+    userName : state.auth.userInfo.user.username
 });
 
 export default connect(mapStateToProps)(HeaderBar);

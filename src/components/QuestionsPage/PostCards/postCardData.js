@@ -6,14 +6,21 @@ import {Link} from 'react-router-dom';
 // it throws error.
 import commentsImg from '../../../../dist/images/Comments.png';
 import likeImg from '../../../../dist/images/Upvote.png';
+import editImg from '../../../../dist/images/EditIcon.png';
 import {findAncestor} from '../../../util/domTraversal';
 import {updatePosts} from "../../../action/ama";
 
 
 export const PostCardData = props => {
     let imgStyle = {
-        width: '25px',
+        width: '20px',
         size: 'auto',
+    };
+
+    let imgStyle1 = {
+        width: '20px',
+        size: 'auto',
+        marginLeft: '3%',
     };
 
     let spanStyle = {
@@ -24,10 +31,15 @@ export const PostCardData = props => {
         pointerEvents: props.postData.likedBy.indexOf(props.userId) >= 0 ? 'none' : 'auto'
     };
 
+    let validateVisible = {
+        display: props.userId === props.postData.userId ? 'inline' : 'none'
+    };
+
     let cursorNotAllowed = {
         cursor: props.postData.likedBy.indexOf(props.userId) >= 0 ? "not-allowed" : 'pointer',
         verticalAlign: 'top',
     };
+    
 
     function handleLikeClick(event) {
         event.preventDefault();
@@ -37,12 +49,17 @@ export const PostCardData = props => {
         let closestPostCardParent = findAncestor(event.currentTarget, 'postCardsLists');
         let postCardId = closestPostCardParent.dataset.postId;
         event.currentTarget.lastElementChild.innerHTML = incrementLikeCount;
-        event.currentTarget.setAttribute("style", "pointer-events: none");
+        event.currentTarget.setAttribute("style", "pointer-events: none, cursor: not-allowed");
         updatePostCardBody['likeCount'] = incrementLikeCount;
-        if (!props.postData.likedBy.indexOf(props.userId) >= 0) {
+        if (props.postData.likedBy.indexOf(props.userId) < 0) {
             updatePostCardBody['likedBy'].push(props.userId);
         }
         props.dispatch(updatePosts(postCardId, updatePostCardBody));
+        return;
+    }
+
+    function handleEditClick(event) {
+        event.preventDefault();
         return;
     }
 
@@ -58,10 +75,10 @@ export const PostCardData = props => {
                 <span className="postCardData-like-Wrapper" style={cursorNotAllowed}>
                     <a href="#" style={validateLike}
                        className="postCardData-footer-UpVote" onClick={handleLikeClick}>
-                    <img style={imgStyle} src={likeImg} alt="Like image is missing"/>
-                    <span style={spanStyle}
-                          className="postCardData-footer-UpVote-text">{props.postData.likeCount}</span>
-                </a>
+                        <img style={imgStyle} src={likeImg} alt="Like image is missing"/>
+                        <span style={spanStyle}
+                              className="postCardData-footer-UpVote-text">{props.postData.likeCount}</span>
+                    </a>
                 </span>
                 <Link to={`app/post/${props.postData._id}`} className="postCardData-footer-Comments">
                     <img style={imgStyle} src={commentsImg} alt="comments image is missing"/>
@@ -69,6 +86,9 @@ export const PostCardData = props => {
                         {props.postData.commentsList.length}
                         </span>
                 </Link>
+                <a href="#" style={validateVisible} className="postCardData-footer-Edit" onClick={handleEditClick}>
+                    <img style={imgStyle1} src={editImg} alt="Edit image is missing"/>
+                </a>
             </div>
         </div>
     );

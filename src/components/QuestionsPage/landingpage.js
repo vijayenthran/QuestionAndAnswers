@@ -9,16 +9,39 @@ import PostCardsSection from './PostCards/postCards';
 import NewPost from './NewPosts/landingpage';
 
 export function QuestionLandingPage(props) {
+
+    let questionpagecontent = {
+        width : '99%'
+    };
+
+    let questionPageBodyStyle = {
+      marginLeft:'auto',
+      marginRight:'auto',
+    };
+
+    let addnewpostdiv ={
+        textAlign: 'right',
+    };
+
+    let postcardssection ={
+        display : 'inline-block',
+        width : '75%'
+    };
+
+
     if (!props.loginStatus) {
         return <Redirect to="/"/>;
     }
     return (
-        <section className="question-page-content">
+        <section style={questionpagecontent} className="question-page-content">
             <HeaderBar/>
-            <div>Successful Login Showing Landing Page</div>
-            <CategorySection/>
-            <NewPost/>
-            <PostCardsSection/>
+            <div style={questionPageBodyStyle} className="question-page-body">
+                <div style={postcardssection} className="posts-section">
+                    <div style={addnewpostdiv} className="add-new-post-div"><NewPost/></div>
+                    <PostCardsSection className="post-cards-section"/>
+                </div>
+                <CategorySection  className="category-section"/>
+            </div>
         </section>
     )
 }

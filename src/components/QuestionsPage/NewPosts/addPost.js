@@ -1,14 +1,35 @@
 'use strict';
 
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
-// import input from '../../reusableForm/inputField';
+import {Field, reduxForm, reset} from 'redux-form';
 import textArea from '../../reusableForm/textArea';
 import {set_show_add_post_form, addPosts} from "../../../action/ama";
 import {SelectDDMenu} from "../../reusableForm/selectField";
+import validate from '../../../validation';
 import {connect} from 'react-redux';
 
 function AddPostForm(props) {
+
+    let postTitleStyle = {
+        marginLeft: '2.7%',
+        width: '40%',
+        padding: '10px',
+        overflowY: 'scroll',
+        height: '20px',
+    };
+
+    let postBodyStyle = {
+        marginLeft: '2%',
+        width: '40%',
+        padding: '10px',
+        overflowY: 'scroll',
+        height: '120px',
+    };
+
+    let addpostform ={
+        textAlign : 'left',
+        marginTop: '5%',
+    };
 
     function handleOnSubmit(formValue) {
         let categoryArr = formValue.CategoryDropDown.split('-');
@@ -25,6 +46,8 @@ function AddPostForm(props) {
             }
         }
         return props.dispatch(addPosts(createPostObj))
+            .then(() => props.dispatch(reset('AddPost')))
+            .then(() => props.dispatch(set_show_add_post_form(null)));
     }
 
     function handleCancel() {
@@ -32,10 +55,10 @@ function AddPostForm(props) {
     }
 
     return (
-        <section className="AddPostForm">
+        <section style={addpostform} className="AddPostForm">
             <form onSubmit={props.handleSubmit(handleOnSubmit)}>
-                <Field name="PostTitle" placeholderValue="Add Post Title" id="post-title" component={textArea}/>
-                <Field name="PostBody" placeholderValue="Add Post Body" id="post-body" component={textArea}/>
+                <Field name="PostTitle" style={postTitleStyle} placeholderValue="Add Post Title" id="post-title" component={textArea}/>
+                <Field name="PostBody" style={postBodyStyle} placeholderValue="Add Post Body" id="post-body" component={textArea}/>
                 <Field name="CategoryDropDown" id="category-drop-down" generatelist={props.categories} filter={'All'}
                        component={SelectDDMenu}/>
                 <button type="submit" disabled={props.submitting}>+ CreatePost</button>
@@ -46,7 +69,8 @@ function AddPostForm(props) {
 }
 
 const AddPost = reduxForm({
-    form: 'AddPost'
+    form: 'AddPost',
+    validate
 })(AddPostForm);
 
 const mapstateToProps = state => ({

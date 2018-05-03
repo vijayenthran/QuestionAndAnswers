@@ -18,6 +18,7 @@ export function SelectDDMenu(props) {
                 <option value=''>Select Category</option>
                 {generateOptions()}
             </select>
+            {props.meta.error && props.meta.touched ? <span>{props.meta.error}</span> : null}
         </div>
     );
 }

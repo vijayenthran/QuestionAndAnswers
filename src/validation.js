@@ -8,6 +8,9 @@ const maxMinVal = {
     passowrd: {
         max: 71,
         min: 8
+    },
+    postTitle: {
+        max : 150
     }
 };
 
@@ -31,6 +34,18 @@ const passwordGateKeeper = value => {
     if (value.length < maxMinVal.passowrd.min || value.length >= maxMinVal.passowrd.max) {
         return `Password should be between ${maxMinVal.passowrd.min} and ${maxMinVal.passowrd.max}`
     } else {
+        return;
+    }
+};
+
+// asldkasl;dkl;sakdl;ksa;ldk;lskd;lsakld;kasl;dkals;kdl;askdl;askd;lksal;dk;laskd;ask;ldkas;ldk;aslkd;lsakd;lkasd;lkas;dlkasl;dkl;askd;laskdl;aksdl;kasl;dk;aslkdla;skdasl;dksal;dl;askdl;aksd;lkasd
+
+const postTitleGateKeeper = value => {
+    if(value.length > maxMinVal.postTitle.max){
+        console.log('I am value');
+        console.log(value.length);
+        return `Title can be maximum of ${maxMinVal.postTitle.max} characters`;
+    }else{
         return;
     }
 };
@@ -70,6 +85,22 @@ const validation = value => {
 
     if (!value.LastNameSignUp) {
         errors.LastNameSignUp = 'Required';
+    }
+
+    // ------------------------- Add Post Form Validators ------------------------------------
+
+    if (!value.PostTitle) {
+        errors.PostTitle = 'Required';
+    }else if (value.PostTitle && postTitleGateKeeper(value.PostTitle)){
+        errors.PostTitle = `Title should be maximum of ${maxMinVal.postTitle.max} characters`;
+    }
+
+    if (!value.PostBody) {
+        errors.PostBody = 'Required';
+    }
+
+    if (!value.CategoryDropDown) {
+        errors.CategoryDropDown = 'Required';
     }
 
     return errors;
