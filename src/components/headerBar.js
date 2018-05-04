@@ -4,17 +4,17 @@ import {connect} from 'react-redux';
 import {HeaderNav} from "./NavBar/headerNav"
 
 export function HeaderBar(props) {
-    let headernav={
-        display : 'inline-block',
+    let headernav = {
+        display: 'inline-block',
     };
 
-    let logoutbtn ={
-        display : 'inline-block',
-        marginLeft : '1%',
+    let logoutbtn = {
+        display: 'inline-block',
+        marginLeft: '1%',
     };
 
-    let welcomeText ={
-        marginLeft : '5%',
+    let welcomeText = {
+        marginLeft: '5%',
     };
 
     function logoutUser() {
@@ -28,7 +28,9 @@ export function HeaderBar(props) {
             <section className="HeaderBar">
                 <div style={headernav}><HeaderNav className="header-nav"/></div>
                 <span style={welcomeText} className="welcome-text">{`Hi ${props.userName}`}</span>
-                <div style={logoutbtn}><button className="Logout-btn" onClick={logoutUser}>{'Logout'}</button></div>
+                <div style={logoutbtn}>
+                    <button className="Logout-btn" onClick={logoutUser}>{'Logout'}</button>
+                </div>
             </section>
         )
     }
@@ -37,9 +39,9 @@ export function HeaderBar(props) {
 
 const manipulateUserInfo = state => {
     let userName;
-    if(state.auth.userInfo !== null){
-        userName=state.auth.userInfo.user.username
-    }else{
+    if (state.auth.userInfo !== null) {
+        userName = state.auth.userInfo.user.username
+    } else {
         userName = null;
     }
     return userName;
@@ -47,7 +49,7 @@ const manipulateUserInfo = state => {
 
 const mapStateToProps = state => ({
     loginStatus: state.auth.loggedIn,
-    userName : manipulateUserInfo(state)
+    userName: manipulateUserInfo(state)
 });
 
 export default connect(mapStateToProps)(HeaderBar);

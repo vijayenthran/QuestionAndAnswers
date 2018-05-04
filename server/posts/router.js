@@ -46,7 +46,6 @@ postRouter.get('/:categoryId', (req, res, next) => {
 });
 
 postRouter.post('/', (req, res) => {
-    console.log('I am being hit');
     return Post.create(req.body)
         .then(postdocs => res.status(201).json(postdocs))
         .catch(error => res.status(500).send(error));
@@ -60,12 +59,13 @@ postRouter.put('/:postId', (req, res) => {
         err.detailMessage = `PostId should be an ObjectId`;
         return next(err);
     }
-    return Post.findOneAndUpdate({_id: req.params.postId},{...req.body})// Fill in the Update Fields option.
+    return Post.findOneAndUpdate({_id: req.params.postId}, {...req.body})// Fill in the Update Fields option.
         .then(updatedPostdoc => res.status(200).json(updatedPostdoc))
         .catch(error => res.status(500).json(error));
 });
 
 postRouter.delete('/:postId', (req, res) => {
+    console.log('I am being hit');
     if (!Post.checkObjectId(req.params.postId)) {
         let err = new Error();
         err.reason = 'Request Error';

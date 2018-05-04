@@ -25,7 +25,7 @@ export const set_posts_list = postList => ({
 export const SET_SHOW_DELETE_POST = 'SET_SHOW_DELETE_POST';
 export const set_show_delete_post = value => ({
     type: SET_SHOW_DELETE_POST,
-    showDeletePosts : value
+    showDeletePosts: value
 });
 
 export const SET_SHOW_ADD_POST_FORM = 'SET_SHOW_ADD_POST_FORM';
@@ -80,22 +80,40 @@ export const getCategories = () => dispatch => {
     }
 };
 
-// This action is used to get Comments based on the postId
-export const getComments = postId => dispatch => {
+// This action is used to delete post based on id
+export const deletepost = postId => dispatch => {
     let authToken = getAuthToken('auth');
     if (authToken) {
         return axios({
-            method: 'get',
-            url: `${config.BaseURL}/app/comments/${postId}`,
+            method: 'delete',
+            url: `${config.BaseURL}/app/posts/${postId}`,
             headers: {authorization: `bearer ${authToken}`}
-        }).then(commentsObj => {
-            dispatch(set_comment_list({comments: commentsObj.data}));
+        }).then(deleteRes => {
+            console.log(deleteRes);
             return;
         }).catch(error => console.log(error));
     } else {
         return;
     }
 };
+
+
+// // This action is used to get Comments based on the postId
+// export const getComments = postId => dispatch => {
+//     let authToken = getAuthToken('auth');
+//     if (authToken) {
+//         return axios({
+//             method: 'get',
+//             url: `${config.BaseURL}/app/comments/${postId}`,
+//             headers: {authorization: `bearer ${authToken}`}
+//         }).then(commentsObj => {
+//             dispatch(set_comment_list({comments: commentsObj.data}));
+//             return;
+//         }).catch(error => console.log(error));
+//     } else {
+//         return;
+//     }
+// };
 
 
 // This action is used to get a post based on its object id
@@ -134,7 +152,7 @@ export const addPosts = createPostObj => dispatch => {
         .then(createPostObj => {
             console.log('I am the server docs');
             console.log(createPostObj);
-            dispatch(set_posts_list({posts:createPostObj.data}));
+            dispatch(set_posts_list({posts: createPostObj.data}));
         })
         .catch(err => console.log(err));
 

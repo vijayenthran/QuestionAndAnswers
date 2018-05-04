@@ -6,10 +6,10 @@ import {Link} from 'react-router-dom';
 // it throws error.
 import commentsImg from '../../../../dist/images/Comments.png';
 import likeImg from '../../../../dist/images/Upvote.png';
+import transparentlike from '../../../../dist/images/transparent-like.png';
 import editImg from '../../../../dist/images/EditIcon.png';
-import {findAncestor} from '../../../util/domTraversal';
-import {updatePosts} from "../../../action/ama";
-
+import {findAncestor, findnextSibling, findpreviousSibling} from '../../../util/domTraversal';
+import {updatePosts, deletepost} from "../../../action/ama";
 
 export const PostCardData = props => {
     let imgStyle = {
@@ -31,42 +31,46 @@ export const PostCardData = props => {
         display: 'none',
     };
 
-    let spanStyleEdit ={
+    let spanStyleEdit = {
         verticalAlign: 'top',
         marginRight: '2%',
     };
 
-    let validateLike = {
-        pointerEvents: props.postData.likedBy.indexOf(props.userId) >= 0 ? 'none' : 'auto'
-    };
+    // let validateLike = {
+    //     pointerEvents: props.postData.likedBy.indexOf(props.userId) >= 0 ? 'none' : 'auto'
+    // };
 
     let validateVisible = {
         display: props.userId === props.postData.userId ? 'inline' : 'none'
     };
 
-    let cursorNotAllowed = {
-        cursor: props.postData.likedBy.indexOf(props.userId) >= 0 ? "not-allowed" : 'pointer',
-        verticalAlign: 'top',
-    };
+    // let cursorNotAllowed = {
+    //     cursor: props.postData.likedBy.indexOf(props.userId) >= 0 ? "not-allowed" : 'pointer',
+    //     verticalAlign: 'top',
+    // };
 
     let alignTop = {
-        verticalAlign: 'top'
+        verticalAlign: 'top',
+        marginLeft: '3%',
     };
 
-    function updateElementStyle(event) {
-        event.currentTarget.setAttribute("style", "pointer-events: none;");
-        findAncestor(event.currentTarget, 'postCardData-like-Wrapper').setAttribute("style", "cursor: not-allowed; vertical-align:top;");
-        return;
-    }
+    // function updateElementStyle(event) {
+    //     event.currentTarget.setAttribute("style", "pointer-events: none;");
+    //     findAncestor(event.currentTarget, 'postCardData-like-Wrapper').setAttribute("style", "cursor: not-allowed; vertical-align:top;");
+    //     return;
+    // }
 
-    function dispatchUpdatePostsCall(event, incrementLikeCount) {
+    function dispatchUpdatePostsCall(event, LikeCount, callType) {
         let closestPostCardParent = findAncestor(event.currentTarget, 'postCardsLists');
         let postCardId = closestPostCardParent.dataset.postId;
         let updatePostCardBody = Object.assign({}, props.postData);
         delete updatePostCardBody._id;
-        updatePostCardBody['likeCount'] = incrementLikeCount;
-        if (props.postData.likedBy.indexOf(props.userId) < 0) {
+        updatePostCardBody['likeCount'] = LikeCount;
+        if (callType === 'Increment') {
             updatePostCardBody['likedBy'].push(props.userId);
+        }else{
+            let userIdIndexValue = props.postData.likedBy.indexOf(props.userId);
+            updatePostCardBody['likedBy'].splice(userIdIndexValue, 1);
         }
         props.dispatch(updatePosts(postCardId, updatePostCardBody));
         return;
@@ -75,25 +79,52 @@ export const PostCardData = props => {
     function incrementCount(event) {
         let incrementLikeCount = Number(event.currentTarget.lastElementChild.innerHTML) + 1;
         event.currentTarget.lastElementChild.innerHTML = incrementLikeCount;
-        dispatchUpdatePostsCall(event, incrementLikeCount);
+        dispatchUpdatePostsCall(event, incrementLikeCount, 'Increment');
         return;
     }
 
+    function decrementCount(event) {
+        let decrementedLikeCount = Number(event.currentTarget.lastElementChild.innerHTML);
+        if (decrementedLikeCount >= 1) {
+            decrementedLikeCount = decrementedLikeCount - 1;
+        }
+        event.currentTarget.lastElementChild.innerHTML = decrementedLikeCount;
+        dispatchUpdatePostsCall(event, decrementedLikeCount);
+        return;
+    }
+
+
     function handleLikeClick(event) {
         event.preventDefault();
-        incrementCount(event);
-        updateElementStyle(event);
+        if (props.postData.likedBy.indexOf(props.userId) >= 0) {
+            decrementCount(event);
+        } else {
+            incrementCount(event);
+        }
         return;
     }
 
     function handleEditClick(event) {
         event.preventDefault();
-        console.log(props);
+        event.currentTarget.setAttribute('style', 'display:none');
+        findnextSibling(event.currentTarget, 'postCardData-footer-Delete-Wrapper').setAttribute('style', 'display:inline');
         return;
     }
 
-    function handleDeleteClick(event) {
+    function handleCancelDeleteClick(event) {
         event.preventDefault();
+        let findAnsFooterDeleteWrapper= findAncestor(event.currentTarget, 'postCardData-footer-Delete-Wrapper');
+        findAnsFooterDeleteWrapper.setAttribute('style', 'display:none');
+        findpreviousSibling(findAnsFooterDeleteWrapper, 'postCardData-footer-Edit').setAttribute('style', 'display:inline');
+        return;
+    }
+
+    function handleDeleteLink(event) {
+        event.preventDefault();
+        let closestPostCardParent = findAncestor(event.currentTarget, 'postCardsLists');
+        let postCardId = closestPostCardParent.dataset.postId;
+        closestPostCardParent.remove();
+        props.dispatch(deletepost(postCardId));
         return;
     }
 
@@ -107,10 +138,10 @@ export const PostCardData = props => {
                 <Link to={`app/post/${props.postData._id}`}>{props.postData.postBody}</Link>
             </p>
             <div className="postCardData-footer">
-                <span className="postCardData-like-Wrapper" style={cursorNotAllowed}>
-                    <a href="#" style={validateLike}
-                       className="postCardData-footer-UpVote" onClick={handleLikeClick}>
-                        <img style={imgStyle} src={likeImg} alt="Like image is missing"/>
+                <span className="postCardData-like-Wrapper">
+                    <a href="#" className="postCardData-footer-UpVote" onClick={handleLikeClick}>
+                        <img style={imgStyle} src={likeImg}
+                             alt="Either Like or dislike image is missing"/>
                         <span style={spanStyle}
                               className="postCardData-footer-UpVote-text">{props.postData.likeCount}</span>
                     </a>
@@ -126,8 +157,8 @@ export const PostCardData = props => {
                     <span style={spanStyleEdit} className="postCardData-footer-Edit-text">EditPost</span>
                 </a>
                 <span style={editPostStyle} className="postCardData-footer-Delete-Wrapper">
-                    <a href="#" style={alignTop} className="postCardData-footer-Delete-btn" onClick={handleDeleteClick}>DeletePost</a>
-                    <a href="#" style={alignTop} className="postCardData-footer-Cancel-link">cancel</a>
+                    <a href="#" style={alignTop} className="postCardData-footer-Delete-btn" onClick={handleDeleteLink}>DeletePost</a>
+                    <a href="#" style={alignTop} className="postCardData-footer-Cancel-link" onClick={handleCancelDeleteClick}>cancel</a>
                 </span>
             </div>
         </div>
