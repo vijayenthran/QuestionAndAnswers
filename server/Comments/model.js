@@ -12,6 +12,7 @@ const commentsSchema = mongoose.Schema({
     postId: {type: mongoose.Schema.Types.ObjectId, required: true},
     userId: {type: mongoose.Schema.Types.ObjectId, required: true},
     userName :{type: String},
+    likedBy : [{type: mongoose.Schema.Types.ObjectId}],
     likeCount : {type:Number}
 },{timestamps: true});
 
