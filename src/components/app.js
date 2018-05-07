@@ -3,7 +3,7 @@ import LandingPage from './landing-page';
 import QuestionLandingPage from './QuestionsPage/landingpage';
 import SignUpPage from './signUp/signUp-page';
 import {Route} from 'react-router-dom';
-import PostsLandingPage from './Post/landingpage';
+import PostsLandingPage from './PostandComments/landingpage';
 
 export function App() {
     return (

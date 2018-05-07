@@ -56,12 +56,26 @@ export const set_comment_list = commentList => ({
     comments: commentList.comments
 });
 
+export const Vijay = 'Vijay';
+
 export const CLEAR_COMMENTS_LIST = 'CLEAR_COMMENTS_LIST';
 export const clear_comment_list = () => ({
     type: CLEAR_COMMENTS_LIST
 });
 
+export const SET_POST_DELETED_DETAIL_POST_PAGE = 'SET_POST_DELETED_DETAIL_POST_PAGE';
+export const set_post_deleted_detail_post_page = value => ({
+    type: SET_POST_DELETED_DETAIL_POST_PAGE,
+    postdeleteddetailpostpage: value,
+});
+
+export const CLEAR_POST_DELETED_DETAIL_POST_PAGE = 'CLEAR_POST_DELETED_DETAIL_POST_PAGE';
+export const clear_post_deleted_detail_post_page = value => ({
+    type: CLEAR_POST_DELETED_DETAIL_POST_PAGE,
+    postdeleteddetailpostpage: value,
+});
 // ----------------------------------------------------------------------------------------------------------------------------------
+
 
 // This action is used to get all the categories
 export const getCategories = () => dispatch => {
@@ -98,23 +112,22 @@ export const deletepost = postId => dispatch => {
 };
 
 
-// // This action is used to get Comments based on the postId
-// export const getComments = postId => dispatch => {
-//     let authToken = getAuthToken('auth');
-//     if (authToken) {
-//         return axios({
-//             method: 'get',
-//             url: `${config.BaseURL}/app/comments/${postId}`,
-//             headers: {authorization: `bearer ${authToken}`}
-//         }).then(commentsObj => {
-//             dispatch(set_comment_list({comments: commentsObj.data}));
-//             return;
-//         }).catch(error => console.log(error));
-//     } else {
-//         return;
-//     }
-// };
-
+// This action is used to delete post based on id
+export const deletecommentsWithPostId = postId => dispatch => {
+    let authToken = getAuthToken('auth');
+    if (authToken) {
+        return axios({
+            method: 'delete',
+            url: `${config.BaseURL}/app/comments/${postId}`,
+            headers: {authorization: `bearer ${authToken}`}
+        }).then(deleteRes => {
+            console.log(deleteRes);
+            return;
+        }).catch(error => console.log(error));
+    } else {
+        return;
+    }
+};
 
 // This action is used to get a post based on its object id
 export const getSinglePost = postId => dispatch => {
@@ -177,4 +190,12 @@ export const getPosts = categoryId => dispatch => {
             return;
         }
     }).catch(error => console.log(error));
+};
+
+// Understand Function Currying.
+export const deleteDetailPostHelper = (value, postId) => dispatch => {
+    return Promise.resolve(dispatch(set_post_deleted_detail_post_page(value)))
+        .then(() => dispatch(clear_post_deleted_detail_post_page(null)))
+        .then(() => deletepost(postId)(dispatch))
+        .then(() => deletecommentsWithPostId(postId)(dispatch));
 };

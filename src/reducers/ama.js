@@ -10,16 +10,19 @@ import {
     SET_COMMENTS_LIST,
     CLEAR_COMMENTS_LIST,
     SET_SHOW_ADD_POST_FORM,
-    SET_SHOW_DELETE_POST
+    SET_SHOW_DELETE_POST,
+    SET_POST_DELETED_DETAIL_POST_PAGE,
+    CLEAR_POST_DELETED_DETAIL_POST_PAGE,
 } from '../action/ama';
 
 const initialState = {
     categories: [],
     posts: [],
-    singlePost: [],
+    singlePost: null,
     comments: [],
     showAddPost: null,
     showDeletePosts: null,
+    postdeleteddetailpostpage:null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -51,12 +54,13 @@ export default function reducer(state = initialState, action) {
     }
     if (action.type === SET_SINGLE_POST) {
         return Object.assign({}, state, {
-            singlePost: state.singlePost.concat(action.singlePost)
+            // singlePost: state.singlePost.concat(action.singlePost);
+            singlePost: action.singlePost,
         });
     }
     if (action.type === CLEAR_SINGLE_POST) {
         return Object.assign({}, state, {
-            singlePost: []
+            singlePost: null
         });
     }
     if (action.type === SET_COMMENTS_LIST) {
@@ -77,6 +81,16 @@ export default function reducer(state = initialState, action) {
     if (action.type === SET_SHOW_DELETE_POST) {
         return Object.assign({}, state, {
             showDeletePosts: action.showDeletePosts
+        });
+    }
+    if (action.type === SET_POST_DELETED_DETAIL_POST_PAGE) {
+        return Object.assign({}, state, {
+            postdeleteddetailpostpage: action.postdeleteddetailpostpage
+        });
+    }
+    if (action.type === CLEAR_POST_DELETED_DETAIL_POST_PAGE) {
+        return Object.assign({}, state, {
+            postdeleteddetailpostpage: null
         });
     }
     return state;

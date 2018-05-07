@@ -24,6 +24,7 @@ function AddPostForm(props) {
         padding: '10px',
         overflowY: 'scroll',
         height: '120px',
+        whiteSpace: 'pre-wrap',
     };
 
     let addpostform ={

@@ -36,7 +36,6 @@ export class PostCards extends React.Component {
 const mapStateToProps = state => ({
     posts: state.ama.posts,
     userId: state.auth.userInfo.user.userId,
-
 });
 
 export default connect(mapStateToProps)(PostCards)

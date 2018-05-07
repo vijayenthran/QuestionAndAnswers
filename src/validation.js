@@ -87,7 +87,7 @@ const validation = value => {
         errors.LastNameSignUp = 'Required';
     }
 
-    // ------------------------- Add Post Form Validators ------------------------------------
+    // ------------------------- Add PostandComments Form Validators ------------------------------------
 
     if (!value.PostTitle) {
         errors.PostTitle = 'Required';

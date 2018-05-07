@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderBar from '../headerBar';
-import PostComponent from './posts';
+import PostandCommentsComponent from './postsandComments';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -12,7 +12,7 @@ export const PostsLandingPage = (props) => {
     return (
         <section className="PostLandingPage">
             <HeaderBar/>
-            <PostComponent history={props.history} match={props.match}/>
+            <PostandCommentsComponent history={props.history} match={props.match}/>
         </section>
     )
 };
