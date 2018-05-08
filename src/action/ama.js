@@ -178,6 +178,42 @@ export const addPosts = createPostObj => dispatch => {
 
 };
 
+const postObjectCleanser = (postObj, commentId) => {
+    // TODO read more about Object mutation. Object .assign manipulates the reference object as well.
+    // Check if there is a better way
+
+    let modifyPostObj = Object.assign({}, postObj);
+    delete modifyPostObj._id;
+    let newCommentListArr = [];
+    modifyPostObj.commentsList.map(elem => newCommentListArr.push(elem._id));
+    newCommentListArr.push(commentId);
+    modifyPostObj['commentsList'] = newCommentListArr;
+    return modifyPostObj;
+};
+
+export const addComments = (createCommentsObj, postObj) => dispatch => {
+    let postId = postObj._id;
+    let authToken = getAuthToken('auth');
+    return axios({
+        method: 'post',
+        url: `${config.BaseURL}/app/comments`,
+        headers: {authorization: `bearer ${authToken}`},
+        data: {...createCommentsObj}
+    })
+        .then(createCommentsObj => {
+            let cleansedpostObj = postObjectCleanser(postObj, createCommentsObj.data._id);
+            dispatch(set_comment_list({comments: createCommentsObj.data}));
+            return axios({
+                method: 'put',
+                url: `${config.BaseURL}/app/posts/${postId}`,
+                headers: {authorization: `bearer ${authToken}`},
+                data: {...cleansedpostObj}
+            });
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+};
+
 
 // This action is used to get all the posts based on the category id
 export const getPosts = categoryId => dispatch => {

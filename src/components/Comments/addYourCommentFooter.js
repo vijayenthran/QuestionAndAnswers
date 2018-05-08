@@ -2,9 +2,10 @@
 
 import React from 'react';
 import {findAncestor, findpreviousSibling} from "../../util/domTraversal";
+import {addComments} from '../../action/ama';
 
 export const AddYourCommentFooter = props => {
-    
+
     let styleVisibility = {
         pointerEvents : props.EnableCommentSubmit ? 'auto' : 'none',
     };
@@ -13,7 +14,15 @@ export const AddYourCommentFooter = props => {
         event.preventDefault();
         let commentFooter = findAncestor(event.currentTarget, 'Add-Comment-Footer');
         let textAreaText = findpreviousSibling(commentFooter, 'Add-Comments-Body').firstChild.value;
-        console.log('I am gettinmg executed');
+        findpreviousSibling(commentFooter, 'Add-Comments-Body').firstChild.value = '';
+        let commentsObj = {
+            comment: textAreaText,
+            postId: props.postId,
+            userId: props.userId,
+            userName : props.userName,
+            likeCount : 0,
+        };
+        props.dispatch(addComments(commentsObj, props.postObj));
         return;
     }
 

@@ -66,9 +66,18 @@ export default function reducer(state = initialState, action) {
         });
     }
     if (action.type === SET_COMMENTS_LIST) {
-        return Object.assign({}, state, {
-            comments: state.comments.concat(action.comments)
-        });
+        if (Array.isArray(action.comments)) {
+            return Object.assign({}, state, {
+                comments: state.comments.concat(action.comments)
+            });
+        } else {
+            return Object.assign({}, state, {
+                comments: [action.comments, ...state.comments]
+            });
+        }
+        // return Object.assign({}, state, {
+        //     comments: state.comments.concat(action.comments)
+        // });
     }
     if (action.type === CLEAR_COMMENTS_LIST) {
         return Object.assign({}, state, {

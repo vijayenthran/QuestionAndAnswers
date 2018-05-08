@@ -14,7 +14,8 @@ export class CommentsLandingPage extends React.Component {
     render() {
         return (
             <section className="Comments-Section-Detail-Post-Page">
-                <AddComment userName={this.props.userName} dispatch={this.props.dispatch} EnableCommentSubmit={this.props.enableCommentSubmit}/>
+                <AddComment postId={this.props.postId} userId={this.props.userId} userName={this.props.userName}
+                            dispatch={this.props.dispatch} EnableCommentSubmit={this.props.enableCommentSubmit} postObj={this.props.postObj}/>
                 <Comments commentsList={this.props.commentsList}/>
             </section>
         );
@@ -24,7 +25,10 @@ export class CommentsLandingPage extends React.Component {
 
 const mapStateToProps = state => ({
     commentsList: state.ama.comments,
-    userName : state.auth.userInfo.user.username,
+    userName: state.auth.userInfo.user.username,
+    userId: state.auth.userInfo.user.userId,
+    postId: state.ama.singlePost._id,
+    postObj: state.ama.singlePost,
     enableCommentSubmit: state.ama.enableCommentSubmitButton,
 });
 
