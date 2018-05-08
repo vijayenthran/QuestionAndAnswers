@@ -56,7 +56,6 @@ export const set_comment_list = commentList => ({
     comments: commentList.comments
 });
 
-export const Vijay = 'Vijay';
 
 export const CLEAR_COMMENTS_LIST = 'CLEAR_COMMENTS_LIST';
 export const clear_comment_list = () => ({
@@ -74,6 +73,14 @@ export const clear_post_deleted_detail_post_page = value => ({
     type: CLEAR_POST_DELETED_DETAIL_POST_PAGE,
     postdeleteddetailpostpage: value,
 });
+
+export const ENABLE_POST_COMMENT_SUBMIT_BUTTON = 'ENABLE_POST_COMMENT_SUBMIT_BUTTON';
+export const enable_post_comment_submit_button = value => ({
+    type: ENABLE_POST_COMMENT_SUBMIT_BUTTON,
+    enableCommentSubmitButton: value,
+});
+
+
 // ----------------------------------------------------------------------------------------------------------------------------------
 
 

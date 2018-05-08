@@ -13,6 +13,7 @@ import {
     SET_SHOW_DELETE_POST,
     SET_POST_DELETED_DETAIL_POST_PAGE,
     CLEAR_POST_DELETED_DETAIL_POST_PAGE,
+    ENABLE_POST_COMMENT_SUBMIT_BUTTON
 } from '../action/ama';
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
     showAddPost: null,
     showDeletePosts: null,
     postdeleteddetailpostpage:null,
+    enableCommentSubmitButton : null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -91,6 +93,11 @@ export default function reducer(state = initialState, action) {
     if (action.type === CLEAR_POST_DELETED_DETAIL_POST_PAGE) {
         return Object.assign({}, state, {
             postdeleteddetailpostpage: null
+        });
+    }
+    if (action.type === ENABLE_POST_COMMENT_SUBMIT_BUTTON) {
+        return Object.assign({}, state, {
+            enableCommentSubmitButton: action.enableCommentSubmitButton
         });
     }
     return state;

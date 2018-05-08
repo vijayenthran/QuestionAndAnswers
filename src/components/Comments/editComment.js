@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'React';
+import React from 'react';
 import editImg from '../../../dist/images/EditIcon.png';
 
 export const EditComment = props => {
