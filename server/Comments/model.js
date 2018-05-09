@@ -11,10 +11,10 @@ const commentsSchema = mongoose.Schema({
     comment: {type: String, required: true},
     postId: {type: mongoose.Schema.Types.ObjectId, required: true},
     userId: {type: mongoose.Schema.Types.ObjectId, required: true},
-    userName :{type: String},
-    likedBy : [{type: mongoose.Schema.Types.ObjectId}],
-    likeCount : {type:Number}
-},{timestamps: true});
+    userName: {type: String},
+    likedBy: [{type: mongoose.Schema.Types.ObjectId}],
+    likeCount: {type: Number}
+}, {timestamps: true});
 
 commentsSchema.statics.checkObjectId = function (value) {
     return mongoose.Types.ObjectId.isValid(value);
@@ -22,4 +22,4 @@ commentsSchema.statics.checkObjectId = function (value) {
 
 const Comments = mongoose.model('Comments', commentsSchema);
 
-module.exports ={Comments};
+module.exports = {Comments};

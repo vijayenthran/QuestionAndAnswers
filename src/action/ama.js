@@ -56,6 +56,12 @@ export const set_comment_list = commentList => ({
     comments: commentList.comments
 });
 
+export const FILTER_COMMENT_FROM_COMMENTS_LIST = 'FILTER_COMMENT_FROM_COMMENTS_LIST';
+export const filter_comment_from_comment_list = filter => ({
+    type: FILTER_COMMENT_FROM_COMMENTS_LIST,
+    commentId: filter.commentId
+});
+
 
 export const CLEAR_COMMENTS_LIST = 'CLEAR_COMMENTS_LIST';
 export const clear_comment_list = () => ({
@@ -118,6 +124,27 @@ export const deletepost = postId => dispatch => {
     }
 };
 
+export const deleteSingleComment = (commentId, postId, putObj) => dispatch => {
+    let authToken = getAuthToken('auth');
+    if (authToken) {
+        return axios({
+            method: 'delete',
+            url: `${config.BaseURL}/app/comments/?commentId=${commentId}`,
+            headers: {authorization: `bearer ${authToken}`}
+        }).then(() => {
+            dispatch(filter_comment_from_comment_list({commentId: commentId}));
+            return axios({
+                method: 'put',
+                url: `${config.BaseURL}/app/posts/${postId}`,
+                headers: {authorization: `bearer ${authToken}`},
+                data: {...putObj}
+            });
+        }).catch(error => console.log(error));
+    } else {
+        return;
+    }
+};
+
 
 // This action is used to delete post based on id
 export const deletecommentsWithPostId = postId => dispatch => {
@@ -125,7 +152,7 @@ export const deletecommentsWithPostId = postId => dispatch => {
     if (authToken) {
         return axios({
             method: 'delete',
-            url: `${config.BaseURL}/app/comments/${postId}`,
+            url: `${config.BaseURL}/app/comments/?postId=${postId}`,
             headers: {authorization: `bearer ${authToken}`}
         }).then(deleteRes => {
             console.log(deleteRes);
@@ -157,6 +184,16 @@ export const updatePosts = (postId, putObj) => dispatch => {
         url: `${config.BaseURL}/app/posts/${postId}`,
         headers: {authorization: `bearer ${authToken}`},
         data: {...putObj}
+    }).catch(error => console.log(error));
+};
+
+export const updateComment = (commentId, updatedObj) => dispatch => {
+    let authToken = getAuthToken('auth');
+    return axios({
+        method: 'put',
+        url: `${config.BaseURL}/app/comments/${commentId}`,
+        headers: {authorization: `bearer ${authToken}`},
+        data: {...updatedObj}
     }).catch(error => console.log(error));
 };
 

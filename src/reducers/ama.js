@@ -13,7 +13,8 @@ import {
     SET_SHOW_DELETE_POST,
     SET_POST_DELETED_DETAIL_POST_PAGE,
     CLEAR_POST_DELETED_DETAIL_POST_PAGE,
-    ENABLE_POST_COMMENT_SUBMIT_BUTTON
+    ENABLE_POST_COMMENT_SUBMIT_BUTTON,
+    FILTER_COMMENT_FROM_COMMENTS_LIST
 } from '../action/ama';
 
 const initialState = {
@@ -107,6 +108,11 @@ export default function reducer(state = initialState, action) {
     if (action.type === ENABLE_POST_COMMENT_SUBMIT_BUTTON) {
         return Object.assign({}, state, {
             enableCommentSubmitButton: action.enableCommentSubmitButton
+        });
+    }
+    if (action.type === FILTER_COMMENT_FROM_COMMENTS_LIST) {
+        return Object.assign({}, state, {
+            comments: state.comments.filter(comment => comment._id !== action.commentId)
         });
     }
     return state;

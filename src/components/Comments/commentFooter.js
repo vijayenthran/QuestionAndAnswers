@@ -3,19 +3,15 @@
 import React from 'react';
 import {CommentLike} from './likeComment';
 import {EditComment} from './editComment';
-import {DeleteComment} from "./deletecomment";
 import {SaveComment} from "./saveEditComment";
-import {CancelEdit} from "./cancelEditforComment";
 
 export const CommentCardFooter = props => {
     return (
         <div className="Comment-Card-Footer">
-            <CommentLike/>
+            <CommentLike dispatch={props.dispatch} comment={props.comment} userId={props.userId} likedBy={props.likedBy} likeCount={props.likeCount}/>
             <hr/>
             <EditComment/>
-            <DeleteComment/>
             <SaveComment/>
-            <CancelEdit/>
         </div>
     );
 };

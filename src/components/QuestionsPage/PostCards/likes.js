@@ -68,23 +68,32 @@ export const Likes = props => {
 
     // Supportive Functions ----------------------------------------------------------------------------------------------------------//
 
-    if (Array.isArray(props.postData)) {
-        return (
-            <span className="Like-Wrapper">
+
+    return (
+        <span className="Like-Wrapper">
                 <a href="#" className="Like-Wrapper-UpVote" onClick={handleLikeClick}>
                     <img style={imgStyle} src={likeImg} alt="Either Like or dislike image is missing"/>
                     <span style={spanStyle} className="Like-Wrapper-UpVote-text">{props.postData.likeCount}</span>
                 </a>
-            </span>
-        );
-    } else {
-        return (
-            <span className="Like-Wrapper">
-                <a href="#" className="Like-Wrapper-UpVote" onClick={handleLikeClick}>
-                <img style={imgStyle} src={likeImg} alt="Either Like or dislike image is missing"/>
-                <span style={spanStyle} className="Like-Wrapper-UpVote-text">{props.postData.likeCount}</span>
-                </a>
-            </span>
-        )
-    }
+        </span>
+    );
+    // if (Array.isArray(props.postData)) {
+    //     return (
+    //         <span className="Like-Wrapper">
+    //             <a href="#" className="Like-Wrapper-UpVote" onClick={handleLikeClick}>
+    //                 <img style={imgStyle} src={likeImg} alt="Either Like or dislike image is missing"/>
+    //                 <span style={spanStyle} className="Like-Wrapper-UpVote-text">{props.postData.likeCount}</span>
+    //             </a>
+    //         </span>
+    //     );
+    // } else {
+    //     return (
+    //         <span className="Like-Wrapper">
+    //             <a href="#" className="Like-Wrapper-UpVote" onClick={handleLikeClick}>
+    //             <img style={imgStyle} src={likeImg} alt="Either Like or dislike image is missing"/>
+    //             <span style={spanStyle} className="Like-Wrapper-UpVote-text">{props.postData.likeCount}</span>
+    //             </a>
+    //         </span>
+    //     )
+    // }
 };
