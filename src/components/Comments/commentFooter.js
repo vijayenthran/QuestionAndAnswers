@@ -10,8 +10,8 @@ export const CommentCardFooter = props => {
         <div className="Comment-Card-Footer">
             <CommentLike dispatch={props.dispatch} comment={props.comment} userId={props.userId} likedBy={props.likedBy} likeCount={props.likeCount}/>
             <hr/>
-            <EditComment/>
-            <SaveComment/>
+            <EditComment dispatch={props.dispatch} comment={props.comment} userId={props.userId}/>
+            <SaveComment dispatch={props.dispatch} comment={props.comment}/>
         </div>
     );
 };

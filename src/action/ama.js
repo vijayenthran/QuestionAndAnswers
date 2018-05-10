@@ -212,7 +212,6 @@ export const addPosts = createPostObj => dispatch => {
             dispatch(set_posts_list({posts: createPostObj.data}));
         })
         .catch(err => console.log(err));
-
 };
 
 const postObjectCleanser = (postObj, commentId) => {

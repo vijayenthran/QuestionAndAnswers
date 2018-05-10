@@ -42,8 +42,6 @@ const passwordGateKeeper = value => {
 
 const postTitleGateKeeper = value => {
     if(value.length > maxMinVal.postTitle.max){
-        console.log('I am value');
-        console.log(value.length);
         return `Title can be maximum of ${maxMinVal.postTitle.max} characters`;
     }else{
         return;
