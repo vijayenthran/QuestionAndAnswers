@@ -40,7 +40,7 @@ export class PostandCommentsComponent extends React.Component {
         if (this.props.post !== null) {
             return (
                 <section className="Detail-Post-Page">
-                    <Post post={this.props.post} dispatch={this.props.dispatch} userId={this.props.userId} postdeleteddetailpostpage={this.props.postdeleteddetailpostpage}/>
+                    <Post commentLength={this.props.commentLength} post={this.props.post} dispatch={this.props.dispatch} userId={this.props.userId} postdeleteddetailpostpage={this.props.postdeleteddetailpostpage}/>
                     <h2>I am the comments</h2>
                     <CommentsLandingPage/>
                 </section>
@@ -55,7 +55,8 @@ export class PostandCommentsComponent extends React.Component {
 const mapStateToProps = state => ({
     post: state.ama.singlePost,
     userId :state.auth.userInfo.user.userId,
-    postdeleteddetailpostpage : state.ama.postdeleteddetailpostpage
+    postdeleteddetailpostpage : state.ama.postdeleteddetailpostpage,
+    commentLength : state.ama.comments.length,
 });
 
 export default connect(mapStateToProps)(PostandCommentsComponent)

@@ -27,7 +27,7 @@ export const Post = props => {
             </div>
             <div style={style1} className="Detail-Post-Page-Post-Data-Section">
                 <Likes postData={props.post} dispatch={props.dispatch} userId={props.userId}/>
-                <Comments postData={props.post} area={`DetailPostPage`}/>
+                <Comments commentLength={props.commentLength} postData={props.post} area={`DetailPostPage`}/>
             </div>
             <hr/>
             <div className="Detail-Post-Page-Edit-Post">

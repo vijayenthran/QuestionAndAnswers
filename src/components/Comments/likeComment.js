@@ -5,7 +5,6 @@ import likeImg from '../../../dist/images/Upvote.png';
 import {updateComment} from "../../action/ama";
 
 export const CommentLike = props => {
-    
     let imgStyle = {
         width: '22px',
         size: 'auto',
