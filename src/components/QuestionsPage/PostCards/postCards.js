@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import {connect} from 'react-redux';
 import {PostCardHeader} from './postCardHeader';
@@ -9,6 +11,7 @@ var skip = 10;
 export class PostCards extends React.Component {
     constructor() {
         super();
+        this.onScroll = this.onScroll.bind(this);
     }
 
     handleSkipCount() {
@@ -44,13 +47,14 @@ export class PostCards extends React.Component {
 
 
     componentDidMount() {
-        window.addEventListener('scroll', this.onScroll.bind(this), false);
+        window.addEventListener('scroll', this.onScroll, false);
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.onScroll, false);
-        return Promise.resolve(this.props.dispatch(clear_post_list()))
-            .then(() => this.props.dispatch(reset_skip_count(true)))
+        this.props.dispatch(clear_post_list());
+        this.props.dispatch(reset_skip_count(true));
+        return;
     }
 
 

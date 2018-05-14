@@ -35,7 +35,6 @@ export class Categories extends React.Component {
     }
 
     componentDidMount() {
-        console.log('I am here 1');
         return Promise.resolve(this.props.dispatch(clear_categories_list()))
             .then(() => this.props.dispatch(getCategories()));
     }

@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import {logOut} from '../action/auth';
 import {connect} from 'react-redux';
@@ -23,7 +25,7 @@ export function HeaderBar(props) {
         return;
     }
 
-    if (props.loginStatus) {
+    if (props.loginStatus && !props.position) {
         return (
             <section className="HeaderBar">
                 <div style={headernav}><HeaderNav className="header-nav"/></div>
@@ -33,8 +35,18 @@ export function HeaderBar(props) {
                 </div>
             </section>
         )
+    } else if (props.position && props.position === `postCommentsPage`) {
+        return (
+            <section className="HeaderBar">
+                <span style={welcomeText} className="welcome-text">{`Hi ${props.userName}`}</span>
+                <div style={logoutbtn}>
+                    <button className="Logout-btn" onClick={logoutUser}>{'Logout'}</button>
+                </div>
+            </section>
+        )
+    } else {
+        return <div className="headerBar">HeaderContent</div>
     }
-    return <div className="headerBar">HeaderContent</div>
 }
 
 const manipulateUserInfo = state => {

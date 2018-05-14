@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import HeaderBar from '../headerBar';
 import PostandCommentsComponent from './postsandComments';
@@ -11,7 +13,7 @@ export const PostsLandingPage = (props) => {
 
     return (
         <section className="PostLandingPage">
-            <HeaderBar/>
+            <HeaderBar position={`postCommentsPage`}/>
             <PostandCommentsComponent history={props.history} match={props.match}/>
         </section>
     )

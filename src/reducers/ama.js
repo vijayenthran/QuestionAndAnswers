@@ -18,9 +18,7 @@ import {
     SET_FETCH_MORE_POSTCARDS,
     SET_NO_MORE_POST_CARDS,
     SET_CATEGORY_SELECTED,
-    SET_CATEGORY_CHANGED,
     RESET_SKIP_COUNT,
-    POST_GENERATED_FROM
 } from '../action/ama';
 
 const initialState = {
@@ -37,7 +35,6 @@ const initialState = {
     categorySelected : 'All-null',
     categoryChanged : false,
     dispatchCount : false,
-    postGeneratedFrom : 'initialLoad'
 };
 
 export default function reducer(state = initialState, action) {
@@ -69,7 +66,6 @@ export default function reducer(state = initialState, action) {
     }
     if (action.type === SET_SINGLE_POST) {
         return Object.assign({}, state, {
-            // singlePost: state.singlePost.concat(action.singlePost);
             singlePost: action.singlePost,
         });
     }
@@ -142,19 +138,9 @@ export default function reducer(state = initialState, action) {
             categorySelected: action.categorySelected
         });
     }
-    if (action.type === SET_CATEGORY_CHANGED) {
-        return Object.assign({}, state, {
-            categoryChanged: action.categoryChanged
-        });
-    }
     if (action.type === RESET_SKIP_COUNT) {
         return Object.assign({}, state, {
             resetSkipCount: action.resetSkipCount
-        });
-    }
-    if (action.type === POST_GENERATED_FROM) {
-        return Object.assign({}, state, {
-            postGeneratedFrom: action.postGeneratedFrom
         });
     }
     return state;
