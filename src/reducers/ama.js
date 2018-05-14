@@ -14,7 +14,13 @@ import {
     SET_POST_DELETED_DETAIL_POST_PAGE,
     CLEAR_POST_DELETED_DETAIL_POST_PAGE,
     ENABLE_POST_COMMENT_SUBMIT_BUTTON,
-    FILTER_COMMENT_FROM_COMMENTS_LIST
+    FILTER_COMMENT_FROM_COMMENTS_LIST,
+    SET_FETCH_MORE_POSTCARDS,
+    SET_NO_MORE_POST_CARDS,
+    SET_CATEGORY_SELECTED,
+    SET_CATEGORY_CHANGED,
+    RESET_SKIP_COUNT,
+    POST_GENERATED_FROM
 } from '../action/ama';
 
 const initialState = {
@@ -26,6 +32,12 @@ const initialState = {
     showDeletePosts: null,
     postdeleteddetailpostpage:null,
     enableCommentSubmitButton : null,
+    fetchMorePostCards : false,
+    loadMoreData : false,
+    categorySelected : 'All-null',
+    categoryChanged : false,
+    dispatchCount : false,
+    postGeneratedFrom : 'initialLoad'
 };
 
 export default function reducer(state = initialState, action) {
@@ -113,6 +125,36 @@ export default function reducer(state = initialState, action) {
     if (action.type === FILTER_COMMENT_FROM_COMMENTS_LIST) {
         return Object.assign({}, state, {
             comments: state.comments.filter(comment => comment._id !== action.commentId)
+        });
+    }
+    if (action.type === SET_FETCH_MORE_POSTCARDS) {
+        return Object.assign({}, state, {
+            fetchMorePostCards: action.fetchMorePostCards
+        });
+    }
+    if (action.type === SET_NO_MORE_POST_CARDS) {
+        return Object.assign({}, state, {
+            loadMoreData: action.loadMoreData
+        });
+    }
+    if (action.type === SET_CATEGORY_SELECTED) {
+        return Object.assign({}, state, {
+            categorySelected: action.categorySelected
+        });
+    }
+    if (action.type === SET_CATEGORY_CHANGED) {
+        return Object.assign({}, state, {
+            categoryChanged: action.categoryChanged
+        });
+    }
+    if (action.type === RESET_SKIP_COUNT) {
+        return Object.assign({}, state, {
+            resetSkipCount: action.resetSkipCount
+        });
+    }
+    if (action.type === POST_GENERATED_FROM) {
+        return Object.assign({}, state, {
+            postGeneratedFrom: action.postGeneratedFrom
         });
     }
     return state;

@@ -16,6 +16,42 @@ export const clear_categories_list = () => ({
     type: CLEAR_CATEGORIES_LIST
 });
 
+export const SET_FETCH_MORE_POSTCARDS = 'SET_FETCH_MORE_POSTCARDS';
+export const fetch_more_post_cards = value => ({
+    type: SET_FETCH_MORE_POSTCARDS,
+    fetchMorePostCards : value
+});
+
+export const SET_CATEGORY_SELECTED = 'SET_CATEGORY_SELECTED';
+export const set_category_selected = value => ({
+    type: SET_CATEGORY_SELECTED,
+    categorySelected : value
+});
+
+// export const POST_GENERATED_FROM = 'POST_GENERATED_FROM';
+// export const post_genrated_from = value => ({
+//     type: POST_GENERATED_FROM,
+//     postGeneratedFrom : value
+// });
+//
+// export const SET_CATEGORY_CHANGED = 'SET_CATEGORY_CHANGED';
+// export const set_category_changed = value => ({
+//     type: SET_CATEGORY_CHANGED,
+//     categoryChanged : value
+// });
+
+export const RESET_SKIP_COUNT = 'RESET_SKIP_COUNT';
+export const reset_skip_count = value => ({
+    type: RESET_SKIP_COUNT,
+    resetSkipCount : value
+});
+
+export const SET_NO_MORE_POST_CARDS = 'SET_NO_MORE_POST_CARDS';
+export const no_more_post_cards = value => ({
+    type: SET_NO_MORE_POST_CARDS,
+    loadMoreData : value
+});
+
 export const SET_POSTS_LIST = 'SET_POSTS_LIST';
 export const set_posts_list = postList => ({
     type: SET_POSTS_LIST,
@@ -94,12 +130,15 @@ export const enable_post_comment_submit_button = value => ({
 export const getCategories = () => dispatch => {
     let authToken = getAuthToken('auth');
     if (authToken) {
-        return axios({
+        return Promise.resolve(fetch_more_post_cards(true))
+        .then(() => axios({
             method: 'get',
             url: `${config.BaseURL}/app/categories`,
             headers: {authorization: `bearer ${authToken}`}
-        }).then(categoriesObj => {
+        }))
+            .then(categoriesObj => {
             dispatch(set_categories_list({categories: categoriesObj.data}));
+            dispatch(fetch_more_post_cards(false));
             return;
         }).catch(error => console.log(error));
     } else {
@@ -252,11 +291,11 @@ export const addComments = (createCommentsObj, postObj) => dispatch => {
 
 
 // This action is used to get all the posts based on the category id
-export const getPosts = categoryId => dispatch => {
+export const getPosts = (categoryId, skipLimit) => dispatch => {
     let authToken = getAuthToken('auth');
     return axios({
         method: 'get',
-        url: `${config.BaseURL}/app/posts/${categoryId}`,
+        url: `${config.BaseURL}/app/posts/${categoryId}?skiplimit=${skipLimit}`,
         headers: {authorization: `bearer ${authToken}`}
     }).then(postsObj => {
         // check if post Object contains an array of items returned

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getCategories, getPosts, clear_post_list, clear_categories_list} from "../../action/ama";
+import {getCategories, getPosts, clear_post_list, clear_categories_list, set_category_selected, reset_skip_count} from "../../action/ama";
 
 export class Categories extends React.Component {
 
@@ -12,9 +12,11 @@ export class Categories extends React.Component {
     }
 
     // get posts when the category link is clicked
-    getPosts(categoryId) {
+    getPosts(categoryId, categoryName) {
         return Promise.resolve(this.props.dispatch(clear_post_list()))
-            .then(() => this.props.dispatch(getPosts(categoryId)));
+            .then(() => this.props.dispatch(reset_skip_count(true)))
+            .then(() => this.props.dispatch(set_category_selected(`${categoryName}-${categoryId}`)))
+            .then(() => this.props.dispatch(getPosts(categoryId, 0)))
     }
 
     // on click callback when the category link is clicked
@@ -22,16 +24,18 @@ export class Categories extends React.Component {
         let categoryId;
         // ASk if text content is okay in this area as it would return its text and
         // all its decendants text. Check if this is appropriate.
-        if (event.currentTarget.textContent === 'All') {
+        let categoryName = event.currentTarget.textContent;
+        if (categoryName === 'All') {
             categoryId = null;
-            return this.getPosts(categoryId);
+            return this.getPosts(categoryId, categoryName);
         } else {
             categoryId = event.currentTarget.dataset.categoryid;
-            return this.getPosts(categoryId);
+            return this.getPosts(categoryId, categoryName);
         }
     }
 
     componentDidMount() {
+        console.log('I am here 1');
         return Promise.resolve(this.props.dispatch(clear_categories_list()))
             .then(() => this.props.dispatch(getCategories()));
     }
@@ -60,7 +64,8 @@ export class Categories extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    categories: state.ama.categories
+    categories: state.ama.categories,
+    categoryName: state.ama.categorySelected,
 });
 
 export default connect(mapStateToProps)(Categories)

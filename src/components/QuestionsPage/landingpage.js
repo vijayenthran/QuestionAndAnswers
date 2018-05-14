@@ -7,43 +7,51 @@ import {Redirect} from 'react-router-dom';
 import CategorySection from './categories';
 import PostCardsSection from './PostCards/postCards';
 import NewPost from './NewPosts/landingpage';
+import {getPosts, no_more_post_cards} from "../../action/ama";
 
-export function QuestionLandingPage(props) {
+export class QuestionLandingPage extends React.Component {
 
-    let questionpagecontent = {
-        width : '99%'
-    };
-
-    let questionPageBodyStyle = {
-      marginLeft:'auto',
-      marginRight:'auto',
-    };
-
-    let addnewpostdiv ={
-        textAlign: 'right',
-    };
-
-    let postcardssection ={
-        display : 'inline-block',
-        width : '75%'
-    };
-
-
-    if (!props.loginStatus) {
-        return <Redirect to="/"/>;
+    componentDidMount() {
+        return Promise.resolve(this.props.dispatch(no_more_post_cards(false)))
+            .then(() => this.props.dispatch(getPosts(null, 0)));
     }
-    return (
-        <section style={questionpagecontent} className="question-page-content">
-            <HeaderBar/>
-            <div style={questionPageBodyStyle} className="question-page-body">
-                <div style={postcardssection} className="posts-section">
-                    <div style={addnewpostdiv} className="add-new-post-div"><NewPost/></div>
-                    <PostCardsSection className="post-cards-section"/>
+
+    render() {
+        let questionpagecontent = {
+            width: '99%'
+        };
+
+        let questionPageBodyStyle = {
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        };
+
+        let addnewpostdiv = {
+            textAlign: 'right',
+        };
+
+        let postcardssection = {
+            display: 'inline-block',
+            width: '75%'
+        };
+
+
+        if (!this.props.loginStatus) {
+            return <Redirect to="/"/>;
+        }
+        return (
+            <section style={questionpagecontent} className="question-page-content">
+                <HeaderBar/>
+                <div style={questionPageBodyStyle} className="question-page-body">
+                    <div style={postcardssection} className="posts-section">
+                        <div style={addnewpostdiv} className="add-new-post-div"><NewPost/></div>
+                        <PostCardsSection className="post-cards-section"/>
+                    </div>
+                    <CategorySection className="category-section"/>
                 </div>
-                <CategorySection  className="category-section"/>
-            </div>
-        </section>
-    )
+            </section>
+        );
+    }
 }
 
 const mapStateToProps = state => ({

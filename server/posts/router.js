@@ -28,14 +28,31 @@ postRouter.get('/:categoryId', (req, res, next) => {
             err.statusCode = 500;
             err.detailMessage = `Category Id should be an ObjectId`;
             return next(err);
+        }else if(!req.query.skiplimit){
+            let err = new Error();
+            err.reason = 'Request Error';
+            err.statusCode = 500;
+            err.detailMessage = `skiplimit is missing`;
+            return next(err);
         }
         return Post.find({categoryId: req.params.categoryId})
+            .skip(Number(req.query.skiplimit))
+            .limit(10)
             .sort('-createdAt')
             .lean()
             .then(postdocs => res.status(200).json(postdocs))
             .catch(error => res.status(500).send(error));
     } else {
+        if(!req.query.skiplimit){
+            let err = new Error();
+            err.reason = 'Request Error';
+            err.statusCode = 500;
+            err.detailMessage = `skiplimit is missing`;
+            return next(err);
+        }
         return Post.find({})
+            .skip(Number(req.query.skiplimit))
+            .limit(10)
             .sort('-createdAt')
             .lean()
             .then(postdocs => res.status(200).json(postdocs))
