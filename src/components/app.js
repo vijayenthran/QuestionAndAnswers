@@ -3,6 +3,7 @@ import LandingPage from './landing-page';
 import QuestionLandingPage from './QuestionsPage/landingpage';
 import SignUpPage from './signUp/signUp-page';
 import {Route} from 'react-router-dom';
+import {Handle404} from './handle404s';
 import PostsLandingPage from './PostandComments/landingpage';
 
 export function App() {
@@ -12,6 +13,7 @@ export function App() {
             <Route exact path="/signUp" component={SignUpPage} />
             <Route exact path="/app" component={QuestionLandingPage} />
             <Route exact path='/app/post/:postId' component={PostsLandingPage} />
+            <Route exact path='*'  component={Handle404}/>
         </section>
     );
 }

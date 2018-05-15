@@ -3,7 +3,8 @@
 import React from 'react';
 import {logOut} from '../action/auth';
 import {connect} from 'react-redux';
-import {HeaderNav} from "./NavBar/headerNav"
+import {HeaderNav} from "./NavBar/headerNav";
+import './Styles/headerBarStyles.scss';
 
 export function HeaderBar(props) {
     let headernav = {

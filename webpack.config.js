@@ -19,8 +19,8 @@ module.exports = () => {
                     use: 'babel-loader' // This would need the .babelrc file
                 },
                 {
-                    test: /\.css$/, // look for any js or jsx file
-                    use: ['style-loader', 'css-loader']
+                    test: /\.(s*)css$/, // look for any js or jsx file
+                    use: ['style-loader', 'css-loader', 'sass-loader']
                 },
                 {
                     test: /\.(png|jp(e*)g|svg)$/,
