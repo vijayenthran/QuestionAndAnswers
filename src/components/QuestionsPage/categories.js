@@ -1,6 +1,16 @@
+'use strict';
+
 import React from 'react';
 import {connect} from 'react-redux';
-import {getCategories, getPosts, clear_post_list, clear_categories_list, set_category_selected, reset_skip_count} from "../../action/ama";
+import {
+    getCategories,
+    getPosts,
+    clear_post_list,
+    clear_categories_list,
+    set_category_selected,
+    reset_skip_count
+} from "../../action/ama";
+import '../Styles/categoriesStyles.scss';
 
 export class Categories extends React.Component {
 
@@ -16,12 +26,17 @@ export class Categories extends React.Component {
         return Promise.resolve(this.props.dispatch(clear_post_list()))
             .then(() => this.props.dispatch(reset_skip_count(true)))
             .then(() => this.props.dispatch(set_category_selected(`${categoryName}-${categoryId}`)))
-            .then(() => this.props.dispatch(getPosts(categoryId, 0)))
+            .then(() => this.props.dispatch(getPosts(categoryId, 0)));
     }
 
     // on click callback when the category link is clicked
     categoryHandleClick(event) {
         let categoryId;
+        let currentSelectedElement = document.getElementsByClassName('SelectedCategory')[0];
+        if (currentSelectedElement.innerHTML !== event.currentTarget.innerHTML) {
+            currentSelectedElement.classList.remove('SelectedCategory');
+            event.currentTarget.classList.add('SelectedCategory');
+        }
         // ASk if text content is okay in this area as it would return its text and
         // all its decendants text. Check if this is appropriate.
         let categoryName = event.currentTarget.textContent;
@@ -40,21 +55,30 @@ export class Categories extends React.Component {
     }
 
     render() {
-        let categorysection = {
-            display: 'inline-block',
-            width : '25%',
-            verticalAlign :'top',
-        };
         return (
-            <aside style={categorysection} className="CategoriesBar">
+            <aside className="Category-Section">
+                <h2 className="Category-Section-Header">Categories</h2>
                 <ul className="CategoryList">
-                    {this.props.categories.map(category =>
-                        <li key={category._id}
-                            className={`category${category.name}`}
-                            data-categoryid={category._id}
-                            onClick={this.categoryHandleClick}>
-                            {category.name}
-                        </li>
+                    {this.props.categories.map(category => {
+                            if (category.name === 'All') {
+                                return (
+                                    <li key={category._id}
+                                        className={`category${category.name} category SelectedCategory`}
+                                        data-categoryid={category._id}
+                                        onClick={this.categoryHandleClick}>
+                                        {category.name}
+                                    </li>
+                                )
+                            }
+                            return (
+                                <li key={category._id}
+                                    className={`category${category.name} category`}
+                                    data-categoryid={category._id}
+                                    onClick={this.categoryHandleClick}>
+                                    {category.name}
+                                </li>
+                            );
+                        }
                     )}
                 </ul>
             </aside>

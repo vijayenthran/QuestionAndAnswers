@@ -10,27 +10,27 @@ import {connect} from 'react-redux';
 
 function AddPostForm(props) {
 
-    let postTitleStyle = {
-        marginLeft: '2.7%',
-        width: '40%',
-        padding: '10px',
-        overflowY: 'scroll',
-        height: '20px',
-    };
+    // let postTitleStyle = {
+    //     marginLeft: '2.7%',
+    //     width: '40%',
+    //     padding: '10px',
+    //     overflowY: 'scroll',
+    //     height: '20px',
+    // };
 
-    let postBodyStyle = {
-        marginLeft: '2%',
-        width: '40%',
-        padding: '10px',
-        overflowY: 'scroll',
-        height: '120px',
-        whiteSpace: 'pre-wrap',
-    };
+    // let postBodyStyle = {
+    //     marginLeft: '2%',
+    //     width: '40%',
+    //     padding: '10px',
+    //     overflowY: 'scroll',
+    //     height: '120px',
+    //     whiteSpace: 'pre-wrap',
+    // };
 
-    let addpostform ={
-        textAlign : 'left',
-        marginTop: '5%',
-    };
+    // let addpostform ={
+    //     textAlign : 'left',
+    //     marginTop: '5%',
+    // };
 
     function handleOnSubmit(formValue) {
         let categoryArr = formValue.CategoryDropDown.split('-');
@@ -56,10 +56,10 @@ function AddPostForm(props) {
     }
 
     return (
-        <section style={addpostform} className="AddPostForm">
+        <section className="Add-Post-Form-Section">
             <form onSubmit={props.handleSubmit(handleOnSubmit)}>
-                <Field name="PostTitle" style={postTitleStyle} placeholderValue="Add Post Title" id="post-title" component={textArea}/>
-                <Field name="PostBody" style={postBodyStyle} placeholderValue="Add Post Body" id="post-body" component={textArea}/>
+                <Field labeltitle="Add-Post-Post-Title" name="PostTitle" class="Add-Post-Form-Section-Post-Title" placeholderValue="Add Post Title" id="Post-Title" component={textArea}/>
+                <Field labeltitle="Add-Post-Post-Title" name="PostBody" class="Add-Post-Form-Section-Post-Body" placeholderValue="Add Post Body" id="Post-Body" component={textArea}/>
                 <Field name="CategoryDropDown" id="category-drop-down" generatelist={props.categories} filter={'All'}
                        component={SelectDDMenu}/>
                 <button type="submit" disabled={props.submitting}>+ CreatePost</button>

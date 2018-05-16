@@ -8,6 +8,7 @@ import CategorySection from './categories';
 import PostCardsSection from './PostCards/postCards';
 import NewPost from './NewPosts/landingpage';
 import {getPosts, no_more_post_cards} from "../../action/ama";
+import '../Styles/addPostStyles.scss';
 
 export class QuestionLandingPage extends React.Component {
 
@@ -17,33 +18,20 @@ export class QuestionLandingPage extends React.Component {
     }
 
     render() {
-        let questionPageBodyStyle = {
-            marginLeft: 'auto',
-            marginRight: 'auto',
-        };
-
-        let addnewpostdiv = {
-            textAlign: 'right',
-        };
-
-        let postcardssection = {
-            display: 'inline-block',
-            width: '75%'
-        };
-
-
         if (!this.props.loginStatus) {
             return <Redirect to="/"/>;
         }
         return (
             <section className="question-page-content">
                 <HeaderBar/>
-                <div style={questionPageBodyStyle} className="question-page-body">
-                    <div style={postcardssection} className="posts-section">
-                        <div style={addnewpostdiv} className="add-new-post-div"><NewPost/></div>
+                <div className="Question-Page-Body">
+                    <div className="Posts-Section">
+                        <div className="Add-New-Post-Div">
+                            <NewPost/>
+                        </div>
                         <PostCardsSection className="post-cards-section"/>
                     </div>
-                    <CategorySection className="category-section"/>
+                    <CategorySection/>
                 </div>
             </section>
         );

@@ -12,7 +12,6 @@ export class CreatePostLandingPage extends React.Component {
     }
 
     addPost() {
-        console.log('Hello the button is clicked');
         this.props.dispatch(set_show_add_post_form(true));
         return;
     }
@@ -24,7 +23,7 @@ export class CreatePostLandingPage extends React.Component {
             );
         }
         return (
-            <button onClick={this.addPost}>+Add Post</button>
+            <button className="Add-New-Post-btn" onClick={this.addPost}>POST YOUR AMA</button>
         );
     }
 }

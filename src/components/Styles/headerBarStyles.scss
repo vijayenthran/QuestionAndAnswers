@@ -8,9 +8,8 @@ $header-Bar-font: 1em;
     color: $font-color;
     width: 100%;
     font-size: $header-Bar-font;
-    //position: fixed;
-    //top: 0;
-    //margin-bottom: 3%;
+    position: fixed;
+    top: 0;
 }
 
 .HeaderNav, .User-Info-Section-App-Page {

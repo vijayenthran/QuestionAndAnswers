@@ -40,7 +40,7 @@ export class PostCards extends React.Component {
 
 
     onScroll() {
-        if ((window.innerHeight + Math.ceil(window.scrollY)) - document.body.scrollHeight > 15 && this.props.posts.length && !this.props.loadMoreData) {
+        if ((window.innerHeight + Math.ceil(window.scrollY)) - document.body.scrollHeight >= 0 && this.props.posts.length && !this.props.loadMoreData) {
             this.handleSkipCount();
         }
     }

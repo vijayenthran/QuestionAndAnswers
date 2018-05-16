@@ -1,0 +1,32 @@
+$button-border-color: #1DB2E8;
+
+.Add-New-Post-Div{
+    display: inline-block;
+    width: 95%;
+    text-align: right;
+}
+
+.Posts-Section{
+    margin-top: 4.5%;
+    display: inline-block;
+    width: 75%;
+}
+
+.Question-Page-Body{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.Add-New-Post-btn{
+    border: 1px solid $button-border-color;
+    padding : 10px;
+    color: $button-border-color;
+}
+
+
+.Add-New-Post-btn:hover {
+    cursor: pointer;
+    background-color: $button-border-color;
+    color : #FFFFFF;
+}

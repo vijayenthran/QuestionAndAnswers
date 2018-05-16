@@ -90,7 +90,7 @@ const validation = value => {
     if (!value.PostTitle) {
         errors.PostTitle = 'Required';
     }else if (value.PostTitle && postTitleGateKeeper(value.PostTitle)){
-        errors.PostTitle = `Title should be maximum of ${maxMinVal.postTitle.max} characters`;
+        errors.PostTitle = `Title can be maximum of ${maxMinVal.postTitle.max} chars, but has ${value.PostTitle.length} chars`;
     }
 
     if (!value.PostBody) {

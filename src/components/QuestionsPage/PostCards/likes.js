@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import likeImg from '../../../../dist/images/Upvote.png';
 import {updatePosts} from "../../../action/ama";
