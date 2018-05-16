@@ -1,9 +1,6 @@
 import React from 'react';
 
 const NavElements = props => {
-    let navstyle = {
-        marginLeft: '5%',
-    };
 
     function handleFilter(event){
         event.preventDefault();
@@ -11,7 +8,7 @@ const NavElements = props => {
         return;
     }
     return  (
-        <a href="#" style={navstyle} data-filter={props.name} onClick={handleFilter}>{props.name}</a>
+        <a href="#" className={`${'Link'-props.name} Link`} data-filter={props.name} onClick={handleFilter}>{props.name}</a>
     )
 };
 

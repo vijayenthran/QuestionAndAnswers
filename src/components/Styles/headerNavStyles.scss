@@ -1,0 +1,17 @@
+$Link-color: #FFFFFF;
+
+.Link {
+    margin-left: 12%;
+    color: $Link-color;
+    text-decoration: none;
+    padding: 15px;
+}
+
+.Link:hover {
+    background-color: #4CB0E6;
+}
+
+.HeaderNavLinks {
+    margin-left: 3%;
+    padding: 15px;
+}

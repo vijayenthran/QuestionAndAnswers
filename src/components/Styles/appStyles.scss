@@ -1,0 +1,12 @@
+$primary-background-color: #f9f9f9;
+$primary-font:  -apple-system, BlinkMacSystemFont,
+"Segoe UI", "Roboto", "Oxygen",
+"Ubuntu", "Cantarell", "Fira Sans",
+"Droid Sans", "Helvetica Neue", sans-serif;
+$font-size : 1.5em;
+body {
+    box-sizing: border-box;
+    background-color: $primary-background-color;
+    font-family: $primary-font;
+    margin: 0px;
+}

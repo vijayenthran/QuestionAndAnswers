@@ -1,3 +1,54 @@
-.HeaderBar{
-    background-color: #40E0D0;
+$background-color: #3c5569;
+$font-color: #FFFFFF;
+$logout-link-color: #e4dada;
+$header-Bar-font: 1em;
+
+.HeaderBar {
+    background-color: $background-color;
+    color: $font-color;
+    width: 100%;
+    font-size: $header-Bar-font;
+    //position: fixed;
+    //top: 0;
+    //margin-bottom: 3%;
+}
+
+.HeaderNav, .User-Info-Section-App-Page {
+    display: inline-block;
+}
+
+.HeaderNav{
+    width:29%;
+    margin-left: 5%;
+}
+
+.User-Info-Section-App-Page {
+    margin-left: 5%;
+    width: 59%;
+    text-align: right;
+}
+
+.User-Info-Section-Comments-Page{
+    padding: 15px;
+    width: 97%;
+    text-align: right;
+}
+
+.Welcome-text {
+    margin-left: 5%;
+}
+
+.Logout-btn {
+    color: $logout-link-color;
+    text-decoration: none;
+    margin-left: 1%;
+}
+
+.Logout-btn:hover {
+    color: $font-color;
+    text-decoration: underline;
+}
+
+.Logout-Header-Content{
+    padding: 15px;
 }

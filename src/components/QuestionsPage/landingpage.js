@@ -17,10 +17,6 @@ export class QuestionLandingPage extends React.Component {
     }
 
     render() {
-        let questionpagecontent = {
-            width: '99%'
-        };
-
         let questionPageBodyStyle = {
             marginLeft: 'auto',
             marginRight: 'auto',
@@ -40,7 +36,7 @@ export class QuestionLandingPage extends React.Component {
             return <Redirect to="/"/>;
         }
         return (
-            <section style={questionpagecontent} className="question-page-content">
+            <section className="question-page-content">
                 <HeaderBar/>
                 <div style={questionPageBodyStyle} className="question-page-body">
                     <div style={postcardssection} className="posts-section">

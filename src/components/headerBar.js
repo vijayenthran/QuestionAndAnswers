@@ -7,20 +7,8 @@ import {HeaderNav} from "./NavBar/headerNav";
 import './Styles/headerBarStyles.scss';
 
 export function HeaderBar(props) {
-    let headernav = {
-        display: 'inline-block',
-    };
-
-    let logoutbtn = {
-        display: 'inline-block',
-        marginLeft: '1%',
-    };
-
-    let welcomeText = {
-        marginLeft: '5%',
-    };
-
-    function logoutUser() {
+    function logoutUser(event) {
+        event.preventDefault();
         const logoutObj = {userInfo: null, loggedIn: false};
         props.dispatch(logOut(logoutObj));
         return;
@@ -29,24 +17,40 @@ export function HeaderBar(props) {
     if (props.loginStatus && !props.position) {
         return (
             <section className="HeaderBar">
-                <div style={headernav}><HeaderNav className="header-nav"/></div>
-                <span style={welcomeText} className="welcome-text">{`Hi ${props.userName}`}</span>
-                <div style={logoutbtn}>
-                    <button className="Logout-btn" onClick={logoutUser}>{'Logout'}</button>
+                <div className="HeaderNav">
+                    <HeaderNav/>
+                </div>
+                <div className="User-Info-Section-App-Page">
+                    <span className="Welcome-text">
+                        {`Hi ${props.userName}`}
+                    </span>
+                    <a href="#" className="Logout-btn" onClick={logoutUser}>
+                        {'Logout'}
+                    </a>
                 </div>
             </section>
         )
     } else if (props.position && props.position === `postCommentsPage`) {
         return (
             <section className="HeaderBar">
-                <span style={welcomeText} className="welcome-text">{`Hi ${props.userName}`}</span>
-                <div style={logoutbtn}>
-                    <button className="Logout-btn" onClick={logoutUser}>{'Logout'}</button>
+                <div className="User-Info-Section-Comments-Page">
+                    <span className="Welcome-text">
+                        {`Hi ${props.userName}`}
+                    </span>
+                    <a href="#" className="Logout-btn" onClick={logoutUser}>
+                        {'Logout'}
+                    </a>
                 </div>
             </section>
         )
     } else {
-        return <div className="headerBar">HeaderContent</div>
+        return(
+            <div className="HeaderBar">
+                <div className="Logout-Header-Content">
+                    <span >HeaderContent</span>
+                </div>
+            </div>
+        )
     }
 }
 
