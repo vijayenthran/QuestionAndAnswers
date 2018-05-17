@@ -10,28 +10,6 @@ import {connect} from 'react-redux';
 
 function AddPostForm(props) {
 
-    // let postTitleStyle = {
-    //     marginLeft: '2.7%',
-    //     width: '40%',
-    //     padding: '10px',
-    //     overflowY: 'scroll',
-    //     height: '20px',
-    // };
-
-    // let postBodyStyle = {
-    //     marginLeft: '2%',
-    //     width: '40%',
-    //     padding: '10px',
-    //     overflowY: 'scroll',
-    //     height: '120px',
-    //     whiteSpace: 'pre-wrap',
-    // };
-
-    // let addpostform ={
-    //     textAlign : 'left',
-    //     marginTop: '5%',
-    // };
-
     function handleOnSubmit(formValue) {
         let categoryArr = formValue.CategoryDropDown.split('-');
         let createPostObj;
@@ -51,6 +29,16 @@ function AddPostForm(props) {
             .then(() => props.dispatch(set_show_add_post_form(null)));
     }
 
+    function handleFormSubmitButtonDisabled(submittingValue) {
+        if(submittingValue === true){
+            let submitBtnElement= document.getElementsByClassName('Create-Post-Submit-btn');
+            let cancelBtnElement= document.getElementsByClassName('Cancel-Create-Post-Submit-btn');
+            submitBtnElement[0].classList.add('disabled-btn');
+            cancelBtnElement[0].classList.add('disabled-btn');
+        }
+        return;
+    }
+
     function handleCancel() {
         return props.dispatch(set_show_add_post_form(null));
     }
@@ -62,8 +50,10 @@ function AddPostForm(props) {
                 <Field labeltitle="Add-Post-Post-Title" name="PostBody" class="Add-Post-Form-Section-Post-Body" placeholderValue="Add Post Body" id="Post-Body" component={textArea}/>
                 <Field name="CategoryDropDown" id="category-drop-down" generatelist={props.categories} filter={'All'}
                        component={SelectDDMenu}/>
-                <button type="submit" disabled={props.submitting}>+ CreatePost</button>
-                <button type="button" onClick={handleCancel} disabled={props.submitting}>Cancel</button>
+                <div className="Submit-Cancel-Add-Posts-Form-btns">
+                    <button className="Create-Post-Submit-btn" type="submit" disabled={handleFormSubmitButtonDisabled(props.submitting)}>CREATE POST</button>
+                    <button className="Cancel-Create-Post-Submit-btn" type="button" onClick={handleCancel} disabled={props.submitting}>CANCEL</button>
+                </div>
             </form>
         </section>
     );

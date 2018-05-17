@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {PostCardHeader} from './postCardHeader';
 import {PostCardData} from './postCardData';
 import {getPosts, clear_post_list, no_more_post_cards, reset_skip_count} from "../../../action/ama";
+import '../../Styles/PostCardsStyles.scss';
 
 var skip = 10;
 

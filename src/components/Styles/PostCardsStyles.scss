@@ -1,0 +1,19 @@
+//$postcard-background-color: #f3f5f6;
+$postcard-background-color: #ffffff;
+$postCard-Header-color: #4f6a7b;
+
+.postCards {
+    margin-left: 10%;
+}
+
+.postCardsLists{
+    list-style-type: none;
+    border-radius: 15px;
+    padding : 10px;
+    margin-bottom: 1%;
+    background-color: $postcard-background-color;
+}
+
+.postCardHeader-Content{
+    color: $postCard-Header-color;
+}

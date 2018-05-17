@@ -1,5 +1,8 @@
 $button-border-color: #1DB2E8;
-
+$text-color-on-hover: #1DB2E8;
+$font-color : #4f6a7b;
+$Error-indicator-color : indianred;
+$button-text-color-hover : #FFFFFF;
 .Add-New-Post-Div{
     display: inline-block;
     width: 95%;
@@ -28,5 +31,86 @@ $button-border-color: #1DB2E8;
 .Add-New-Post-btn:hover {
     cursor: pointer;
     background-color: $button-border-color;
-    color : #FFFFFF;
+    color : $button-text-color-hover;
+}
+
+.Add-Post-Form-Section {
+    text-align: center;
+    margin-top: 5%;
+}
+
+.Add-Post-Form-Section-Post-Title{
+    margin-left: 3.3%;
+    width: 50%;
+    padding: 10px;
+    overflow-y: scroll;
+    height: 20px;
+}
+
+.Add-Post-Form-Section-Post-Body{
+    margin-left: 2.7%;
+    width: 50%;
+    padding: 10px;
+    overflow-y: scroll;
+    height: 200px;
+    white-space: pre-wrap;
+}
+
+textarea{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.Add-Post-Post-Title{
+    vertical-align: top;
+    color: $font-color;
+}
+
+.category-drop-down{
+    width: 52.5%;
+    margin-left: 10.5%;
+    font-size: 1em;
+}
+
+.category-drop-down-div-error, .text-area-error{
+    text-align: left;
+    margin-left: 29%;
+    color: $Error-indicator-color;
+}
+
+
+.error-border{
+    border: 1px solid $Error-indicator-color;
+}
+
+.Create-Post-Submit-btn{
+
+}
+
+.Cancel-Create-Post-Submit-btn{
+    margin-left: 1%;
+}
+
+.Submit-Cancel-Add-Posts-Form-btns{
+    text-align: left;
+    margin-left: 28.5%;
+    margin-top: 1%;
+}
+
+.Create-Post-Submit-btn, .Cancel-Create-Post-Submit-btn{
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid $button-border-color;
+    color: $button-border-color;
+}
+
+.Create-Post-Submit-btn:hover, .Cancel-Create-Post-Submit-btn:hover{
+    background-color: $button-border-color;
+    color: $button-text-color-hover;
+}
+
+.disabled-btn{
+    background-color: $Error-indicator-color;
+    color: $button-text-color-hover;
 }
