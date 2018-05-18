@@ -6,21 +6,12 @@ import commentsImg from '../../../../dist/images/Comments.png';
 
 
 export const Comments = props => {
-    let imgStyle = {
-        width: '25px',
-        size: 'auto',
-    };
-
-    let spanStyle = {
-        verticalAlign: 'top',
-    };
-
     if (props.area === 'AppPage') {
         return (
             <span className="Comments-Wrapper">
-                <Link to={`app/post/${props.postData._id}`}>
-                    <img style={imgStyle} src={commentsImg} alt="comments image is missing"/>
-                    <span style={spanStyle} className="Comments-Wrapper-Comment-Length">
+                <Link to={`app/post/${props.postData._id}`} className="Comment-Wrapper-Link">
+                    <img className="Comments-Wrapper-img" src={commentsImg} alt="comments image is missing"/>
+                    <span className="Comments-Wrapper-Comments-Count" className="Comments-Wrapper-Comments-Count">
                         {props.postData.commentsList.length}
                     </span>
                 </Link>
@@ -29,8 +20,8 @@ export const Comments = props => {
     } else if (props.area === 'DetailPostPage') {
         return (
             <span className="Comments-Wrapper">
-                <img style={imgStyle} src={commentsImg} alt="comments image is missing"/>
-                <span style={spanStyle} className="Comments-Wrapper-Comment-Length">
+                <img className="Comments-Wrapper-img" src={commentsImg} alt="comments image is missing"/>
+                <span className="Comments-Wrapper-Comments-Count">
                     {props.commentLength}
                 </span>
             </span>

@@ -6,15 +6,6 @@ import {findAncestor, findnextSibling, findpreviousSibling} from "../../../util/
 
 export const Cancel = props => {
 
-    let alignTop = {
-        verticalAlign: 'top',
-        marginLeft: '3%',
-    };
-
-    let displayNonestyle = {
-        display: 'none',
-    };
-
     function ObtainSiblings(metaData, target, cls) {
         if (metaData === 'previous') {
             return findpreviousSibling(target, cls);
@@ -45,16 +36,16 @@ export const Cancel = props => {
 
     if (props.area === 'AppPage') {
         return (
-            <span style={displayNonestyle} className="Cancel-Link-Wrapper">
-                <a href="#" style={alignTop} className="postCardData-footer-Cancel-link"
+            <span className="Cancel-Link-Wrapper">
+                <a href="#" className="PostCard-Cancel-Link"
                   onClick={handleCancelClick}>cancel</a>
             </span>
         );
     }else if(props.area === 'DetailPostPage'){
         return (
-            <span style={displayNonestyle} className="Cancel-Link-Wrapper">
-                <a href="#" style={alignTop} className="postCardData-footer-Cancel-link"
-                    onClick={handleCancelClickDetailPostPage}>Cancel</a>
+            <span className="Cancel-Link-Wrapper">
+                <a href="#" className="PostCard-Cancel-Link"
+                    onClick={handleCancelClickDetailPostPage}>cancel</a>
             </span>
         );
     }else{

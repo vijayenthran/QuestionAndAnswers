@@ -10,14 +10,14 @@ export const Delete = props => {
         return <Redirect to="/app"/>
     }
 
-    let alignTop = {
-        verticalAlign: 'top',
-        marginLeft: '3%',
-    };
-
-    let displayNonestyle = {
-        display: 'none',
-    };
+    // let alignTop = {
+    //     verticalAlign: 'top',
+    //     marginLeft: '3%',
+    // };
+    //
+    // let displayNonestyle = {
+    //     display: 'none',
+    // };
 
     function handleDeleteLink(event) {
         event.preventDefault();
@@ -38,16 +38,16 @@ export const Delete = props => {
 
     if (props.area === 'AppPage') {
         return (
-            <span style={displayNonestyle} className="Delete-Link-Wrapper">
-                 <a href="#" style={alignTop} className="Delete-Link"
-                    onClick={handleDeleteLink}>DeletePost</a>
+            <span className="Delete-Link-Wrapper">
+                 <a href="#" className="Delete-Link"
+                    onClick={handleDeleteLink}>delete</a>
              </span>
         );
     } else if (props.area === 'DetailPostPage') {
         return (
-            <span style={displayNonestyle} className="Delete-Link-Wrapper">
-                 <a href="#" style={alignTop} className="Delete-Link"
-                    onClick={handleDeleteLinkDetailPostPage}>DeletePost</a>
+            <span className="Delete-Link-Wrapper">
+                 <a href="#" className="Delete-Link"
+                    onClick={handleDeleteLinkDetailPostPage}>delete</a>
              </span>
         );
     } else {

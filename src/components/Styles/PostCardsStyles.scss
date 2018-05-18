@@ -6,19 +6,19 @@ $postCard-Header-color: #4f6a7b;
     margin-left: 10%;
 }
 
-.postCardsLists{
+.postCardsLists {
     list-style-type: none;
     border-radius: 15px;
-    padding : 10px;
+    padding: 10px;
     margin-bottom: 1%;
     background-color: $postcard-background-color;
 }
 
-.postCardHeader-Content{
+.postCardHeader-Content {
     color: $postCard-Header-color;
 }
 
-.lite-text{
+.lite-text {
     color: black;
     margin-left: 5px;
     margin-right: 5px;
@@ -26,36 +26,115 @@ $postCard-Header-color: #4f6a7b;
     color: #bebebe;
 }
 
-.postCardData-title-Val{
+.postCardData-title-Val {
     text-decoration: none;
     color: black;
     font-weight: bold;
 }
 
-.postCardData-body-Val{
+.postCardData-body-Val {
     text-decoration: none;
     color: black;
 }
 
-.Like-Wrapper-UpVote{
+.Like-Wrapper-UpVote {
     text-decoration: none;
-    color:black
+    color: black
 }
 
-.Like-Wrapper-UpVote-img{
+.Like-Wrapper-UpVote-img {
     width: 22px;
     size: auto;
     vertical-align: top;
 }
 
-.Like-Wrapper-UpVote-text{
+.Like-Wrapper-UpVote-text {
     vertical-align: top;
     color: $postCard-Header-color;
 }
 
-.Like-Wrapper{
+.Like-Wrapper {
     background-color: #ececec;
     vertical-align: top;
     padding: 1px;
     border-radius: 8px;
+}
+
+.Comments-Wrapper-img {
+    width: 25px;
+    size: auto;
+    vertical-align: top;
+    margin-left: 1%;
+}
+
+.Comments-Wrapper {
+    vertical-align: top;
+}
+
+.Comments-Wrapper-Comments-Count, .Comment-Wrapper-Link {
+    vertical-align: top;
+    text-decoration: none;
+}
+
+.Comments-Wrapper-Comments-Count {
+    color: $postCard-Header-color;
+    font-size: 1.1em;
+}
+
+.EditPost-Wrapper {
+    vertical-align: top;
+}
+
+.Edit-Post-Card {
+    text-decoration: none;
+    vertical-align: top;
+}
+
+.Edit-Post-Card-Text {
+    color: $postCard-Header-color;
+    vertical-align: top;
+    margin-right: 1%;
+}
+
+.Edit-Post-Card-Image {
+    width: 19px;
+    size: auto;
+    margin-left: 4%;
+}
+
+.Edit-Post-Card-Text:hover {
+    text-decoration: underline;
+}
+
+.Delete-Link-Wrapper {
+    display: none;
+    vertical-align: top;
+}
+
+.Delete-Link {
+    vertical-align: top;
+    color: indianred;
+    text-decoration: none;
+}
+
+.Delete-Link:hover {
+    text-decoration: underline;
+}
+
+.Cancel-Link-Wrapper{
+    display: none;
+}
+
+.PostCard-Cancel-Link{
+    vertical-align: top;
+    margin-left: 1%;
+}
+
+.PostCard-Cancel-Link{
+   text-decoration: none;
+    color: $postCard-Header-color;
+}
+
+.PostCard-Cancel-Link:hover{
+    text-decoration: underline;
 }

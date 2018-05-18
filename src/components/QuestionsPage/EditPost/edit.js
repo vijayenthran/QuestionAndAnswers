@@ -27,34 +27,19 @@ export const Edit = props => {
         display: props.userId === props.postData.userId ? 'inline' : 'none'
     };
 
-    let imgStyle1 = {
-        width: '25px',
-        size: 'auto',
-        marginLeft: '3%',
-    };
-
-    let imgStyle2 = {
-        width: '25px',
-        size: 'auto',
-    };
-
-    let spanStyleEdit = {
-        verticalAlign: 'top',
-        marginRight: '2%',
-    };
 
     if (props.area === 'AppPage') {
         return (
-            <a href="#" style={validateVisible} className="Edit-Wrapper" onClick={handleEditClick}>
-                <img style={imgStyle1} src={editImg} alt="Edit image is missing"/>
-                <span style={spanStyleEdit} className="Edit-Wrapper-text">EditPost</span>
+            <a href="#" style={validateVisible} className="Edit-Post-Card" onClick={handleEditClick}>
+                <img className="Edit-Post-Card-Image" src={editImg} alt="Edit image is missing"/>
+                <span className="Edit-Post-Card-Text">edit</span>
             </a>
         );
     } else if (props.area === 'DetailPostPage') {
         return (
-            <a href="#" style={validateVisible} className="Edit-Wrapper" onClick={handleEditClickforDetailPostPage}>
-                <img style={imgStyle2} src={editImg} alt="Edit image is missing"/>
-                <span style={spanStyleEdit} className="Edit-Wrapper-text">EditPost</span>
+            <a href="#" style={validateVisible} className="Edit-Post-Card" onClick={handleEditClickforDetailPostPage}>
+                <img className="Edit-Post-Card-Image" src={editImg} alt="Edit image is missing"/>
+                <span className="Edit-Post-Card-Text">edit</span>
             </a>
         );
     } else {

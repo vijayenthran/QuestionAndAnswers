@@ -82,7 +82,6 @@ postRouter.put('/:postId', (req, res) => {
 
 
 postRouter.delete('/:postId', (req, res) => {
-    console.log('I am being hit');
     if (!Post.checkObjectId(req.params.postId)) {
         let err = new Error();
         err.reason = 'Request Error';
