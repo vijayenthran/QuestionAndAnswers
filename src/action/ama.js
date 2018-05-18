@@ -225,7 +225,11 @@ export const updateComment = (commentId, updatedObj) => dispatch => {
 };
 
 
-export const addPosts = createPostObj => dispatch => {
+export const addPosts = (createPostObj, categoryName) => dispatch => {
+    let appendListItemBool;
+    if (categoryName === 'All' || categoryName === createPostObj.categoryName) {
+        appendListItemBool = true;
+    }
     let authToken = getAuthToken('auth');
     return axios({
         method: 'post',
@@ -234,9 +238,11 @@ export const addPosts = createPostObj => dispatch => {
         data: {...createPostObj}
     })
         .then(createPostObj => {
-            console.log('I am the server docs');
-            console.log(createPostObj);
-            dispatch(set_posts_list({posts: createPostObj.data}));
+            if (appendListItemBool === true) {
+                dispatch(set_posts_list({posts: createPostObj.data}));
+                return;
+            }
+            return;
         })
         .catch(err => console.log(err));
 };

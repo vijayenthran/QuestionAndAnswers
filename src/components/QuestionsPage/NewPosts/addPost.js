@@ -24,7 +24,7 @@ function AddPostForm(props) {
                 userName: props.userName
             }
         }
-        return props.dispatch(addPosts(createPostObj))
+        return props.dispatch(addPosts(createPostObj, props.categoryName.split('-')[0]))
             .then(() => props.dispatch(reset('AddPost')))
             .then(() => props.dispatch(set_show_add_post_form(null)));
     }
@@ -67,7 +67,8 @@ const AddPost = reduxForm({
 const mapstateToProps = state => ({
     categories: state.ama.categories,
     userId: state.auth.userInfo.user.userId,
-    userName: state.auth.userInfo.user.username
+    userName: state.auth.userInfo.user.username,
+    categoryName: state.ama.categorySelected,
 });
 
 export default connect(mapstateToProps)(AddPost)

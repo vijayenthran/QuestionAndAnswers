@@ -17,3 +17,45 @@ $postCard-Header-color: #4f6a7b;
 .postCardHeader-Content{
     color: $postCard-Header-color;
 }
+
+.lite-text{
+    color: black;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 0.8em;
+    color: #bebebe;
+}
+
+.postCardData-title-Val{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.postCardData-body-Val{
+    text-decoration: none;
+    color: black;
+}
+
+.Like-Wrapper-UpVote{
+    text-decoration: none;
+    color:black
+}
+
+.Like-Wrapper-UpVote-img{
+    width: 22px;
+    size: auto;
+    vertical-align: top;
+}
+
+.Like-Wrapper-UpVote-text{
+    vertical-align: top;
+    color: $postCard-Header-color;
+}
+
+.Like-Wrapper{
+    background-color: #ececec;
+    vertical-align: top;
+    padding: 1px;
+    border-radius: 8px;
+}

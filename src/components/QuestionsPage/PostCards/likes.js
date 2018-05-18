@@ -7,20 +7,6 @@ import {findAncestor} from "../../../util/domTraversal";
 
 export const Likes = props => {
 
-    // Style ----------------------------------------------------------------------------------------------------------//
-
-    let imgStyle = {
-        width: '25px',
-        size: 'auto',
-    };
-
-    let spanStyle = {
-        verticalAlign: 'top',
-    };
-
-    // Style ----------------------------------------------------------------------------------------------------------//
-
-
     // Supportive Functions ----------------------------------------------------------------------------------------------------------//
     function dispatchUpdatePostsCall(event, LikeCount, callType) {
         let closestPostCardParent = findAncestor(event.currentTarget, 'postCardsLists');
@@ -74,28 +60,9 @@ export const Likes = props => {
     return (
         <span className="Like-Wrapper">
                 <a href="#" className="Like-Wrapper-UpVote" onClick={handleLikeClick}>
-                    <img style={imgStyle} src={likeImg} alt="Either Like or dislike image is missing"/>
-                    <span style={spanStyle} className="Like-Wrapper-UpVote-text">{props.postData.likeCount}</span>
+                    <img className="Like-Wrapper-UpVote-img" src={likeImg} alt="Either Like or dislike image is missing"/>
+                    <span className="Like-Wrapper-UpVote-text">{props.postData.likeCount}</span>
                 </a>
         </span>
     );
-    // if (Array.isArray(props.postData)) {
-    //     return (
-    //         <span className="Like-Wrapper">
-    //             <a href="#" className="Like-Wrapper-UpVote" onClick={handleLikeClick}>
-    //                 <img style={imgStyle} src={likeImg} alt="Either Like or dislike image is missing"/>
-    //                 <span style={spanStyle} className="Like-Wrapper-UpVote-text">{props.postData.likeCount}</span>
-    //             </a>
-    //         </span>
-    //     );
-    // } else {
-    //     return (
-    //         <span className="Like-Wrapper">
-    //             <a href="#" className="Like-Wrapper-UpVote" onClick={handleLikeClick}>
-    //             <img style={imgStyle} src={likeImg} alt="Either Like or dislike image is missing"/>
-    //             <span style={spanStyle} className="Like-Wrapper-UpVote-text">{props.postData.likeCount}</span>
-    //             </a>
-    //         </span>
-    //     )
-    // }
 };

@@ -4,7 +4,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {PostCardHeader} from './postCardHeader';
 import {PostCardData} from './postCardData';
-import {getPosts, clear_post_list, no_more_post_cards, reset_skip_count} from "../../../action/ama";
+import {getPosts, clear_post_list, no_more_post_cards, reset_skip_count, set_category_selected} from "../../../action/ama";
 import '../../Styles/PostCardsStyles.scss';
 
 var skip = 10;
@@ -55,6 +55,7 @@ export class PostCards extends React.Component {
         window.removeEventListener('scroll', this.onScroll, false);
         this.props.dispatch(clear_post_list());
         this.props.dispatch(reset_skip_count(true));
+        this.props.dispatch(set_category_selected(`All-null`));
         return;
     }
 

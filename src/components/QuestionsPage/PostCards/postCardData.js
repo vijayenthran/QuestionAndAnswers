@@ -24,10 +24,10 @@ export const PostCardData = props => {
     return (
         <div className="postCardData">
             <h1 className="postCardData-title">
-                <Link to={`app/post/${props.postData._id}`}>{props.postData.postTitle}</Link>
+                <Link className="postCardData-title-Val" to={`app/post/${props.postData._id}`}>{props.postData.postTitle}</Link>
             </h1>
             <p className="postCardData-body">
-                <Link to={`app/post/${props.postData._id}`}>{handleSlicePostBody(props.postData.postBody)}</Link>
+                <Link className="postCardData-body-Val" to={`app/post/${props.postData._id}`}>{handleSlicePostBody(props.postData.postBody)}</Link>
             </p>
             <div className="postCardData-footer">
                 <Likes postData={props.postData} dispatch={props.dispatch} userId={props.userId}/>
