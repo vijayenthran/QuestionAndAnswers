@@ -11,7 +11,7 @@ export const Comments = props => {
             <span className="Comments-Wrapper">
                 <Link to={`app/post/${props.postData._id}`} className="Comment-Wrapper-Link">
                     <img className="Comments-Wrapper-img" src={commentsImg} alt="comments image is missing"/>
-                    <span className="Comments-Wrapper-Comments-Count" className="Comments-Wrapper-Comments-Count">
+                    <span className="Comments-Wrapper-Comments-Count">
                         {props.postData.commentsList.length}
                     </span>
                 </Link>

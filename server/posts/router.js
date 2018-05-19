@@ -4,7 +4,6 @@ const express = require('express');
 const postRouter = express.Router();
 const {Post} = require('./model');
 
-
 postRouter.get('/post/:postId', (req, res, next) => {
     if (!Post.checkObjectId(req.params.postId)) {
         let err = new Error();
@@ -15,7 +14,7 @@ postRouter.get('/post/:postId', (req, res, next) => {
     }
     return Post.findOne({_id: req.params.postId})
         .lean()
-        .populate('commentsList', {}, null, {sort: { createdAt: -1 }})
+        .populate('commentsList', {}, null, {sort: {createdAt: -1}})
         .then(postdoc => res.status(200).json(postdoc))
         .catch(error => res.status(500).send(error));
 });
@@ -28,7 +27,7 @@ postRouter.get('/:categoryId', (req, res, next) => {
             err.statusCode = 500;
             err.detailMessage = `Category Id should be an ObjectId`;
             return next(err);
-        }else if(!req.query.skiplimit){
+        } else if (!req.query.skiplimit) {
             let err = new Error();
             err.reason = 'Request Error';
             err.statusCode = 500;
@@ -43,7 +42,7 @@ postRouter.get('/:categoryId', (req, res, next) => {
             .then(postdocs => res.status(200).json(postdocs))
             .catch(error => res.status(500).send(error));
     } else {
-        if(!req.query.skiplimit){
+        if (!req.query.skiplimit) {
             let err = new Error();
             err.reason = 'Request Error';
             err.statusCode = 500;
@@ -78,7 +77,6 @@ postRouter.put('/:postId', (req, res) => {
         .then(updatedPostdoc => res.status(200).json(updatedPostdoc))
         .catch(error => res.status(500).json(error));
 });
-
 
 
 postRouter.delete('/:postId', (req, res) => {

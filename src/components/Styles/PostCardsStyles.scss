@@ -43,9 +43,14 @@ $postCard-Header-color: #4f6a7b;
 }
 
 .Like-Wrapper-UpVote-img {
-    width: 22px;
-    size: auto;
+    width: 17px;
+    height: auto;
     vertical-align: top;
+    margin-right: 4px;
+}
+
+.liked-post{
+    fill: #45bb54;
 }
 
 .Like-Wrapper-UpVote-text {
@@ -56,7 +61,7 @@ $postCard-Header-color: #4f6a7b;
 .Like-Wrapper {
     background-color: #ececec;
     vertical-align: top;
-    padding: 1px;
+    padding: 2px;
     border-radius: 8px;
 }
 
