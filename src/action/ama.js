@@ -16,6 +16,12 @@ export const clear_categories_list = () => ({
     type: CLEAR_CATEGORIES_LIST
 });
 
+export const SET_FILTER = 'SET_FILTER';
+export const set_filter = value => ({
+    type: SET_FILTER,
+    postsFilter: value
+});
+
 export const SET_FETCH_MORE_POSTCARDS = 'SET_FETCH_MORE_POSTCARDS';
 export const fetch_more_post_cards = value => ({
     type: SET_FETCH_MORE_POSTCARDS,
@@ -285,6 +291,34 @@ export const addComments = (createCommentsObj, postObj) => dispatch => {
 
 
 // This action is used to get all the posts based on the category id
+export const getPostsFilter = (filter, skipLimit) => dispatch => {
+    let authToken = getAuthToken('auth');
+    return axios({
+        method: 'get',
+        url: `${config.BaseURL}/app/posts/filter?filter=${filter}&&skiplimit=${skipLimit}`,
+        headers: {authorization: `bearer ${authToken}`}
+    }).then(postsObj => {
+        // check if post Object contains an array of items returned
+        // if no items are returned then just simply return without calling the dispatch action
+        // My be When there are no items show that there is no content there. add that in the else block
+        // if (postsObj.data.length >= 0) {
+        //     dispatch(set_posts_list({posts: postsObj.data}));
+        //     return;
+        // }
+        if (postsObj.data.length >= 0) {
+            if (filter === 'HOT'){
+                postsObj.data.sort((a, b) => b.commentsList.length - a.commentsList.length)
+            }
+            dispatch(set_posts_list({posts: postsObj.data}));
+            console.log(postsObj);
+            return;
+        }else{
+            return;
+        }
+    }).catch(error => console.log(error));
+};
+
+// This action is used to get all the posts based on the category id
 export const getPosts = (categoryId, skipLimit) => dispatch => {
     let authToken = getAuthToken('auth');
     return axios({
@@ -298,7 +332,7 @@ export const getPosts = (categoryId, skipLimit) => dispatch => {
         if (postsObj.data.length >= 0) {
             dispatch(set_posts_list({posts: postsObj.data}));
             return;
-        } else {
+        }else{
             return;
         }
     }).catch(error => console.log(error));

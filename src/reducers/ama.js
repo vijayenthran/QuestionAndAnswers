@@ -19,6 +19,7 @@ import {
     SET_NO_MORE_POST_CARDS,
     SET_CATEGORY_SELECTED,
     RESET_SKIP_COUNT,
+    SET_FILTER
 } from '../action/ama';
 
 const initialState = {
@@ -35,6 +36,7 @@ const initialState = {
     categorySelected : 'All-null',
     categoryChanged : false,
     dispatchCount : false,
+    postsFilter: null,
 };
 
 export default function reducer(state = initialState, action) {
@@ -141,6 +143,11 @@ export default function reducer(state = initialState, action) {
     if (action.type === RESET_SKIP_COUNT) {
         return Object.assign({}, state, {
             resetSkipCount: action.resetSkipCount
+        });
+    }
+    if (action.type === SET_FILTER) {
+        return Object.assign({}, state, {
+            postsFilter: action.postsFilter
         });
     }
     return state;

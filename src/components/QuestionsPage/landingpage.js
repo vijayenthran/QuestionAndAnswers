@@ -7,14 +7,22 @@ import {Redirect} from 'react-router-dom';
 import CategorySection from './categories';
 import PostCardsSection from './PostCards/postCards';
 import NewPost from './NewPosts/landingpage';
-import {getPosts, no_more_post_cards} from "../../action/ama";
+import {getPosts, no_more_post_cards, getPostsFilter} from "../../action/ama";
 import '../Styles/addPostStyles.scss';
 
 export class QuestionLandingPage extends React.Component {
 
     componentDidMount() {
         return Promise.resolve(this.props.dispatch(no_more_post_cards(false)))
-            .then(() => this.props.dispatch(getPosts(null, 0)));
+            .then(() => {
+                if (this.props.postsFilter) {
+                    this.props.dispatch(getPostsFilter(this.props.postsFilter, 0));
+                    return;
+                } else {
+                    this.props.dispatch(getPosts(null, 0));
+                    return;
+                }
+            });
     }
 
     render() {
@@ -39,7 +47,8 @@ export class QuestionLandingPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    loginStatus: state.auth.loggedIn
+    loginStatus: state.auth.loggedIn,
+    postsFilter: state.ama.postsFilter,
 });
 
 export default connect(mapStateToProps)(QuestionLandingPage)

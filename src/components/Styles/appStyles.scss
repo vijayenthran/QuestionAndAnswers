@@ -4,8 +4,13 @@ $primary-font:  -apple-system, BlinkMacSystemFont,
 "Ubuntu", "Cantarell", "Fira Sans",
 "Droid Sans", "Helvetica Neue", sans-serif;
 $font-size : 1.5em;
-body {
+
+*{
     box-sizing: border-box;
+}
+
+body {
+
     background-color: $primary-background-color;
     font-family: $primary-font;
     margin: 0px;

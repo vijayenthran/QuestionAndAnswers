@@ -10,14 +10,15 @@ $header-Bar-font: 1em;
     font-size: $header-Bar-font;
     position: fixed;
     top: 0;
+    z-index: 1;
 }
 
 .HeaderNav, .User-Info-Section-App-Page {
     display: inline-block;
 }
 
-.HeaderNav{
-    width:29%;
+.HeaderNav {
+    width: 29%;
     margin-left: 5%;
 }
 
@@ -27,7 +28,7 @@ $header-Bar-font: 1em;
     text-align: right;
 }
 
-.User-Info-Section-Comments-Page{
+.User-Info-Section-Comments-Page {
     padding: 15px;
     width: 97%;
     text-align: right;
@@ -48,6 +49,12 @@ $header-Bar-font: 1em;
     text-decoration: underline;
 }
 
-.Logout-Header-Content{
+.Logout-Header-Content {
     padding: 15px;
 }
+
+//@media only screen and (max-width:700px) {
+//    .Welcome-text, .Logout-btn {
+//        display: none;
+//    }
+//}

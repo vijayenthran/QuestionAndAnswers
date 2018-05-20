@@ -4,6 +4,8 @@ import React from 'react';
 import {logOut} from '../action/auth';
 import {connect} from 'react-redux';
 import {HeaderNav} from "./NavBar/headerNav";
+// import LoaderBar from './loaderBar/loaderBar';
+
 import './Styles/headerBarStyles.scss';
 
 export function HeaderBar(props) {
@@ -17,8 +19,9 @@ export function HeaderBar(props) {
     if (props.loginStatus && !props.position) {
         return (
             <section className="HeaderBar">
+                {/*<LoaderBar></LoaderBar>*/}
                 <div className="HeaderNav">
-                    <HeaderNav/>
+                    <HeaderNav dispatch={props.dispatch}/>
                 </div>
                 <div className="User-Info-Section-App-Page">
                     <span className="Welcome-text">

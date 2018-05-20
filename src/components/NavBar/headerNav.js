@@ -1,14 +1,16 @@
+'use strict';
+
 import React from 'react';
 import NavElements from './navLinks';
 import '../Styles/headerNavStyles.scss';
 
-export const HeaderNav = () => {
+export const HeaderNav = props => {
 
     return (
         <nav className="HeaderNavLinks">
-            <NavElements name={"HOT"}/>
-            <NavElements name={"TOP"}/>
-            <NavElements name={"NEW"}/>
+            <NavElements dispatch={props.dispatch} name={"HOT"}/>
+            <NavElements dispatch={props.dispatch} name={"TOP"}/>
+            <NavElements dispatch={props.dispatch} name={"NEW"}/>
         </nav>
     )
 };

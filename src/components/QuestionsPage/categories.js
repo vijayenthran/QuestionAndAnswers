@@ -8,7 +8,8 @@ import {
     clear_post_list,
     clear_categories_list,
     set_category_selected,
-    reset_skip_count
+    reset_skip_count,
+    set_filter
 } from "../../action/ama";
 import '../Styles/categoriesStyles.scss';
 
@@ -25,6 +26,7 @@ export class Categories extends React.Component {
     getPosts(categoryId, categoryName) {
         return Promise.resolve(this.props.dispatch(clear_post_list()))
             .then(() => this.props.dispatch(reset_skip_count(true)))
+            .then(() => this.props.dispatch(set_filter(null)))
             .then(() => this.props.dispatch(set_category_selected(`${categoryName}-${categoryId}`)))
             .then(() => this.props.dispatch(getPosts(categoryId, 0)));
     }

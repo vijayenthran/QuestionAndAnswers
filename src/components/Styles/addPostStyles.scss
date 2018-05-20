@@ -5,12 +5,13 @@ $Error-indicator-color : indianred;
 $button-text-color-hover : #FFFFFF;
 .Add-New-Post-Div{
     display: inline-block;
-    width: 95%;
+    width: 98%;
     text-align: right;
 }
 
 .Posts-Section{
-    margin-top: 4.5%;
+    position: relative;
+    top: 70px;
     display: inline-block;
     width: 75%;
 }
@@ -69,8 +70,9 @@ textarea{
 
 .category-drop-down{
     width: 52.5%;
-    margin-left: 10.5%;
+    position: relative;
     font-size: 1em;
+    left: 51px;
 }
 
 .category-drop-down-div-error, .text-area-error{
@@ -94,8 +96,9 @@ textarea{
 
 .Submit-Cancel-Add-Posts-Form-btns{
     text-align: left;
-    margin-left: 28.5%;
-    margin-top: 1%;
+    position: relative;
+    top: 8px;
+    left: 29%;
 }
 
 .Create-Post-Submit-btn, .Cancel-Create-Post-Submit-btn{

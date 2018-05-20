@@ -4,7 +4,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {PostCardHeader} from './postCardHeader';
 import {PostCardData} from './postCardData';
-import {getPosts, clear_post_list, no_more_post_cards, reset_skip_count, set_category_selected} from "../../../action/ama";
+import {
+    getPosts,
+    clear_post_list,
+    no_more_post_cards,
+    reset_skip_count,
+    set_category_selected,
+    getPostsFilter
+} from "../../../action/ama";
 import '../../Styles/PostCardsStyles.scss';
 
 var skip = 10;
@@ -16,12 +23,16 @@ export class PostCards extends React.Component {
     }
 
     handleSkipCount() {
-        if(this.props.resetSkipCount){
-            skip=10;
+        if (this.props.resetSkipCount) {
+            skip = 10;
             this.props.dispatch(reset_skip_count(false))
         }
         const limit = 10;
-        this.props.dispatch(getPosts(this.props.categoryName.split('-')[1], skip));
+        if (this.props.postsFilter) {
+            this.props.dispatch(getPostsFilter(this.props.postsFilter, skip))
+        } else {
+            this.props.dispatch(getPosts(this.props.categoryName.split('-')[1], skip));
+        }
         window.scrollTo(0, document.body.scrollHeight - 500);
         skip += limit;
         return;
@@ -86,6 +97,7 @@ const mapStateToProps = state => ({
     loadMoreData: state.ama.loadMoreData,
     categoryName: state.ama.categorySelected,
     resetSkipCount: state.ama.resetSkipCount,
+    postsFilter: state.ama.postsFilter,
 });
 
 export default connect(mapStateToProps)(PostCards)

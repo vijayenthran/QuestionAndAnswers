@@ -20,7 +20,9 @@ module.exports = () => {
                 },
                 {
                     test: /\.(s*)css$/, // look for any js or jsx file
-                    use: ['style-loader', 'css-loader', 'sass-loader']
+                    use: [{loader:'style-loader',options: {
+                        insertAt: 'top',
+                    }}, 'css-loader', 'sass-loader'],
                 },
                 {
                     test: /\.(png|jp(e*)g|svg)$/,

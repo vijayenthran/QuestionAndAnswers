@@ -4,6 +4,40 @@ const express = require('express');
 const postRouter = express.Router();
 const {Post} = require('./model');
 
+
+postRouter.get('/filter', (req, res, next) => {
+    if (req.query.filter === 'HOT') {
+        return Post.find({})
+            .skip(Number(req.query.skiplimit))
+            .limit(10)
+            .lean()
+            .then(postdoc => res.status(200).json(postdoc))
+            .catch(error => res.status(500).send(error));
+    }else if(req.query.filter === 'TOP'){
+        return Post.find({})
+            .skip(Number(req.query.skiplimit))
+            .limit(10)
+            .sort('-likeCount')
+            .lean()
+            .then(postdoc => res.status(200).json(postdoc))
+            .catch(error => res.status(500).send(error));
+    }else if(req.query.filter === 'NEW'){
+        return Post.find({})
+            .skip(Number(req.query.skiplimit))
+            .limit(10)
+            .sort('-createdAt')
+            .lean()
+            .then(postdoc => res.status(200).json(postdoc))
+            .catch(error => res.status(500).send(error));
+    }else{
+        let err = new Error();
+        err.reason = 'Request Error';
+        err.statusCode = 500;
+        err.detailMessage = `skiplimit or the filter is missing`;
+        return next(err);
+    }
+});
+
 postRouter.get('/post/:postId', (req, res, next) => {
     if (!Post.checkObjectId(req.params.postId)) {
         let err = new Error();
