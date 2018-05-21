@@ -29,6 +29,7 @@ export const Cancel = props => {
         let deleteSibling = ObtainSiblings('previous', cancelWrapper, 'Delete-Link-Wrapper');
         deleteSibling.setAttribute('style', 'display:none');
         ObtainSiblings('previous', cancelWrapper, 'Edit-Post-text-Wrapper').setAttribute('style', 'display:none');
+        ObtainSiblings('previous', cancelWrapper, 'Edit-Post-Card-Dpp').setAttribute('style', 'display:inline');
         findAncestor(event.currentTarget, 'Cancel-Link-Wrapper').setAttribute('style', 'display:none');
         findpreviousSibling(cancelWrapper, 'Save-Post-Wrapper').setAttribute('style', 'display:none');
         return;

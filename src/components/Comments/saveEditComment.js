@@ -6,19 +6,11 @@ import {updateComment} from '../../action/ama';
 
 export const SaveComment = props => {
 
-    let noDisplay = {
-        display: 'none',
-    };
-
-    let verticalAlign = {
-        verticalAlign: 'top',
-        marginLeft: '1%'
-    };
-
     // TODO could refactor this
     function handleSaveComment (event) {
         event.preventDefault();
-        let saveWrapper = findAncestor(event.currentTarget, 'Save-Commment-Wrapper');
+        let saveWrapper = findAncestor(event.currentTarget, 'Save-Comment-Wrapper');
+        let canceEdit = findnextSibling(saveWrapper, 'Cancel-Edit-Comment-Wrapper');
         let commentId = findAncestor(saveWrapper, 'Comment-Card').dataset.commentId;
         let editWrapper = findpreviousSibling(saveWrapper, 'Edit-Comment-Wrapper');
         let commentFooter = findAncestor(event.currentTarget, 'Comment-Card-Footer');
@@ -26,6 +18,7 @@ export const SaveComment = props => {
         commentBody.contentEditable = 'false';
         saveWrapper.setAttribute('style' , 'display:none');
         editWrapper.setAttribute('style' , 'display:inline');
+        canceEdit.classList.add('remove-display');
         let commentsObj = Object.assign({}, props.comment);
         delete commentsObj._id;
         commentsObj['comment'] = commentBody.innerHTML;
@@ -34,8 +27,8 @@ export const SaveComment = props => {
     }
 
     return (
-        <span style={noDisplay} className="Save-Commment-Wrapper">
-          <a style={verticalAlign} href="#" onClick={handleSaveComment}>save</a>
+        <span className="Save-Comment-Wrapper">
+          <a className="Save-Comment-Wrapper-text" href="#" onClick={handleSaveComment}>save</a>
         </span>
     )
 };

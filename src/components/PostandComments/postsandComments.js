@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {getSinglePost, clear_single_post} from '../../action/ama';
 import CommentsLandingPage from "../Comments/landingpage";
 import {Post} from "./post";
+import '../Styles/postAndComments.scss';
 
 export class PostandCommentsComponent extends React.Component {
     constructor() {
@@ -28,7 +29,6 @@ export class PostandCommentsComponent extends React.Component {
                 <section className="Detail-Post-Page">
                     <Post commentLength={this.props.commentLength} post={this.props.post} dispatch={this.props.dispatch}
                           userId={this.props.userId} postdeleteddetailpostpage={this.props.postdeleteddetailpostpage}/>
-                    <h2>I am the comments</h2>
                     <CommentsLandingPage/>
                 </section>
             )

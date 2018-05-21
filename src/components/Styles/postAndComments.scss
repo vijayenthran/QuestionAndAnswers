@@ -1,0 +1,188 @@
+$postCard-Header-color: #4f6a7b;
+$button-border-color: #1DB2E8;
+$button-text-color-hover : #FFFFFF;
+
+.Detail-Post-Page{
+    position: relative;
+    top: 70px;
+    width: 60%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.Detail-Post-Page-Post-Wrapper{
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.Detail-Post-Page-Post-Body{
+    white-space: pre-wrap;
+}
+
+.Detail-Post-Page-Post-Data-Section{
+    margin-top: 2%;
+}
+
+.Edit-Post-Card-Dpp {
+    text-decoration: none;
+    vertical-align: top;
+}
+
+.Edit-Post-Card-Text-Dpp {
+    color: $postCard-Header-color;
+    vertical-align: top;
+    margin-right: 1%;
+}
+
+.Edit-Post-Card-Image-Dpp {
+    width: 19px;
+    size: auto;
+}
+
+.Edit-Post-Card-Text-Dpp:hover, .Edit-Post-Text-Link:hover {
+    text-decoration: underline;
+}
+
+.Edit-Post-Text-Link{
+    text-decoration: none;
+    color: $postCard-Header-color;
+    vertical-align: top;
+}
+
+.Edit-Post-text-Wrapper{
+    margin-right: 1%;
+    vertical-align: top;
+    display: none;
+}
+
+.Add-Comment{
+    position: relative;
+    top: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.Add-Comments-Body-Text{
+    width: 90%;
+    height: 70px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.Add-Comment-Footer-btn{
+    border: 1px solid $button-border-color;
+    padding : 10px;
+    color: $button-border-color;
+    border-radius: 4px;
+}
+
+.Add-Comment-Footer-btn:hover {
+    cursor: pointer;
+    background-color: $button-border-color;
+    color : $button-text-color-hover;
+}
+
+.Add-Comment-Footer{
+    position: relative;
+    top: 4px;
+}
+
+.Dpp-Comments-list{
+    list-style-type: none;
+    padding-left: 0px;
+    position: relative;
+    top:10px;
+}
+
+.Comment-Card{
+    background-color: #ffffff;
+    margin-bottom: 2%;
+    padding: 10px;
+}
+
+.Delete-Comment{
+   float:right;
+    cursor: pointer;
+}
+
+.Comment-Card-header-title{
+    float: left;
+}
+
+.Comment-Card-Body{
+    clear: both;
+}
+
+.Cross-Color{
+    fill: indianred;
+    width: 8px;
+    height: auto
+}
+
+.Comment-Card-Body{
+    margin-top: 5%;
+}
+
+.Comment-Like-Wrapper{
+    background-color: #ececec;
+    padding: 2px;
+    border-radius: 8px;
+}
+
+.Comments-Like-Div{
+    margin-top: 2%;
+}
+
+.Comment-Like-Wrapper-UpVote-text {
+    vertical-align: top;
+    color: $postCard-Header-color;
+}
+
+.Comment-Like-Wrapper-UpVote,
+.Edit-Comment-Link,
+.Save-Comment-Wrapper-text,
+.Cancel-Edit-Comment-Wrapper-Text,
+.Save-Post-Wrapper-Text{
+    text-decoration: none;
+}
+
+
+.Edit-Comment-Wrapper-text{
+    color: $postCard-Header-color;
+    vertical-align: top;
+}
+
+.Edit-Comment-Image{
+    width: 22px;
+    height: auto;
+}
+
+.Edit-Comment-Wrapper-text:hover,
+.Save-Comment-Wrapper-text:hover,
+.Cancel-Edit-Comment-Wrapper-Text:hover,
+.Save-Post-Wrapper-Text:hover{
+    text-decoration: underline;
+}
+
+.Save-Comment-Wrapper{
+    display: none;
+}
+
+.Save-Comment-Wrapper-text, .Cancel-Edit-Comment-Wrapper-Text, .Save-Post-Wrapper-Text{
+    vertical-align: top;
+    color: $postCard-Header-color;
+}
+
+.Cancel-Edit-Comment-Wrapper-Text{
+    margin-left: 10px;
+}
+
+.remove-display{
+    display: none;
+}
+
+.Save-Post-Wrapper-Text{
+    margin-right: 1%;
+}

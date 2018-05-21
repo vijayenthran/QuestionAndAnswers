@@ -4,8 +4,8 @@ import React from 'react';
 
 export const AddCommentHeader = props => {
     return(
-        <div className="Add-Comment-Header">
+        <h3 className="Add-Comment-Header">
             {`${props.userName} Your Comment`}
-        </div>
+        </h3>
     )
 };

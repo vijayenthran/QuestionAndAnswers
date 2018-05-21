@@ -5,9 +5,6 @@ import {findAncestor, findpreviousSibling} from "../../../util/domTraversal";
 import {updatePosts} from "../../../action/ama";
 
 export const SavePost = props => {
-    let style1 = {
-        verticalAlign: 'top',
-    };
 
     let style2 = {
         verticalAlign: 'top',
@@ -30,7 +27,6 @@ export const SavePost = props => {
         let postPageBody = findpreviousSibling(DetailPostPageEdit, 'Detail-Post-Page-Post-Body');
         postPageBody.setAttribute('contentEditable', 'false');
         let postPageBodyText = postPageBody.innerHTML;
-        console.log(postPageBodyText);
         findpreviousSibling(saveTextWrapper, 'Edit-Post-text-Wrapper').setAttribute('style', 'display:inline');
         saveTextWrapper.setAttribute('style', 'display:none');
         handleDispatchUpdatePost(event, postPageBodyText);
@@ -39,7 +35,7 @@ export const SavePost = props => {
 
     return (
         <span style={style2} className="Save-Post-Wrapper">
-            <a style={style1} href="#" onClick={handleSavepost}>Save</a>
+            <a className="Save-Post-Wrapper-Text" href="#" onClick={handleSavepost}>save</a>
         </span>
     );
 };

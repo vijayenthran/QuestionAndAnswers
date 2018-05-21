@@ -5,15 +5,6 @@ import {findnextSibling, findAncestor, findpreviousSibling} from "../../../util/
 
 export const EditPostText = props => {
 
-    let style1 = {
-        verticalAlign: 'top',
-    };
-
-    let stlye2 = {
-        verticalAlign: 'top',
-        display: 'none',
-    };
-
     function handleEditPostText(event) {
         event.preventDefault();
         let editTextWrapper = findAncestor(event.currentTarget, 'Edit-Post-text-Wrapper');
@@ -25,8 +16,8 @@ export const EditPostText = props => {
     }
 
     return (
-        <span style={stlye2} className="Edit-Post-text-Wrapper">
-            <a href="#" style={style1} className="Edit-Post-Text-Link" onClick={handleEditPostText}>EditPostText</a>
+        <span className="Edit-Post-text-Wrapper">
+            <a href="#" className="Edit-Post-Text-Link" onClick={handleEditPostText}>editPostText</a>
         </span>
     )
 };

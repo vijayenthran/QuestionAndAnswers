@@ -59,7 +59,7 @@ export const Likes = props => {
         return;
     }
 
-    function abc(){
+    function handleLikeToggle(){
         if (props.postData.likedBy.indexOf(props.userId) >= 0) {
             return(
                 <svg className="Like-Wrapper-UpVote-img liked-post" version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
@@ -85,7 +85,7 @@ export const Likes = props => {
     return (
         <span className="Like-Wrapper">
                 <a href="#" className="Like-Wrapper-UpVote" onClick={handleLikeClick}>
-                    {abc()}
+                    {handleLikeToggle()}
                     <span className="Like-Wrapper-UpVote-text">{props.postData.likeCount}</span>
                 </a>
         </span>

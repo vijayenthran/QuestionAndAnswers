@@ -4,7 +4,7 @@ import React from 'react';
 // Understand Why my images should only be in the Dist folder. If its places outside
 // it throws error.
 import editImg from '../../../../dist/images/EditIcon.png';
-import {findnextSibling} from "../../../util/domTraversal";
+import {findnextSibling, findAncestor} from "../../../util/domTraversal";
 
 export const Edit = props => {
     function handleEditClick(event) {
@@ -16,6 +16,7 @@ export const Edit = props => {
 
     function handleEditClickforDetailPostPage(event) {
         event.preventDefault();
+        event.currentTarget.setAttribute('style', 'display:none');
         findnextSibling(event.currentTarget, 'Edit-Post-text-Wrapper').setAttribute('style', 'display:inline');
         findnextSibling(event.currentTarget, 'Delete-Link-Wrapper').setAttribute('style', 'display:inline');
         findnextSibling(event.currentTarget, 'Cancel-Link-Wrapper').setAttribute('style', 'display:inline');
@@ -37,9 +38,9 @@ export const Edit = props => {
         );
     } else if (props.area === 'DetailPostPage') {
         return (
-            <a href="#" style={validateVisible} className="Edit-Post-Card" onClick={handleEditClickforDetailPostPage}>
-                <img className="Edit-Post-Card-Image" src={editImg} alt="Edit image is missing"/>
-                <span className="Edit-Post-Card-Text">edit</span>
+            <a href="#" style={validateVisible} className="Edit-Post-Card-Dpp" onClick={handleEditClickforDetailPostPage}>
+                <img className="Edit-Post-Card-Image-Dpp" src={editImg} alt="Edit image is missing"/>
+                <span className="Edit-Post-Card-Text-Dpp">edit</span>
             </a>
         );
     } else {

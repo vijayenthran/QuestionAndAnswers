@@ -11,32 +11,25 @@ export const EditComment = props => {
         display: props.userId === props.comment.userId ? 'inline' : 'none'
     };
 
-    let imgStyle2 = {
-        width: '22px',
-        size: 'auto',
-    };
-
-    let verticalAlign = {
-        verticalAlign: 'top',
-    };
-
     // TODO could refactor this
     function handleEditCommentBody(event) {
         event.preventDefault();
         let editWrapper = findAncestor(event.currentTarget, 'Edit-Comment-Wrapper');
+        let cancelWrapper = findnextSibling(editWrapper, 'Cancel-Edit-Comment-Wrapper');
         let commentFooter = findAncestor(event.currentTarget, 'Comment-Card-Footer');
         let commentBody = findpreviousSibling(commentFooter, 'Comment-Card-Body');
         editWrapper.setAttribute('style' , 'display:none');
-        findnextSibling(editWrapper, 'Save-Commment-Wrapper').setAttribute('style' , 'display:inline');
+        cancelWrapper.classList.remove('remove-display');
+        findnextSibling(editWrapper, 'Save-Comment-Wrapper').setAttribute('style' , 'display:inline');
         commentBody.contentEditable = 'true';
         return;
     }
 
     return (
         <span style={validateVisible} className="Edit-Comment-Wrapper">
-          <a href="#" className="Edit-Wrapper" onClick={handleEditCommentBody}>
-                <img style={imgStyle2} src={editImg} alt="Edit image is missing"/>
-                <span style={verticalAlign} className="Edit-Wrapper-text">edit</span>
+          <a href="#" className="Edit-Comment-Link" onClick={handleEditCommentBody}>
+                <img className="Edit-Comment-Image" src={editImg} alt="Edit image is missing"/>
+                <span className="Edit-Comment-Wrapper-text">edit</span>
             </a>
       </span>
     )
