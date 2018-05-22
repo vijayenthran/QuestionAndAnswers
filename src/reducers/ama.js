@@ -19,7 +19,8 @@ import {
     SET_NO_MORE_POST_CARDS,
     SET_CATEGORY_SELECTED,
     RESET_SKIP_COUNT,
-    SET_FILTER
+    SET_FILTER,
+    SET_LOADER
 } from '../action/ama';
 
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
     categoryChanged : false,
     dispatchCount : false,
     postsFilter: null,
+    loader: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -148,6 +150,11 @@ export default function reducer(state = initialState, action) {
     if (action.type === SET_FILTER) {
         return Object.assign({}, state, {
             postsFilter: action.postsFilter
+        });
+    }
+    if (action.type === SET_LOADER) {
+        return Object.assign({}, state, {
+            loader: action.loader
         });
     }
     return state;

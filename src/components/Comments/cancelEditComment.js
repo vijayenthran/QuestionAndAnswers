@@ -11,9 +11,9 @@ export const CancelEditCommentText = props => {
         let saveWrapper = findpreviousSibling(cancelWrapper, 'Save-Comment-Wrapper');
         let editWrapper = findpreviousSibling(cancelWrapper, 'Edit-Comment-Wrapper');
         let commentCardfooter = findAncestor(cancelWrapper, 'Comment-Card-Footer');
-        let commentBody = findpreviousSibling(commentCardfooter, 'Comment-Card-Body');
-        console.log(commentBody);
-        commentBody.contentEditable = 'false';
+        let CommentBodyDiv = findpreviousSibling(commentCardfooter, 'Comment-Body-Div');
+        CommentBodyDiv.firstChild.classList.remove('remove-display');
+        CommentBodyDiv.lastChild.classList.add('remove-display');
         cancelWrapper.classList.add('remove-display');
         saveWrapper.setAttribute('style' , 'display:none');
         editWrapper.setAttribute('style' , 'display:inline');

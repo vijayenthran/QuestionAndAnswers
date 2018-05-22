@@ -23,6 +23,17 @@ export const Cancel = props => {
         return;
     }
 
+
+    function handleCancelEditTextArea(event, cancelWrapper){
+        let postEditSection = findAncestor(cancelWrapper, 'Detail-Post-Page-Edit-Post');
+        findpreviousSibling(postEditSection, 'edit-Post-title-div').classList.add('remove-display');
+        findpreviousSibling(postEditSection, 'edit-Post-body-div').classList.add('remove-display');
+        findpreviousSibling(postEditSection, 'Detail-Post-Page-Post-Title').classList.remove('remove-display');
+        findpreviousSibling(postEditSection, 'Detail-Post-Page-Post-Body').classList.remove('remove-display');
+        return;
+    }
+
+
     function handleCancelClickDetailPostPage(event) {
         event.preventDefault();
         let cancelWrapper = findAncestor(event.currentTarget, 'Cancel-Link-Wrapper');
@@ -32,6 +43,7 @@ export const Cancel = props => {
         ObtainSiblings('previous', cancelWrapper, 'Edit-Post-Card-Dpp').setAttribute('style', 'display:inline');
         findAncestor(event.currentTarget, 'Cancel-Link-Wrapper').setAttribute('style', 'display:none');
         findpreviousSibling(cancelWrapper, 'Save-Post-Wrapper').setAttribute('style', 'display:none');
+        handleCancelEditTextArea(event, cancelWrapper);
         return;
     }
 

@@ -22,6 +22,12 @@ export const set_filter = value => ({
     postsFilter: value
 });
 
+export const SET_LOADER = 'SET_LOADER';
+export const set_loader = value => ({
+    type: SET_LOADER,
+    loader: value
+});
+
 export const SET_FETCH_MORE_POSTCARDS = 'SET_FETCH_MORE_POSTCARDS';
 export const fetch_more_post_cards = value => ({
     type: SET_FETCH_MORE_POSTCARDS,

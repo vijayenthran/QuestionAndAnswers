@@ -10,15 +10,6 @@ export const Delete = props => {
         return <Redirect to="/app"/>
     }
 
-    // let alignTop = {
-    //     verticalAlign: 'top',
-    //     marginLeft: '3%',
-    // };
-    //
-    // let displayNonestyle = {
-    //     display: 'none',
-    // };
-
     function handleDeleteLink(event) {
         event.preventDefault();
         let closestPostCardParent = findAncestor(event.currentTarget, 'postCardsLists');

@@ -6,6 +6,7 @@ import input from '../reusableForm/inputField';
 import validate from '../../validation';
 import {registerUser} from '../../action/users';
 import {login} from '../../action/auth';
+import {Link} from 'react-router-dom';
 
 // TODO Understand how this.props gets its value in the onSubmit method
 // export class SignUp extends React.Component {
@@ -26,16 +27,21 @@ export function SignUp(props) {
       The Errors is Obtained from Form .errors
       */
     return (
-        <form onSubmit={props.handleSubmit(onsubmit)}>
-            <section className="SignUpFormError">
-                {props.error && <strong>{props.error}</strong>}
-            </section>
-            <Field name="FirstNameSignUp" id="FirstName" type="text" component={input}/>
-            <Field name="LastNameSignUp" id="LastName" type="text" component={input}/>
-            <Field name="UserNameSignUp" id="UserName" type="text" component={input}/>
-            <Field name="PasswordSignUp" id="Password" type="password" component={input}/>
-            <button type="submit" disabled={props.submitting}>SignUp</button>
-        </form>
+        <section className="SignUp-Section">
+            <h2 className="SignUp-Section-Heading">SignUp</h2>
+            <form className="SignUp-Form" onSubmit={props.handleSubmit(onsubmit)}>
+                <section className="SignUpFormError">
+                    {props.error && <strong>{props.error}</strong>}
+                </section>
+                <Field name="FirstNameSignUp" id="FirstName" type="text" component={input}/>
+                <Field name="LastNameSignUp" id="LastName" type="text" component={input}/>
+                <Field name="UserNameSignUp" id="UserName" type="text" component={input}/>
+                <Field name="PasswordSignUp" id="Password" type="password" component={input}/>
+                <button className="SignUp-btn" type="submit" disabled={props.submitting}>SignUp</button>
+                <Link className="Navigate-Back-To-LoginPage" to="/">Login</Link>
+            </form>
+        </section>
+
     )
 }
 

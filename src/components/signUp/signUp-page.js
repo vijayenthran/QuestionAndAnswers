@@ -1,7 +1,7 @@
 import React from 'react';
 import SignUpForm from "./signUp-form";
 import SignUpTitle from "./signUp-Title";
-import {Link} from 'react-router-dom';
+
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import HeaderBar from "../headerBar";
@@ -16,7 +16,6 @@ export function SignUpPage(props) {
             <HeaderBar/>
             <SignUpTitle/>
             <SignUpForm/>
-            <Link to="/">Login</Link>
             <FooterBar/>
         </section>
     );

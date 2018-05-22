@@ -14,14 +14,16 @@ export const SaveComment = props => {
         let commentId = findAncestor(saveWrapper, 'Comment-Card').dataset.commentId;
         let editWrapper = findpreviousSibling(saveWrapper, 'Edit-Comment-Wrapper');
         let commentFooter = findAncestor(event.currentTarget, 'Comment-Card-Footer');
-        let commentBody = findpreviousSibling(commentFooter, 'Comment-Card-Body');
-        commentBody.contentEditable = 'false';
+        let commentBodyUpdated = findpreviousSibling(commentFooter, 'Comment-Body-Div').lastChild.firstChild.value;
+        findpreviousSibling(commentFooter, 'Comment-Body-Div').firstChild.innerHTML=commentBodyUpdated;
+        findpreviousSibling(commentFooter, 'Comment-Body-Div').firstChild.classList.remove('remove-display');
+        findpreviousSibling(commentFooter, 'Comment-Body-Div').lastChild.classList.add('remove-display');
         saveWrapper.setAttribute('style' , 'display:none');
         editWrapper.setAttribute('style' , 'display:inline');
         canceEdit.classList.add('remove-display');
         let commentsObj = Object.assign({}, props.comment);
         delete commentsObj._id;
-        commentsObj['comment'] = commentBody.innerHTML;
+        commentsObj['comment'] = commentBodyUpdated;
         props.dispatch(updateComment(commentId, commentsObj));
         return;
     }

@@ -17,11 +17,14 @@ export const EditComment = props => {
         let editWrapper = findAncestor(event.currentTarget, 'Edit-Comment-Wrapper');
         let cancelWrapper = findnextSibling(editWrapper, 'Cancel-Edit-Comment-Wrapper');
         let commentFooter = findAncestor(event.currentTarget, 'Comment-Card-Footer');
-        let commentBody = findpreviousSibling(commentFooter, 'Comment-Card-Body');
+        let CommentBodyDiv = findpreviousSibling(commentFooter, 'Comment-Body-Div');
+        let CommentBodyText = CommentBodyDiv.firstChild.innerHTML;
+        CommentBodyDiv.lastChild.firstChild.value = CommentBodyText;
+        CommentBodyDiv.firstChild.classList.add('remove-display');
+        CommentBodyDiv.lastChild.classList.remove('remove-display');
         editWrapper.setAttribute('style' , 'display:none');
         cancelWrapper.classList.remove('remove-display');
         findnextSibling(editWrapper, 'Save-Comment-Wrapper').setAttribute('style' , 'display:inline');
-        commentBody.contentEditable = 'true';
         return;
     }
 

@@ -16,7 +16,7 @@ $button-text-color-hover : #FFFFFF;
     border-radius: 4px;
 }
 
-.Detail-Post-Page-Post-Body{
+.Detail-Post-Page-Post-Body, .Comment-Card-Body{
     white-space: pre-wrap;
 }
 
@@ -111,18 +111,15 @@ $button-text-color-hover : #FFFFFF;
     float: left;
 }
 
-.Comment-Card-Body{
-    clear: both;
-}
-
 .Cross-Color{
     fill: indianred;
     width: 8px;
     height: auto
 }
 
-.Comment-Card-Body{
+.Comment-Body-Div{
     margin-top: 5%;
+    clear: both;
 }
 
 .Comment-Like-Wrapper{
@@ -185,4 +182,28 @@ $button-text-color-hover : #FFFFFF;
 
 .Save-Post-Wrapper-Text{
     margin-right: 1%;
+}
+
+.edit-Post-title-div-text-area, .edit-Post-body-div-text-area{
+    width: 100%;
+    border : 1px solid #07378d;
+}
+
+.edit-Post-body-div-text-area{
+    height: 200px;
+    font-size: 0.9em;
+}
+
+.edit-Post-title-div-text-area, .Edit-Comment-Card-Text-Area{
+    font-size: 0.9em;
+}
+
+.Edit-Comment-Card-Text-Area{
+    width: 100%;
+    height: 50px;
+    border : 1px solid #07378d;
+}
+
+.Edit-Comment-Card{
+    margin-top: 5%;
 }

@@ -1,0 +1,111 @@
+$button-border-color: #1DB2E8;
+$error-color: indianred;
+$Header-Color: #3c5468;
+$button-text-color-hover: white;
+
+.Login-Form {
+    padding: 10px;
+}
+
+.LoginSection {
+    padding: 10px;
+    float: right;
+    margin-right: 15%;
+    position: relative;
+    top: 40px;
+    background-color: white;
+    width: 33%;
+    border-radius: 10px;
+    border: 1px solid #e8e7e7;
+}
+
+input {
+    border-radius: 4px;
+    padding: 5px;
+    width: 40%;
+    margin-left: 2%;
+}
+
+label{
+    width: 20%;
+    display: inline-block;
+    text-align: right;
+}
+.Login-Button, .SignUp-btn {
+    padding: 5px;
+    color: #1DB2E8;
+    margin-top: 10%;
+    width: 22%;
+    border-radius: 4px;
+    border: 1px solid $button-border-color;
+}
+
+.Login-Button:hover, .Create-Account-Link:hover, .SignUp-btn:hover, .Navigate-Back-To-LoginPage:hover {
+    cursor: pointer;
+    background-color: $button-border-color;
+    color: $button-text-color-hover;
+}
+
+.Input-Section {
+    margin-top: 3%;
+}
+
+#Input-Password-Section {
+    margin-top: 4%;
+}
+
+.LoginFromError, .SignUpFormError {
+    color: $error-color;
+}
+
+.SignUp-Information-text {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 0.8em;
+    color: $Header-Color;
+}
+
+.Create-Account-Link, .Navigate-Back-To-LoginPage{
+    text-decoration: none;
+    margin-left: 5%;
+    color: #1db2e8;
+    background: white;
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid #1db2e8;
+    font-size: 10px;
+}
+
+.Form-Error-Input{
+    color: indianred;
+    margin-left: 2%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.SignUp-Section{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    background-color: white;
+    position: relative;
+    top: 40px;
+    border-radius: 4px;
+    border: 1px solid #e8e7e7;
+}
+
+.SignUp-Section-Heading{
+    text-align: center;
+}
+
+.SignUp-Form{
+    margin-top: 5%;
+    width: 100%;
+    padding: 10px;
+}
+
+.SignUp-btn{
+    margin-top: 6%;
+}
+
