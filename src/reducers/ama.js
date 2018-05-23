@@ -20,7 +20,8 @@ import {
     SET_CATEGORY_SELECTED,
     RESET_SKIP_COUNT,
     SET_FILTER,
-    SET_LOADER
+    SET_LOADER,
+    SET_SHOW_SLIDER_MENU
 } from '../action/ama';
 
 const initialState = {
@@ -39,6 +40,7 @@ const initialState = {
     dispatchCount : false,
     postsFilter: null,
     loader: false,
+    sliderMenuVisibility : false
 };
 
 export default function reducer(state = initialState, action) {
@@ -155,6 +157,11 @@ export default function reducer(state = initialState, action) {
     if (action.type === SET_LOADER) {
         return Object.assign({}, state, {
             loader: action.loader
+        });
+    }
+    if (action.type === SET_SHOW_SLIDER_MENU) {
+        return Object.assign({}, state, {
+            sliderMenuVisibility: action.sliderMenuVisibility
         });
     }
     return state;

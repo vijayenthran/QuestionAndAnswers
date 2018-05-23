@@ -28,6 +28,12 @@ export const set_loader = value => ({
     loader: value
 });
 
+export const SET_SHOW_SLIDER_MENU = 'SET_SHOW_SLIDER_MENU';
+export const set_show_slider_menu = value => ({
+    type: SET_SHOW_SLIDER_MENU,
+    sliderMenuVisibility: value
+});
+
 export const SET_FETCH_MORE_POSTCARDS = 'SET_FETCH_MORE_POSTCARDS';
 export const fetch_more_post_cards = value => ({
     type: SET_FETCH_MORE_POSTCARDS,

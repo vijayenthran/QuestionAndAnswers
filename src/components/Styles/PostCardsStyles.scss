@@ -50,7 +50,7 @@ $postCard-Header-color: #4f6a7b;
     margin-right: 4px;
 }
 
-.liked-post{
+.liked-post {
     fill: #45bb54;
 }
 
@@ -127,20 +127,33 @@ $postCard-Header-color: #4f6a7b;
     text-decoration: underline;
 }
 
-.Cancel-Link-Wrapper{
+.Cancel-Link-Wrapper {
     display: none;
 }
 
-.PostCard-Cancel-Link{
+.PostCard-Cancel-Link {
     vertical-align: top;
     margin-left: 1%;
 }
 
-.PostCard-Cancel-Link{
-   text-decoration: none;
+.PostCard-Cancel-Link {
+    text-decoration: none;
     color: $postCard-Header-color;
 }
 
-.PostCard-Cancel-Link:hover{
+.PostCard-Cancel-Link:hover {
     text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+    .postCardsLists {
+        margin-bottom: 3%;
+    }
+
+    .postCards {
+        width: 98%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
 }

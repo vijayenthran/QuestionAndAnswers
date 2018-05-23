@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import LandingPage from './landing-page';
 import QuestionLandingPage from './QuestionsPage/landingpage';

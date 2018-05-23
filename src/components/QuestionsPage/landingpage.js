@@ -9,6 +9,7 @@ import PostCardsSection from './PostCards/postCards';
 import NewPost from './NewPosts/landingpage';
 import {getPosts, no_more_post_cards, getPostsFilter} from "../../action/ama";
 import '../Styles/addPostStyles.scss';
+import SliderMenu from "../slideMenu";
 
 export class QuestionLandingPage extends React.Component {
 
@@ -41,6 +42,7 @@ export class QuestionLandingPage extends React.Component {
                     </div>
                     <CategorySection/>
                 </div>
+                <SliderMenu/>
             </section>
         );
     }

@@ -31,3 +31,15 @@ $Error-indicator-color : indianred;
     color: #1DB2E8;
     font-weight: bold;
 }
+
+@media only screen and (max-width:825px) {
+    .Category-Section {
+        top: 75px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .Category-Section {
+        display:none;
+    }
+}
