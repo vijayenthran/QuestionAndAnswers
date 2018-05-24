@@ -23,7 +23,10 @@ export class CreatePostLandingPage extends React.Component {
             );
         }
         return (
-            <button className="Add-New-Post-btn" onClick={this.addPost}>POST YOUR QUES'S</button>
+            <div className="Add-Post-Button-Div">
+                <button className="Add-New-Post-btn" onClick={this.addPost}>POST YOUR QUES'S</button>
+            </div>
+
         );
     }
 }

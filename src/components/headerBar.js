@@ -7,7 +7,7 @@ import {HeaderNav} from "./NavBar/headerNav";
 import {Link} from 'react-router-dom';
 import {BurgerMenu} from "./burgerMenu";
 import {WelcomeText} from "./welcomeText";
-import{LogOutLink} from "./LogoutLink";
+import {LogOutLink} from "./LogoutLink";
 
 // import LoaderBar from './loaderBar/loaderBar';
 
@@ -19,7 +19,7 @@ export function HeaderBar(props) {
             <section className="HeaderBar">
                 {/*<LoaderBar></LoaderBar>*/}
                 <div className="Logo">
-                    <Link  className="Logo-Link" to="/app">
+                    <Link className="Logo-Link" to="/app">
                         Que's | Ans
                     </Link>
                 </div>
@@ -36,21 +36,21 @@ export function HeaderBar(props) {
     } else if (props.position && props.position === `postCommentsPage`) {
         return (
             <section className="HeaderBar">
-                <div className="User-Info-Section-Comments-Page">
-                    <div className="Logo">
-                        <Link  className="Logo-Link" to="/app">
-                            Que's | Ans
-                        </Link>
-                    </div>
+                <div className="Logo-Post-Comments-Page">
+                    <Link className="Logo-Link" to="/app">
+                        Que's | Ans
+                    </Link>
+                </div>
+                <div className="Post-Comments-Page-Welcome-Text">
                     <WelcomeText userName={props.userName}/>
                     <LogOutLink dispatch={props.dispatch}/>
                 </div>
             </section>
         )
     } else {
-        return(
+        return (
             <section className="HeaderBar">
-                <div className="Logo Logo-Main-Page">
+                <div className="Logo-Main-Page">
                     <Link className="Logo-Link" to="/">
                         Que's | Ans
                     </Link>

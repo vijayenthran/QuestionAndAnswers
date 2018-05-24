@@ -12,9 +12,18 @@ export const LogOutLink = props => {
         return;
     }
 
-    return (
-        <a href="#" className="Logout-btn SliderMenu-Logout-btn" onClick={logoutUser}>
-            {'Logout'}
-        </a>
-    )
+    if(props.type === 'Slider-Menu'){
+        return (
+            <a href="#" className="Logout-btn SliderMenu-Logout-btn" onClick={logoutUser}>
+                {'Logout'}
+            </a>
+        )
+    }else{
+        return (
+            <a href="#" className="Logout-btn" onClick={logoutUser}>
+                {'Logout'}
+            </a>
+        )
+    }
+
 };

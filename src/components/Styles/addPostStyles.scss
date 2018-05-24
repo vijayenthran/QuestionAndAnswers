@@ -4,8 +4,10 @@ $Error-indicator-color : indianred;
 $button-text-color-hover : #FFFFFF;
 .Add-New-Post-Div{
     display: inline-block;
-    width: 98%;
-    text-align: right;
+    width: 100%;
+    //text-align: right;
+    margin-bottom: 2%;
+    padding-right: 7%;
 }
 
 .Posts-Section{
@@ -35,21 +37,21 @@ $button-text-color-hover : #FFFFFF;
 }
 
 .Add-Post-Form-Section {
-    text-align: center;
+    //text-align: center;
     margin-top: 5%;
 }
 
 .Add-Post-Form-Section-Post-Title{
-    margin-left: 3.3%;
-    width: 50%;
+    margin-left: 1%;
+    width: 70%;
     padding: 10px;
     overflow-y: scroll;
     height: 40px;
 }
 
 .Add-Post-Form-Section-Post-Body{
-    margin-left: 2.7%;
-    width: 50%;
+    margin-left: 1%;
+    width: 70%;
     padding: 10px;
     overflow-y: scroll;
     height: 200px;
@@ -68,15 +70,15 @@ textarea{
 }
 
 .category-drop-down{
-    width: 52.5%;
+    width: 70%;
     position: relative;
     font-size: 1em;
-    left: 51px;
+    left: 21%
 }
 
 .category-drop-down-div-error, .text-area-error{
     text-align: left;
-    margin-left: 29%;
+    margin-left: 21%;
     color: $Error-indicator-color;
 }
 
@@ -94,10 +96,9 @@ textarea{
 }
 
 .Submit-Cancel-Add-Posts-Form-btns{
-    text-align: left;
-    position: relative;
-    top: 8px;
-    left: 29%;
+    width: 85%;
+    margin-top: 1%;
+    margin-left: 21%;
 }
 
 .Create-Post-Submit-btn, .Cancel-Create-Post-Submit-btn{
@@ -115,6 +116,10 @@ textarea{
 .disabled-btn{
     background-color: $Error-indicator-color;
     color: $button-text-color-hover;
+}
+
+.Add-Post-Button-Div{
+    text-align: right;
 }
 
 @media only screen and (max-width:825px) {
@@ -137,3 +142,4 @@ textarea{
         padding-left: 0px;
     }
 }
+

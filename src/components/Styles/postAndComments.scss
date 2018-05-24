@@ -207,3 +207,9 @@ $button-text-color-hover : #FFFFFF;
 .Edit-Comment-Card{
     margin-top: 5%;
 }
+
+@media only screen and (max-width:750px) {
+    .Detail-Post-Page {
+        width: 95%;
+    }
+}

@@ -91,8 +91,12 @@ label{
     background-color: white;
     position: relative;
     top: 40px;
-    border-radius: 4px;
+    border-radius: 30px;
     border: 1px solid #e8e7e7;
+}
+
+.SignUp-Form-Footer{
+    margin-left: 22%;
 }
 
 .SignUp-Section-Heading{
@@ -109,3 +113,14 @@ label{
     margin-top: 6%;
 }
 
+@media only screen and (max-width:1000px) {
+    .SignUp-Section {
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .SignUp-Section {
+        width: 95%;
+    }
+}

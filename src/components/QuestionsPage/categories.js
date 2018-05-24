@@ -35,9 +35,10 @@ export class Categories extends React.Component {
     categoryHandleClick(event) {
         let categoryId;
         let currentSelectedElement = document.getElementsByClassName('SelectedCategory')[0];
-        console.log(currentSelectedElement);
         if (currentSelectedElement.innerHTML !== event.currentTarget.innerHTML) {
             currentSelectedElement.classList.remove('SelectedCategory');
+            // let selectedCategoryName = this.props.categorySelected.split('-')[0];
+            // let abc = document.getElementsByClassName(`category${selectedCategoryName}`);
             event.currentTarget.classList.add('SelectedCategory');
         }
         // ASk if text content is okay in this area as it would return its text and
@@ -98,6 +99,7 @@ export class Categories extends React.Component {
 const mapStateToProps = state => ({
     categories: state.ama.categories,
     categoryName: state.ama.categorySelected,
+    categorySelected : state.ama.categorySelected
 });
 
 export default connect(mapStateToProps)(Categories)

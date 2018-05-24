@@ -14,10 +14,9 @@ export class SliderMenu extends React.Component {
         if(this.props.sliderMenuVisibility){
             return (
                 <div className="SliderMenu">
-                    <div>X</div>
                     <div className="SliderMenu-Welcome-Details">
                         <WelcomeText userName={this.props.userName}/>
-                        <LogOutLink dispatch={this.props.dispatch}/>
+                        <LogOutLink type="Slider-Menu" dispatch={this.props.dispatch}/>
                     </div>
                     <HeaderNav dispatch={this.props.dispatch}/>
                     <Categories/>

@@ -10,7 +10,7 @@ $header-Bar-font: 1em;
     font-size: $header-Bar-font;
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 3;
 }
 
 .Logo, .HeaderNav, .User-Info-Section-App-Page, .Logout-Header-Content {
@@ -28,9 +28,17 @@ $header-Bar-font: 1em;
     text-align: right;
 }
 
-.User-Info-Section-Comments-Page {
+.Logo-Post-Comments-Page, .Post-Comments-Page-Welcome-Text {
     padding: 15px;
-    width: 97%;
+    display: inline-block;
+}
+
+.Logo-Post-Comments-Page{
+    width: 20%;
+}
+
+.Post-Comments-Page-Welcome-Text{
+    width: 75%;
     text-align: right;
 }
 
@@ -125,5 +133,12 @@ $header-Bar-font: 1em;
     .Burger-icon-svg{
         width: 24px;
         height:auto;
+    }
+
+    .Logo-Post-Comments-Page{
+        width: 30%;
+    }
+    .Post-Comments-Page-Welcome-Text{
+        width: 65%;
     }
 }

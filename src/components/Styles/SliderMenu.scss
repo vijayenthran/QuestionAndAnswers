@@ -17,13 +17,9 @@
 @media only screen and (max-width: 600px) {
     .SliderMenu-Welcome-text {
         margin-left: 0px;
-        position: relative;
-        top: 10px;
     }
 
     .SliderMenu-Logout-btn{
-        position: relative;
-        top: 10px;
         color: #3d5568;
         margin-left: 1%;
     }
@@ -36,7 +32,7 @@
     .SliderMenu-HeaderNavLinks{
         margin-left: 0px;
         position: relative;
-        top: 20px;
+        top: 7%;
     }
 
     .SliderMenu-Link{
@@ -51,10 +47,12 @@
 
     .SliderMenu-Welcome-Details{
         text-align: right;
+        position: relative;
+        top: 6%;
     }
 
     .SliderMenu-Categories{
         position: relative;
-        top:15px;
+        top:5%;
     }
 }

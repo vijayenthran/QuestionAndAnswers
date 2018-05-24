@@ -30,7 +30,7 @@ const textArea = (props) => {
 
     return (
         <section>
-            <label className={props.labeltitle} htmlFor={props.id}>{props.id.split('-').join(' ')}</label>
+            <label className={`${props.labeltitle} text-area-label`} htmlFor={props.id}>{props.id.split('-').join(' ')}</label>
             {/*Spread operator to get all the events on input field like on click. Those events are passed down**/}
             {/*as props. from the decarator component redux Form.*/}
             {/*The input events should be given to the input fields in order to for the track events triggered on that input field*/}
