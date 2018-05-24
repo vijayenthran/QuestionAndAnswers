@@ -35,6 +35,7 @@ export class Categories extends React.Component {
     categoryHandleClick(event) {
         let categoryId;
         let currentSelectedElement = document.getElementsByClassName('SelectedCategory')[0];
+        console.log(currentSelectedElement);
         if (currentSelectedElement.innerHTML !== event.currentTarget.innerHTML) {
             currentSelectedElement.classList.remove('SelectedCategory');
             event.currentTarget.classList.add('SelectedCategory');
@@ -52,19 +53,24 @@ export class Categories extends React.Component {
     }
 
     componentDidMount() {
-        return Promise.resolve(this.props.dispatch(clear_categories_list()))
-            .then(() => this.props.dispatch(getCategories()));
+        this.props.dispatch(getCategories());
+        // return Promise.resolve(this.props.dispatch(clear_categories_list()))
+        //     .then(() => this.props.dispatch(getCategories()));
     }
+
+    // componentWillUnmount() {
+    //     this.props.dispatch(clear_categories_list());
+    // }
 
     render() {
         return (
-            <aside className="Category-Section">
+            <aside className="SliderMenu-Categories">
                 <h2 className="Category-Section-Header">Categories</h2>
                 <ul className="CategoryList">
-                    {this.props.categories.map(category => {
+                    {this.props.categories.map((category, index) => {
                             if (category.name === 'All') {
                                 return (
-                                    <li key={category._id}
+                                    <li key={index}
                                         className={`category${category.name} category SelectedCategory`}
                                         data-categoryid={category._id}
                                         onClick={this.categoryHandleClick}>
@@ -73,7 +79,7 @@ export class Categories extends React.Component {
                                 )
                             }
                             return (
-                                <li key={category._id}
+                                <li key={index}
                                     className={`category${category.name} category`}
                                     data-categoryid={category._id}
                                     onClick={this.categoryHandleClick}>
@@ -84,6 +90,7 @@ export class Categories extends React.Component {
                     )}
                 </ul>
             </aside>
+
         )
     }
 }

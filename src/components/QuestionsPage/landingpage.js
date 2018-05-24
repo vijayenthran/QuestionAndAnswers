@@ -40,7 +40,9 @@ export class QuestionLandingPage extends React.Component {
                         </div>
                         <PostCardsSection className="post-cards-section"/>
                     </div>
-                    <CategorySection/>
+                    <div className="Category-Section">
+                        <CategorySection/>
+                    </div>
                 </div>
                 <SliderMenu/>
             </section>

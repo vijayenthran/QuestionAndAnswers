@@ -15,7 +15,7 @@ const NavElements = props => {
     }
 
     return  (
-        <a href="#" className={`${'Link'-props.name} Link`} data-filter={props.name} onClick={handleFilter}>{props.name}</a>
+        <a href="#" className={`${'Link'-props.name} Link SliderMenu-Link`} data-filter={props.name} onClick={handleFilter}>{props.name}</a>
     )
 };
 

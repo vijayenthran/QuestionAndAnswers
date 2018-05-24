@@ -143,6 +143,7 @@ export const getCategories = () => dispatch => {
                 headers: {authorization: `bearer ${authToken}`}
             }))
             .then(categoriesObj => {
+                dispatch(clear_categories_list());
                 dispatch(set_categories_list({categories: categoriesObj.data}));
                 dispatch(fetch_more_post_cards(false));
                 return;

@@ -9,14 +9,17 @@ import Categories from '../components/QuestionsPage/categories';
 import './Styles/SliderMenu.scss';
 
 export class SliderMenu extends React.Component {
+
     render() {
         if(this.props.sliderMenuVisibility){
-            console.log('I am getting executed');
             return (
                 <div className="SliderMenu">
+                    <div>X</div>
+                    <div className="SliderMenu-Welcome-Details">
+                        <WelcomeText userName={this.props.userName}/>
+                        <LogOutLink dispatch={this.props.dispatch}/>
+                    </div>
                     <HeaderNav dispatch={this.props.dispatch}/>
-                    <WelcomeText userName={this.props.userName}/>
-                    <LogOutLink dispatch={this.props.dispatch}/>
                     <Categories/>
                 </div>
             );

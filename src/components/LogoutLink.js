@@ -13,7 +13,7 @@ export const LogOutLink = props => {
     }
 
     return (
-        <a href="#" className="Logout-btn" onClick={logoutUser}>
+        <a href="#" className="Logout-btn SliderMenu-Logout-btn" onClick={logoutUser}>
             {'Logout'}
         </a>
     )

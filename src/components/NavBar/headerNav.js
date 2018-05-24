@@ -7,7 +7,7 @@ import '../Styles/headerNavStyles.scss';
 export const HeaderNav = props => {
 
     return (
-        <nav className="HeaderNavLinks">
+        <nav className="HeaderNavLinks SliderMenu-HeaderNavLinks">
             <NavElements dispatch={props.dispatch} name={"HOT"}/>
             <NavElements dispatch={props.dispatch} name={"TOP"}/>
             <NavElements dispatch={props.dispatch} name={"NEW"}/>
