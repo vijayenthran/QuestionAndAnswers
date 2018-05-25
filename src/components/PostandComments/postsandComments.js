@@ -7,6 +7,7 @@ import CommentsLandingPage from "../Comments/landingpage";
 import {Post} from "./post";
 import '../Styles/postAndComments.scss';
 
+
 export class PostandCommentsComponent extends React.Component {
     constructor() {
         super();

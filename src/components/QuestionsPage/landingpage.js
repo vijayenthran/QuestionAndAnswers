@@ -10,6 +10,7 @@ import NewPost from './NewPosts/landingpage';
 import {getPosts, no_more_post_cards, getPostsFilter} from "../../action/ama";
 import '../Styles/addPostStyles.scss';
 import SliderMenu from "../slideMenu";
+import Shimmer from '../Shimmer';
 
 export class QuestionLandingPage extends React.Component {
 
@@ -38,6 +39,11 @@ export class QuestionLandingPage extends React.Component {
                         <div className="Add-New-Post-Div">
                             <NewPost/>
                         </div>
+                        <Shimmer/>
+                        <Shimmer/>
+                        <Shimmer/>
+                        <Shimmer/>
+                        <Shimmer/>
                         <PostCardsSection className="post-cards-section"/>
                     </div>
                     <div className="Category-Section">

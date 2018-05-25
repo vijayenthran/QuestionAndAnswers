@@ -28,6 +28,12 @@ export const set_loader = value => ({
     loader: value
 });
 
+export const SET_SHIMMER = 'SET_SHIMMER';
+export const set_shimmer = value => ({
+    type: SET_SHIMMER,
+    shimmer: value
+});
+
 export const SET_SHOW_SLIDER_MENU = 'SET_SHOW_SLIDER_MENU';
 export const set_show_slider_menu = value => ({
     type: SET_SHOW_SLIDER_MENU,
@@ -212,6 +218,7 @@ export const deletecommentsWithPostId = postId => dispatch => {
 // This action is used to get a post based on its object id
 export const getSinglePost = postId => dispatch => {
     let authToken = getAuthToken('auth');
+    dispatch(set_shimmer(true));
     return axios({
         method: 'get',
         url: `${config.BaseURL}/app/posts/post/${postId}`,
@@ -220,6 +227,7 @@ export const getSinglePost = postId => dispatch => {
         dispatch(clear_comment_list());
         dispatch(set_comment_list({comments: postObj.data.commentsList}));
         dispatch(set_single_post({singlePost: postObj.data}));
+        dispatch(set_shimmer(false));
     }).catch(error => console.log(error));
 };
 
@@ -306,6 +314,7 @@ export const addComments = (createCommentsObj, postObj) => dispatch => {
 // This action is used to get all the posts based on the category id
 export const getPostsFilter = (filter, skipLimit) => dispatch => {
     let authToken = getAuthToken('auth');
+    dispatch(set_shimmer(true));
     return axios({
         method: 'get',
         url: `${config.BaseURL}/app/posts/filter?filter=${filter}&&skiplimit=${skipLimit}`,
@@ -323,9 +332,10 @@ export const getPostsFilter = (filter, skipLimit) => dispatch => {
                 postsObj.data.sort((a, b) => b.commentsList.length - a.commentsList.length)
             }
             dispatch(set_posts_list({posts: postsObj.data}));
-            console.log(postsObj);
+            dispatch(set_shimmer(false));
             return;
         }else{
+            dispatch(set_shimmer(false));
             return;
         }
     }).catch(error => console.log(error));
@@ -334,6 +344,7 @@ export const getPostsFilter = (filter, skipLimit) => dispatch => {
 // This action is used to get all the posts based on the category id
 export const getPosts = (categoryId, skipLimit) => dispatch => {
     let authToken = getAuthToken('auth');
+    dispatch(set_shimmer(true));
     return axios({
         method: 'get',
         url: `${config.BaseURL}/app/posts/${categoryId}?skiplimit=${skipLimit}`,
@@ -344,6 +355,7 @@ export const getPosts = (categoryId, skipLimit) => dispatch => {
         // My be When there are no items show that there is no content there. add that in the else block
         if (postsObj.data.length >= 0) {
             dispatch(set_posts_list({posts: postsObj.data}));
+            dispatch(set_shimmer(false));
             return;
         }else{
             return;
