@@ -10,9 +10,11 @@ import {
     no_more_post_cards,
     reset_skip_count,
     set_category_selected,
-    getPostsFilter
+    getPostsFilter,
+    set_loader_text
 } from "../../../action/ama";
 import '../../Styles/PostCardsStyles.scss';
+import LoaderText from "../../loader/loaderText";
 
 var skip = 10;
 
@@ -23,6 +25,7 @@ export class PostCards extends React.Component {
     }
 
     handleSkipCount() {
+        this.props.dispatch(set_loader_text(true));
         if (this.props.resetSkipCount) {
             skip = 10;
             this.props.dispatch(reset_skip_count(false))
@@ -86,6 +89,7 @@ export class PostCards extends React.Component {
                         </li>
                     )}
                 </ul>
+                <LoaderText/>
             </aside>
         );
     }

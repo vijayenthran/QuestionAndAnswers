@@ -13,9 +13,11 @@ export function SignUpPage(props) {
     }
     return (
         <section className="Signup-landingPage">
-            <HeaderBar/>
-            <SignUpTitle/>
-            <SignUpForm/>
+            <div className="signup-Page">
+                <HeaderBar/>
+                <SignUpTitle/>
+                <SignUpForm/>
+            </div>
             <FooterBar/>
         </section>
     );

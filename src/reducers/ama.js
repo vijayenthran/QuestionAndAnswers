@@ -20,7 +20,7 @@ import {
     SET_CATEGORY_SELECTED,
     RESET_SKIP_COUNT,
     SET_FILTER,
-    SET_LOADER,
+    SET_LOADER_TEXT,
     SET_SHOW_SLIDER_MENU,
     SET_SHIMMER,
     SET_SHOW_DELETE_CONFIRMATION_POPUP,
@@ -49,7 +49,7 @@ const initialState = {
     categoryChanged: false,
     dispatchCount: false,
     postsFilter: null,
-    loader: false,
+    loaderText: false,
     sliderMenuVisibility: false,
     shimmer: false,
     showDeleteConfirmationPopUp: false,
@@ -173,9 +173,9 @@ export default function reducer(state = initialState, action) {
             postsFilter: action.postsFilter
         });
     }
-    if (action.type === SET_LOADER) {
+    if (action.type === SET_LOADER_TEXT) {
         return Object.assign({}, state, {
-            loader: action.loader
+            loaderText: action.loaderText
         });
     }
     if (action.type === SET_SHOW_SLIDER_MENU) {

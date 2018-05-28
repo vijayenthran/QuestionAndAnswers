@@ -62,7 +62,7 @@ export class DeleteConfirmation extends React.Component {
              width: 65%;
              top: 2px;
              left: 16%;
-             background: #efef8c;
+             background: indianred;
              padding: 5px;
              border-radius: 6px;
              -webkit-box-shadow: 0 0 5px black;
@@ -78,7 +78,7 @@ export class DeleteConfirmation extends React.Component {
             border-radius: 7px;
             
             &:hover{
-            background: indianred;
+            background: rgba(37,37,37,0.93);
             color: white;
             cursor: pointer;
             }
@@ -88,6 +88,7 @@ export class DeleteConfirmation extends React.Component {
         display: inline-block;
         width: 65%;
         padding-left: 10px;
+        color : white;
         
          @media (max-width:  650px) {
               display: block;
@@ -100,11 +101,12 @@ export class DeleteConfirmation extends React.Component {
         const CancelDelete = styled.a`
         display: inline-block;
         text-decoration: none;
-        color:  #415467;
+        color:  white;
         
         &:hover{
         text-decoration: underline;
         cursor:pointer;
+        color: black;
         }
     `;
 

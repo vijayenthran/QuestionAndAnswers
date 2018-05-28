@@ -22,10 +22,10 @@ export const set_filter = value => ({
     postsFilter: value
 });
 
-export const SET_LOADER = 'SET_LOADER';
-export const set_loader = value => ({
-    type: SET_LOADER,
-    loader: value
+export const SET_LOADER_TEXT = 'SET_LOADER_TEXT';
+export const set_loader_text = value => ({
+    type: SET_LOADER_TEXT,
+    loaderText: value
 });
 
 export const SET_SHIMMER = 'SET_SHIMMER';
@@ -396,9 +396,11 @@ export const getPostsFilter = (filter, skipLimit) => dispatch => {
             }
             dispatch(set_posts_list({posts: postsObj.data}));
             dispatch(set_shimmer(false));
+            dispatch(set_loader_text(false));
             return;
         } else {
             dispatch(set_shimmer(false));
+            dispatch(set_loader_text(false));
             return;
         }
     }).catch(error => console.log(error));
@@ -419,6 +421,7 @@ export const getPosts = (categoryId, skipLimit) => dispatch => {
         if (postsObj.data.length >= 0) {
             dispatch(set_posts_list({posts: postsObj.data}));
             dispatch(set_shimmer(false));
+            dispatch(set_loader_text(false));
             return;
         } else {
             return;

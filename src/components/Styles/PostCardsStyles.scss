@@ -145,6 +145,11 @@ $postCard-Header-color: #4f6a7b;
     text-decoration: underline;
 }
 
+.LoaderText {
+    color: #ee000e;
+    margin-left: 5%;
+}
+
 @media only screen and (max-width: 600px) {
     .postCardsLists {
         margin-bottom: 3%;

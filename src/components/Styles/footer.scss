@@ -1,0 +1,119 @@
+.FooterBar{
+    width : 100%;
+    background-color: #3c5468;
+    margin-top: 4%;
+    padding: 10px;
+    content: '';
+    clear: both;
+}
+
+.Back-to-top, .Logo-FooterBar{
+    text-align: center;
+    color: white;
+}
+
+.Back-to-top{
+    margin-bottom: 2%;
+}
+
+.Back-to-Top-Link{
+    color: black;
+    padding: 3px;
+    background-color: whitesmoke;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.Back-to-Top-Link:hover{
+    cursor: pointer;
+    color: white;
+    background-color: #3966c9;
+}
+
+.Line-Footer{
+    border-color: cadetblue;
+}
+
+.Share-Footer{
+    text-align: center;
+    padding: 10px;
+}
+
+.fb-share-button,.Github-Link{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.Checkout-Github-Text{
+    color: white;
+    text-decoration: none;
+}
+
+.Github-Link{
+    margin-left: 2%;
+}
+
+.Checkout-Github-Text, .Checkout-Github-Img{
+    vertical-align: middle;
+}
+
+.Checkout-Github-Img{
+    margin-left: 10px;
+}
+
+.Github-Link:hover{
+    .Checkout-Github-Text{
+        text-decoration: underline;
+    }
+
+    .Checkout-Github-Img{
+        background-color: antiquewhite;
+        border-radius: 100px;
+        border:1px solid black;
+        box-shadow: inset 0 0 5px #000000;
+    }
+}
+
+.email{
+    text-align: center;
+    padding: 10px;
+}
+
+.email-Icon{
+    fill: #8bfffe;
+    width : 30px;
+    height: auto;
+}
+
+.email-text, .email-Icon, .Mail-Link{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.email-text{
+    margin-right: 10px;
+    color: white;
+}
+
+.Mail-Link{
+    color:white;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.Mail-Link:hover{
+    text-decoration: underline;
+}
+
+.Quote-Div{
+    text-align: center;
+}
+
+.Quote{
+    color: cadetblue;
+    font-size: 1.5em;
+}
+
+.fb-share-button a{
+    color: white;
+}

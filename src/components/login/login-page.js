@@ -16,7 +16,7 @@ export function LoginPage(props) {
     }
     return (
         <div className="loginArea-Wrapper">
-            <div className="loginArea">
+            <div className="loginArea" id="Home">
                 <HeaderBar/>
                 <div className="Login-Area-Info">
                     <Welcome/>
