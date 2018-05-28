@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {findAncestor, findpreviousSibling} from "../../../util/domTraversal";
-import {updatePosts} from "../../../action/ama";
+import {updatePosts, set_success_notification_message} from "../../../action/ama";
 
 export const SavePost = props => {
 
@@ -42,6 +42,7 @@ export const SavePost = props => {
 
     function handleSavepost(event) {
         event.preventDefault();
+        props.dispatch(set_success_notification_message(`saved Edit Post`))
         let saveTextWrapper = findAncestor(event.currentTarget, 'Save-Post-Wrapper');
         let postPageBodyText = getUpdatedTitleAndPost(event, saveTextWrapper);
         findpreviousSibling(saveTextWrapper, 'Edit-Post-text-Wrapper').setAttribute('style', 'display:inline');

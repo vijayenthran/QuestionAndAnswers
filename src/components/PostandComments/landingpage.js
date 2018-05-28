@@ -1,20 +1,23 @@
 'use strict';
 
 import React from 'react';
-import HeaderBar from '../headerBar';
+import HeaderBar from '../Header/headerBar';
 import PostandCommentsComponent from './postsandComments';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import Shimmer from '../Shimmer';
+import Shimmer from '../Shimmer/Shimmer';
+import DeleteConfirmation from "../Notification/DeleteConfirmation";
+import SuccessConfirmation from "../Notification/SuccessConfirmation";
 
-export const PostsLandingPage = (props) => {
+export const PostsLandingPage = props => {
     if (!props.loginStatus) {
         return <Redirect to="/"/>;
     }
-
     return (
         <section className="PostLandingPage">
             <HeaderBar position={`postCommentsPage`}/>
+            <DeleteConfirmation location={props.location} />
+            <SuccessConfirmation/>
             <div className="shimmer-div">
                 <Shimmer/>
                 <Shimmer/>
@@ -23,7 +26,7 @@ export const PostsLandingPage = (props) => {
                 <Shimmer/>
                 <Shimmer/>
             </div>
-            <PostandCommentsComponent history={props.history} match={props.match}/>
+            <PostandCommentsComponent location={props.location} history={props.history} match={props.match}/>
         </section>
     )
 };

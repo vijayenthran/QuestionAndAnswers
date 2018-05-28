@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {findAncestor, findpreviousSibling} from "../../util/domTraversal";
-import {addComments, enable_post_comment_submit_button} from '../../action/ama';
+import {addComments, enable_post_comment_submit_button, set_success_notification_message} from '../../action/ama';
 
 export const AddYourCommentFooter = props => {
 
@@ -20,6 +20,7 @@ export const AddYourCommentFooter = props => {
 
     function handleAddCommentSubmit(event) {
         event.preventDefault();
+        props.dispatch(set_success_notification_message(`added comment to Question`));
         let commentFooter = findAncestor(event.currentTarget, 'Add-Comment-Footer');
         let textAreaText = findpreviousSibling(commentFooter, 'Add-Comments-Body').firstChild.value;
         findpreviousSibling(commentFooter, 'Add-Comments-Body').firstChild.value = '';

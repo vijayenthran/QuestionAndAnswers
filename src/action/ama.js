@@ -104,6 +104,12 @@ export const set_comment_list = commentList => ({
     comments: commentList.comments
 });
 
+export const SET_FILTER_POST_FROM_POST_LIST = 'SET_FILTER_POST_FROM_POST_LIST';
+export const set_filter_post_list = postId => ({
+    type: SET_FILTER_POST_FROM_POST_LIST,
+    filterPostId: postId
+});
+
 export const FILTER_COMMENT_FROM_COMMENTS_LIST = 'FILTER_COMMENT_FROM_COMMENTS_LIST';
 export const filter_comment_from_comment_list = filter => ({
     type: FILTER_COMMENT_FROM_COMMENTS_LIST,
@@ -134,6 +140,53 @@ export const enable_post_comment_submit_button = value => ({
     enableCommentSubmitButton: value,
 });
 
+export const SET_SHOW_DELETE_CONFIRMATION_POPUP = 'SET_SHOW_DELETE_CONFIRMATION_POPUP';
+export const show_delete_Confirmation_PopUp = value => ({
+    type: SET_SHOW_DELETE_CONFIRMATION_POPUP,
+    showDeleteConfirmationPopUp: value
+});
+
+export const SET_DELETE_CALL_FROM_VALUE = 'SET_DELETE_CALL_FROM_VALUE';
+export const set_delete_call_from = value => ({
+    type: SET_DELETE_CALL_FROM_VALUE,
+    deleteCallFrom: value
+});
+
+export const SET_DELETE_POST_ID_Value = 'SET_DELETE_POST_ID_Value';
+export const set_delete_post_id_value = value => ({
+    type: SET_DELETE_POST_ID_Value,
+    deletePostId: value
+});
+
+export const SET_DELETE_COMMENT_ID_Value = 'SET_DELETE_COMMENT_ID_Value';
+export const set_delete_comment_id_value = value => ({
+    type: SET_DELETE_COMMENT_ID_Value,
+    deleteCommentId: value
+});
+
+export const SET_MODIFIED_POST_OBJ_FOR_DELETE_COMMENT = 'SET_MODIFIED_POST_OBJ_FOR_DELETE_COMMENT';
+export const set_delete_post_Obj_for_delete_comment = value => ({
+    type: SET_MODIFIED_POST_OBJ_FOR_DELETE_COMMENT,
+    modifiedPostObj: value
+});
+
+export const SET_ROUTE_PATH = 'SET_ROUTE_PATH';
+export const set_route_path = value => ({
+    type: SET_ROUTE_PATH,
+    routePath: value
+});
+
+export const SET_SUCCESS_NOTIFICATION = 'SET_SUCCESS_NOTIFICATION';
+export const set_success_notification = value => ({
+    type: SET_SUCCESS_NOTIFICATION,
+    successNotification: value
+});
+
+export const SET_SUCCESS_NOTIFICATION_MESSAGE = 'SET_SUCCESS_NOTIFICATION_MESSAGE';
+export const set_success_notification_message = value => ({
+    type: SET_SUCCESS_NOTIFICATION_MESSAGE,
+    successNotificationMessage: value
+});
 
 // ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -168,7 +221,7 @@ export const deletepost = postId => dispatch => {
             url: `${config.BaseURL}/app/posts/${postId}`,
             headers: {authorization: `bearer ${authToken}`}
         }).then(deleteRes => {
-            console.log(deleteRes);
+            dispatch(set_filter_post_list(postId));
             return;
         }).catch(error => console.log(error));
     } else {
@@ -238,6 +291,9 @@ export const updatePosts = (postId, putObj) => dispatch => {
         url: `${config.BaseURL}/app/posts/${postId}`,
         headers: {authorization: `bearer ${authToken}`},
         data: {...putObj}
+    }).then(() =>{
+        dispatch(set_success_notification(true));
+        removeNotification(dispatch);
     }).catch(error => console.log(error));
 };
 
@@ -248,6 +304,9 @@ export const updateComment = (commentId, updatedObj) => dispatch => {
         url: `${config.BaseURL}/app/comments/${commentId}`,
         headers: {authorization: `bearer ${authToken}`},
         data: {...updatedObj}
+    }).then(() =>{
+        dispatch(set_success_notification(true));
+        removeNotification(dispatch);
     }).catch(error => console.log(error));
 };
 
@@ -265,6 +324,8 @@ export const addPosts = (createPostObj, categoryName) => dispatch => {
         data: {...createPostObj}
     })
         .then(createPostObj => {
+            dispatch(set_success_notification(true));
+            removeNotification(dispatch);
             if (appendListItemBool === true) {
                 dispatch(set_posts_list({posts: createPostObj.data}));
                 return;
@@ -297,6 +358,8 @@ export const addComments = (createCommentsObj, postObj) => dispatch => {
         data: {...createCommentsObj}
     })
         .then(createCommentsObj => {
+            dispatch(set_success_notification(true));
+            removeNotification(dispatch);
             let cleansedpostObj = postObjectCleanser(postObj, createCommentsObj.data._id);
             dispatch(set_comment_list({comments: createCommentsObj.data}));
             return axios({
@@ -328,13 +391,13 @@ export const getPostsFilter = (filter, skipLimit) => dispatch => {
         //     return;
         // }
         if (postsObj.data.length >= 0) {
-            if (filter === 'HOT'){
+            if (filter === 'HOT') {
                 postsObj.data.sort((a, b) => b.commentsList.length - a.commentsList.length)
             }
             dispatch(set_posts_list({posts: postsObj.data}));
             dispatch(set_shimmer(false));
             return;
-        }else{
+        } else {
             dispatch(set_shimmer(false));
             return;
         }
@@ -357,16 +420,44 @@ export const getPosts = (categoryId, skipLimit) => dispatch => {
             dispatch(set_posts_list({posts: postsObj.data}));
             dispatch(set_shimmer(false));
             return;
-        }else{
+        } else {
             return;
         }
     }).catch(error => console.log(error));
 };
 
 // Understand Function Currying.
-export const deleteDetailPostHelper = (value, postId) => dispatch => {
+export const deleteDetailPostHelper = (value, postId, commentId, modifiedPostObj) => dispatch => {
     return Promise.resolve(dispatch(set_post_deleted_detail_post_page(value)))
         .then(() => dispatch(clear_post_deleted_detail_post_page(null)))
         .then(() => deletepost(postId)(dispatch))
         .then(() => deletecommentsWithPostId(postId)(dispatch));
+};
+
+
+function removeNotification(dispatch) {
+    setTimeout(function () {
+        dispatch(set_success_notification(null));
+        dispatch(set_success_notification_message(''));
+    }, 4000)
+}
+
+export const deleteNotificationWrapper = (deleteValueFrom, postId, commentId, modifiedPostObj, posts) => dispatch => {
+    if (deleteValueFrom === 'AppPage' && postId && !commentId && !modifiedPostObj) {
+        dispatch(deletepost(postId));
+        dispatch(deletecommentsWithPostId(postId));
+        removeNotification(dispatch);
+        return;
+    } else if (deleteValueFrom === 'DetailPostPage' && postId && !commentId && !modifiedPostObj) {
+        dispatch(deleteDetailPostHelper(true, postId));
+        removeNotification(dispatch);
+        return;
+    } else if (deleteValueFrom === 'DeleteSingleComment' && postId && commentId && modifiedPostObj) {
+        dispatch(deleteSingleComment(commentId, postId, modifiedPostObj));
+        removeNotification(dispatch);
+        return;
+    } else {
+        return;
+    }
+
 };

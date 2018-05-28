@@ -2,13 +2,14 @@
 
 import React from 'react';
 import {findAncestor, findpreviousSibling, findnextSibling} from '../../util/domTraversal';
-import {updateComment} from '../../action/ama';
+import {updateComment, set_success_notification_message} from '../../action/ama';
 
 export const SaveComment = props => {
 
     // TODO could refactor this
     function handleSaveComment (event) {
         event.preventDefault();
+        props.dispatch(set_success_notification_message(`saved edited Comment`));
         let saveWrapper = findAncestor(event.currentTarget, 'Save-Comment-Wrapper');
         let canceEdit = findnextSibling(saveWrapper, 'Cancel-Edit-Comment-Wrapper');
         let commentId = findAncestor(saveWrapper, 'Comment-Card').dataset.commentId;

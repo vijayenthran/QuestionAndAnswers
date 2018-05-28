@@ -7,16 +7,30 @@ $button-text-color-hover: white;
     padding: 10px;
 }
 
+.Learn-More, .LoginSection {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.loginArea {
+    width: 100%;
+    height: 100vh;
+}
+
+.Login-Area-Info {
+    position: relative;
+    top: 30%;
+    text-align: center;
+}
+
 .LoginSection {
     padding: 10px;
-    float: right;
-    margin-right: 15%;
-    position: relative;
-    top: 40px;
+    margin-left: 10%;
     background-color: white;
-    width: 33%;
+    width: 40%;
     border-radius: 10px;
     border: 1px solid #e8e7e7;
+    text-align: left;
 }
 
 input {
@@ -26,11 +40,12 @@ input {
     margin-left: 2%;
 }
 
-label{
+label {
     width: 20%;
     display: inline-block;
     text-align: right;
 }
+
 .Login-Button, .SignUp-btn {
     padding: 5px;
     color: #1DB2E8;
@@ -58,6 +73,11 @@ label{
     color: $error-color;
 }
 
+.Signup-landingPage {
+    width: 100%;
+    height: 100vh;
+}
+
 .SignUp-Information-text {
     margin-left: 5px;
     margin-right: 5px;
@@ -65,7 +85,7 @@ label{
     color: $Header-Color;
 }
 
-.Create-Account-Link, .Navigate-Back-To-LoginPage{
+.Create-Account-Link, .Navigate-Back-To-LoginPage {
     text-decoration: none;
     margin-left: 5%;
     color: #1db2e8;
@@ -76,51 +96,189 @@ label{
     font-size: 10px;
 }
 
-.Form-Error-Input{
+.Form-Error-Input {
     color: indianred;
     margin-left: 2%;
     font-weight: bold;
     text-align: center;
 }
 
-.SignUp-Section{
+.SignUp-Section {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
     background-color: white;
     position: relative;
-    top: 40px;
+    top: 15%;
     border-radius: 30px;
     border: 1px solid #e8e7e7;
 }
 
-.SignUp-Form-Footer{
+.SignUp-Form-Footer {
     margin-left: 22%;
 }
 
-.SignUp-Section-Heading{
+.SignUp-Section-Heading {
     text-align: center;
 }
 
-.SignUp-Form{
+.SignUp-Form {
     margin-top: 5%;
     width: 100%;
     padding: 10px;
 }
 
-.SignUp-btn{
+.SignUp-btn {
     margin-top: 6%;
 }
 
-@media only screen and (max-width:1000px) {
+#About-Ques {
+    width: 100%;
+    height: 100vh;
+    padding-top: 10px;
+    background: white;
+}
+
+.LearnMore-head {
+    color: #415467;
+}
+
+.Learn-More-Text {
+    text-decoration: none;
+    font-size: 1em;
+    border-radius: 20px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    color: #375252;
+    background-color: #d7e8ee;
+    padding: 10px;
+    margin-bottom: 100px;
+    border: 1px solid #5c8ea0;
+}
+
+.Learn-More-Text:hover {
+    background-color: gray;
+    color: white;
+}
+
+.About-Ques-Heading {
+    margin-top: 8%;
+    text-align: center;
+}
+
+.About-Ques-div-Head{
+    border: none;
+}
+
+.how-it-works-image {
+    width: 100px;
+    height: auto;
+}
+
+.About-Ques-Head, .how-it-works-image {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.About-Ques-Login-Signup-Info, .About-Ques-Read-Ques, .About-Post-Ques-Comments, .Road-Map {
+    float: left;
+    width: 24%;
+    border: 1px solid #3c5468;
+    margin-left: 1%;
+    text-align: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.About-Ques-Information {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+
+.Register-Image{
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    margin-bottom: 4%;
+}
+
+.FooterBar{
+    width : 100%;
+    height: 200px;
+    background-color: #3c5468;
+    margin-top: 4%;
+    clear: both;
+    content: "";
+}
+
+
+.About-Ques-Information:before, .About-Ques-Information:after{
+    clear: both;
+}
+
+@media only screen and (max-width: 1300px) {
+    .Register-Image{
+        height: 250px
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .LoginSection {
+        width: 50%;
+        margin-left: 5%;
+    }
+
+}
+
+@media only screen and (max-width: 900px) {
+    .About-Ques-Login-Signup-Info, .About-Ques-Read-Ques, .About-Post-Ques-Comments, .Road-Map {
+        width: 49%;
+        margin-left: 1%;
+        margin-top: 4%;
+        margin-bottom: 4%;
+    }
+
+    .Register-Image{
+        height: 250px
+    }
+}
+
+@media only screen and (max-width: 1000px) {
     .SignUp-Section {
         width: 75%;
     }
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width: 750px) {
+    .LoginSection {
+        width: 90%;
+        margin-left: 0px;
+        margin-top: 4%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
     .SignUp-Section {
         width: 95%;
     }
 }
+
+@media only screen and (max-width: 500px) {
+    input {
+        margin-left: 6%;
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .About-Ques-Login-Signup-Info, .About-Ques-Read-Ques, .About-Post-Ques-Comments, .Road-Map {
+        width: 100%;
+        margin-top: 4%;
+    }
+}
+

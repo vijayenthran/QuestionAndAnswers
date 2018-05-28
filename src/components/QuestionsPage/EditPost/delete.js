@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {findAncestor} from "../../../util/domTraversal";
-import {deletepost, deletecommentsWithPostId, deleteDetailPostHelper} from "../../../action/ama";
+import {deletepost, deletecommentsWithPostId, deleteDetailPostHelper, set_delete_call_from, set_delete_post_id_value, show_delete_Confirmation_PopUp} from "../../../action/ama";
 import {Redirect} from 'react-router-dom';
 
 export const Delete = props => {
@@ -14,9 +14,12 @@ export const Delete = props => {
         event.preventDefault();
         let closestPostCardParent = findAncestor(event.currentTarget, 'postCardsLists');
         let postCardId = closestPostCardParent.dataset.postId;
-        closestPostCardParent.remove();
-        props.dispatch(deletepost(postCardId));
-        props.dispatch(deletecommentsWithPostId(postCardId));
+        // closestPostCardParent.remove();
+        props.dispatch(set_delete_call_from('AppPage'));
+        props.dispatch(show_delete_Confirmation_PopUp(true));
+        props.dispatch(set_delete_post_id_value(postCardId));
+        // props.dispatch(deletepost(postCardId));
+        // props.dispatch(deletecommentsWithPostId(postCardId));
         return;
     }
 
@@ -24,7 +27,12 @@ export const Delete = props => {
         event.preventDefault();
         let closestPostCardParent = findAncestor(event.currentTarget, 'Detail-Post-Page-Post-Wrapper');
         let postCardId = closestPostCardParent.dataset.postId;
-        return props.dispatch(deleteDetailPostHelper(true, postCardId));
+        props.dispatch(set_delete_call_from('DetailPostPage'));
+        props.dispatch(set_delete_post_id_value(postCardId));
+        props.dispatch(show_delete_Confirmation_PopUp(true));
+
+        // props.dispatch(deleteDetailPostHelper(true, postCardId));
+        return;
     }
 
     if (props.area === 'AppPage') {

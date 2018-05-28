@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {logOut} from '../action/auth';
+import {logOut} from '../../action/auth';
 
 export const LogOutLink = props => {
 

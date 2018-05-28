@@ -5,7 +5,7 @@ import LandingPage from './landing-page';
 import QuestionLandingPage from './QuestionsPage/landingpage';
 import SignUpPage from './signUp/signUp-page';
 import {Route, Switch} from 'react-router-dom';
-import {Handle404} from './handle404s';
+import {Handle404} from './404\'s/handle404s';
 import PostsLandingPage from './PostandComments/landingpage';
 import './Styles/appStyles.scss';
 

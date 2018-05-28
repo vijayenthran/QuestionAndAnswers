@@ -76,7 +76,7 @@ export class PostCards extends React.Component {
             <aside className="postCards">
                 <ul className="postCards-List-Enclose">
                     {this.props.posts.map((postData, index) =>
-                        <li className="postCardsLists" key={index}
+                        <li className="postCardsLists" key={postData._id}
                             data-post-id={postData._id}>
                             <div className="postCard">
                                 <PostCardHeader postData={postData}/>

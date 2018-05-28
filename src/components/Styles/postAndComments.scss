@@ -18,6 +18,7 @@ $button-text-color-hover : #FFFFFF;
 
 .Detail-Post-Page-Post-Body, .Comment-Card-Body{
     white-space: pre-wrap;
+    word-break: break-all;
 }
 
 .Detail-Post-Page-Post-Data-Section{
@@ -206,6 +207,16 @@ $button-text-color-hover : #FFFFFF;
 
 .Edit-Comment-Card{
     margin-top: 5%;
+}
+
+@media only screen and (max-width:1050px) {
+    .Comment-Body-Div{
+        margin-top: 8%;
+    }
+    .Comments-Like-Div{
+        margin-top: 4%;
+    }
+
 }
 
 @media only screen and (max-width:750px) {

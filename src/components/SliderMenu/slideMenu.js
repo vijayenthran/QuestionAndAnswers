@@ -2,11 +2,11 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {HeaderNav} from "./NavBar/headerNav";
-import {WelcomeText} from "./welcomeText";
-import {LogOutLink} from "./LogoutLink";
-import Categories from '../components/QuestionsPage/categories';
-import './Styles/SliderMenu.scss';
+import {HeaderNav} from "../NavBar/headerNav";
+import {WelcomeText} from "../Header/welcomeText";
+import {LogOutLink} from "../Header/LogoutLink";
+import Categories from '../QuestionsPage/categories';
+import '../Styles/SliderMenu.scss';
 
 export class SliderMenu extends React.Component {
 

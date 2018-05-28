@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import './Styles/shimmer.scss';
+import '../Styles/shimmer.scss';
 
 export class Shimmer extends React.Component {
     render() {

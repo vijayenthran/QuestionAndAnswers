@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {getSinglePost, clear_single_post} from '../../action/ama';
+import {getSinglePost, clear_single_post, set_route_path} from '../../action/ama';
 import CommentsLandingPage from "../Comments/landingpage";
 import {Post} from "./post";
 import '../Styles/postAndComments.scss';
@@ -18,7 +18,8 @@ export class PostandCommentsComponent extends React.Component {
         let postId = this.props.match.params.postId;
         if (postId) {
             return Promise.resolve(this.props.dispatch(clear_single_post()))
-                .then(() => this.props.dispatch(getSinglePost(postId)));
+                .then(() => this.props.dispatch(getSinglePost(postId)))
+                .then(() => this.props.dispatch(set_route_path(this.props.location)))
         } else {
             return;
         }

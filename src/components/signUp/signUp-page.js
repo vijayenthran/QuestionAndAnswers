@@ -4,15 +4,15 @@ import SignUpTitle from "./signUp-Title";
 
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import HeaderBar from "../headerBar";
-import {FooterBar} from "../footerBar";
+import HeaderBar from "../Header/headerBar";
+import {FooterBar} from "../Footer/footerBar";
 
 export function SignUpPage(props) {
     if (props.loginStatus) {
         return <Redirect to="/app"/>;
     }
     return (
-        <section className="landingPage">
+        <section className="Signup-landingPage">
             <HeaderBar/>
             <SignUpTitle/>
             <SignUpForm/>

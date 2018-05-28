@@ -4,10 +4,11 @@ import React from 'react';
 // Understand Why my images should only be in the Dist folder. If its places outside
 // it throws error.
 import editImg from '../../../../dist/images/EditIcon.png';
-import {findnextSibling, findAncestor, findpreviousSibling} from "../../../util/domTraversal";
+import {findnextSibling} from "../../../util/domTraversal";
 
 export const Edit = props => {
     function handleEditClick(event) {
+        event.stopPropagation();
         event.preventDefault();
         findnextSibling(event.currentTarget, 'Delete-Link-Wrapper').setAttribute('style', 'display:inline');
         findnextSibling(event.currentTarget, 'Cancel-Link-Wrapper').setAttribute('style', 'display:inline');

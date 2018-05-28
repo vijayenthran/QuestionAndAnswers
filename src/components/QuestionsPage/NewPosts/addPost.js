@@ -3,7 +3,7 @@
 import React from 'react';
 import {Field, reduxForm, reset} from 'redux-form';
 import textArea from '../../reusableForm/textArea';
-import {set_show_add_post_form, addPosts} from "../../../action/ama";
+import {set_show_add_post_form, addPosts, set_success_notification_message} from "../../../action/ama";
 import {SelectDDMenu} from "../../reusableForm/selectField";
 import validate from '../../../validation';
 import {connect} from 'react-redux';
@@ -25,6 +25,7 @@ function AddPostForm(props) {
             }
         }
         return props.dispatch(addPosts(createPostObj, props.categoryName.split('-')[0]))
+            .then(() => props.dispatch(set_success_notification_message(`added Post to ${formValue.CategoryDropDown.split('-')[0]} Category`)))
             .then(() => props.dispatch(reset('AddPost')))
             .then(() => props.dispatch(set_show_add_post_form(null)));
     }

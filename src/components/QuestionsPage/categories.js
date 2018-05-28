@@ -12,6 +12,7 @@ import {
     set_filter
 } from "../../action/ama";
 import '../Styles/categoriesStyles.scss';
+import {findpreviousSibling} from "../../util/domTraversal";
 
 export class Categories extends React.Component {
 
@@ -34,12 +35,20 @@ export class Categories extends React.Component {
     // on click callback when the category link is clicked
     categoryHandleClick(event) {
         let categoryId;
-        let currentSelectedElement = document.getElementsByClassName('SelectedCategory')[0];
-        if (currentSelectedElement.innerHTML !== event.currentTarget.innerHTML) {
-            currentSelectedElement.classList.remove('SelectedCategory');
-            // let selectedCategoryName = this.props.categorySelected.split('-')[0];
-            // let abc = document.getElementsByClassName(`category${selectedCategoryName}`);
-            event.currentTarget.classList.add('SelectedCategory');
+        let total = document.getElementsByClassName('SelectedCategory');
+        if (findpreviousSibling(event.currentTarget, 'SelectedCategory')) {
+            findpreviousSibling(event.currentTarget, 'SelectedCategory').classList.remove('SelectedCategory');
+        }
+        for (let item of total) {
+            item.classList.remove('SelectedCategory');
+        }
+        event.currentTarget.classList.add('SelectedCategory');
+        let selectedCategory = event.currentTarget.classList[0];
+        let element1 = document.getElementsByClassName(selectedCategory);
+        for (let item of element1) {
+            if ([...item.classList].indexOf('SelectedCategory') < 0) {
+                item.classList.add('SelectedCategory');
+            }
         }
         // ASk if text content is okay in this area as it would return its text and
         // all its decendants text. Check if this is appropriate.
@@ -55,13 +64,7 @@ export class Categories extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(getCategories());
-        // return Promise.resolve(this.props.dispatch(clear_categories_list()))
-        //     .then(() => this.props.dispatch(getCategories()));
     }
-
-    // componentWillUnmount() {
-    //     this.props.dispatch(clear_categories_list());
-    // }
 
     render() {
         return (
@@ -69,7 +72,16 @@ export class Categories extends React.Component {
                 <h2 className="Category-Section-Header">Categories</h2>
                 <ul className="CategoryList">
                     {this.props.categories.map((category, index) => {
-                            if (category.name === 'All') {
+                            if (category.name === this.props.categorySelected.split('-')[0] && !this.props.sliderMenuVisibility) {
+                                return (
+                                    <li key={index}
+                                        className={`category${category.name} category SelectedCategory`}
+                                        data-categoryid={category._id}
+                                        onClick={this.categoryHandleClick}>
+                                        {category.name}
+                                    </li>
+                                )
+                            } else if (category.name === this.props.categorySelected.split('-')[0] && this.props.sliderMenuVisibility) {
                                 return (
                                     <li key={index}
                                         className={`category${category.name} category SelectedCategory`}
@@ -99,7 +111,8 @@ export class Categories extends React.Component {
 const mapStateToProps = state => ({
     categories: state.ama.categories,
     categoryName: state.ama.categorySelected,
-    categorySelected : state.ama.categorySelected
+    categorySelected: state.ama.categorySelected,
+    sliderMenuVisibility: state.ama.sliderMenuVisibility
 });
 
 export default connect(mapStateToProps)(Categories)

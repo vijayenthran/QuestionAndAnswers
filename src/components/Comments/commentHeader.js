@@ -1,7 +1,15 @@
 'use strict';
 
 import React from 'react';
-import {deleteSingleComment} from "../../action/ama";
+import {
+    deleteSingleComment,
+    set_delete_call_from,
+    set_delete_post_id_value,
+    set_delete_comment_id_value,
+    set_delete_post_Obj_for_delete_comment,
+    show_delete_Confirmation_PopUp,
+}
+from "../../action/ama";
 import {findAncestor} from "../../util/domTraversal"
 import handleTime from '../handleTime'
 
@@ -16,8 +24,11 @@ export const CommentCardHeader = props => {
         delete postObj._id;
         let commentsList = postObj.commentsList.filter(comment => comment._id !== commentId).map(filteredComment => filteredComment._id);
         postObj.commentsList = commentsList;
-        props.dispatch(deleteSingleComment(commentId, postObjId, postObj));
-        return;
+        // props.dispatch(deleteSingleComment(commentId, postObjId, postObj));
+        return Promise.resolve(props.dispatch(set_delete_call_from('DeleteSingleComment')))
+            .then(() => props.dispatch(set_delete_post_id_value(postObjId)))
+            .then(() => props.dispatch(set_delete_comment_id_value(commentId)))
+            .then(() =>  props.dispatch(set_delete_post_Obj_for_delete_comment(postObj)));
     }
 
     function handledeleteClick(event) {
@@ -25,6 +36,7 @@ export const CommentCardHeader = props => {
         let commentCardHeader = findAncestor(event.currentTarget, 'Comment-Card-header');
         let commentCard = findAncestor(commentCardHeader, 'Comment-Card');
         let commentId = commentCard.dataset.commentId;
+        props.dispatch(show_delete_Confirmation_PopUp(true));
         processPostObjtoRemoveCommentId(commentId);
         return;
     }

@@ -22,7 +22,16 @@ import {
     SET_FILTER,
     SET_LOADER,
     SET_SHOW_SLIDER_MENU,
-    SET_SHIMMER
+    SET_SHIMMER,
+    SET_SHOW_DELETE_CONFIRMATION_POPUP,
+    SET_DELETE_CALL_FROM_VALUE,
+    SET_DELETE_POST_ID_Value,
+    SET_DELETE_COMMENT_ID_Value,
+    SET_MODIFIED_POST_OBJ_FOR_DELETE_COMMENT,
+    SET_ROUTE_PATH,
+    SET_SUCCESS_NOTIFICATION,
+    SET_SUCCESS_NOTIFICATION_MESSAGE,
+    SET_FILTER_POST_FROM_POST_LIST
 } from '../action/ama';
 
 const initialState = {
@@ -32,17 +41,25 @@ const initialState = {
     comments: [],
     showAddPost: null,
     showDeletePosts: null,
-    postdeleteddetailpostpage:null,
-    enableCommentSubmitButton : null,
-    fetchMorePostCards : false,
-    loadMoreData : false,
-    categorySelected : 'All-null',
-    categoryChanged : false,
-    dispatchCount : false,
+    postdeleteddetailpostpage: null,
+    enableCommentSubmitButton: null,
+    fetchMorePostCards: false,
+    loadMoreData: false,
+    categorySelected: 'All-null',
+    categoryChanged: false,
+    dispatchCount: false,
     postsFilter: null,
     loader: false,
-    sliderMenuVisibility : false,
+    sliderMenuVisibility: false,
     shimmer: false,
+    showDeleteConfirmationPopUp: false,
+    deleteCallFrom: null,
+    deletePostId: null,
+    deleteCommentId: null,
+    modifiedPostObj: null,
+    routePath: null,
+    successNotification: null,
+    successNotificationMessage : '',
 };
 
 export default function reducer(state = initialState, action) {
@@ -174,6 +191,51 @@ export default function reducer(state = initialState, action) {
     if (action.type === SET_SHIMMER) {
         return Object.assign({}, state, {
             shimmer: action.shimmer
+        });
+    }
+    if (action.type === SET_SHOW_DELETE_CONFIRMATION_POPUP) {
+        return Object.assign({}, state, {
+            showDeleteConfirmationPopUp: action.showDeleteConfirmationPopUp
+        });
+    }
+    if (action.type === SET_DELETE_CALL_FROM_VALUE) {
+        return Object.assign({}, state, {
+            deleteCallFrom: action.deleteCallFrom
+        });
+    }
+    if (action.type === SET_DELETE_POST_ID_Value) {
+        return Object.assign({}, state, {
+            deletePostId: action.deletePostId
+        });
+    }
+    if (action.type === SET_DELETE_COMMENT_ID_Value) {
+        return Object.assign({}, state, {
+            deleteCommentId: action.deleteCommentId
+        });
+    }
+    if (action.type === SET_MODIFIED_POST_OBJ_FOR_DELETE_COMMENT) {
+        return Object.assign({}, state, {
+            modifiedPostObj: action.modifiedPostObj
+        });
+    }
+    if (action.type === SET_ROUTE_PATH) {
+        return Object.assign({}, state, {
+            routePath: action.routePath
+        });
+    }
+    if (action.type === SET_SUCCESS_NOTIFICATION) {
+        return Object.assign({}, state, {
+            successNotification: action.successNotification
+        });
+    }
+    if (action.type === SET_SUCCESS_NOTIFICATION_MESSAGE) {
+        return Object.assign({}, state, {
+            successNotificationMessage: action.successNotificationMessage
+        });
+    }
+    if (action.type === SET_FILTER_POST_FROM_POST_LIST) {
+        return Object.assign({}, state, {
+            posts: state.posts.filter(post => post._id !== action.filterPostId)
         });
     }
     return state;

@@ -15,7 +15,7 @@ export function LoginForm(props) {
     }
 
     return (
-        <section className="LoginSection">
+        <div className="LoginSection Login-Area-Info-Content">
             <div className="SignUp-Information-text">Have an Account? Please Sign In. Else,click signUp to create one..</div>
             <form  className="Login-Form" onSubmit={props.handleSubmit(onsubmit)}>
                 <div className="LoginFromError">
@@ -26,7 +26,7 @@ export function LoginForm(props) {
                  <button className="Login-Button" type="submit" disabled={props.submitting}>Login</button>
                  <Link className="Create-Account-Link" to="/signUp">SignUp</Link>
             </form>
-        </section>
+        </div>
     )
 }
 

@@ -1,17 +1,18 @@
 'use strict';
 
 import React from 'react';
-import {logOut} from '../action/auth';
+import {logOut} from '../../action/auth';
 import {connect} from 'react-redux';
-import {HeaderNav} from "./NavBar/headerNav";
+import {HeaderNav} from "../NavBar/headerNav";
 import {Link} from 'react-router-dom';
-import {BurgerMenu} from "./burgerMenu";
+import {BurgerMenu} from "../SliderMenu/burgerMenu";
 import {WelcomeText} from "./welcomeText";
 import {LogOutLink} from "./LogoutLink";
+import {CloseSliderMenu} from "../SliderMenu/CancelSliderMenu";
 
-// import LoaderBar from './loaderBar/loaderBar';
+// import LoaderBar from './loader/loader';
 
-import './Styles/headerBarStyles.scss';
+import '../Styles/headerBarStyles.scss';
 
 export function HeaderBar(props) {
     if (props.loginStatus && !props.position) {
@@ -23,7 +24,8 @@ export function HeaderBar(props) {
                         Que's | Ans
                     </Link>
                 </div>
-                <BurgerMenu dispatch={props.dispatch}/>
+                <BurgerMenu sliderMenuVisibility={props.sliderMenuVisibility} dispatch={props.dispatch}/>
+                <CloseSliderMenu sliderMenuVisibility={props.sliderMenuVisibility} dispatch={props.dispatch}/>
                 <div className="HeaderNav">
                     <HeaderNav dispatch={props.dispatch}/>
                 </div>
@@ -63,6 +65,7 @@ export function HeaderBar(props) {
 const mapStateToProps = state => ({
     loginStatus: state.auth.loggedIn,
     userName: state.auth.userInfo ? state.auth.userInfo.user.username : null,
+    sliderMenuVisibility : state.ama.sliderMenuVisibility,
 });
 
 export default connect(mapStateToProps)(HeaderBar);

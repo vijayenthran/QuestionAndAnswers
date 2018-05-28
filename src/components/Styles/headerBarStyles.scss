@@ -71,7 +71,7 @@ $header-Bar-font: 1em;
     width : 10%;
 }
 
-.Burger-icon{
+.Burger-icon, .Closed-Slider-Menu-Icon-Wrapper{
     display: none;
 }
 
@@ -102,8 +102,13 @@ $header-Bar-font: 1em;
         padding: 15px;
     }
 
-    .Burger-icon-svg{
+    .Burger-icon-svg, .SliderMenuCrossIcon{
         fill: antiquewhite;
+    }
+
+    .SliderMenuCrossIcon:hover{
+        fill: indianred;
+        cursor: pointer;
     }
 
     .Burger-icon-svg:hover{
@@ -119,19 +124,24 @@ $header-Bar-font: 1em;
         width: 40%;
     }
 
-    .Burger-icon{
+    .Burger-icon, .Closed-Slider-Menu-Icon-Wrapper{
         width: 50%;
         text-align: right;
         position: relative;
         top: 6px;
     }
 
-    .Logo, .Burger-icon{
+    .Logo, .Burger-icon, .Closed-Slider-Menu-Icon-Wrapper{
         display: inline-block;
     }
 
     .Burger-icon-svg{
         width: 24px;
+        height:auto;
+    }
+
+    .SliderMenuCrossIcon{
+        width: 17px;
         height:auto;
     }
 
