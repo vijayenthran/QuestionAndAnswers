@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import {getAuthToken} from '../localStorage';
-import config from '../../config/default';
+import config from '../../config/clientConfig';
 
 // ----------------------------------------------------------------------------------------------------------------------------------
 export const SET_CATEGORIES_LIST = 'SET_CATEGORIES_LIST';

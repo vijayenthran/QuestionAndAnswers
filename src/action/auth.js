@@ -1,7 +1,7 @@
 'use strict';
 
 import {SubmissionError} from 'redux-form'
-import config from '../../config/default';
+import config from '../../config/clientConfig';
 import axios from 'axios';
 import {saveAuthToken, clearAuthToken, getAuthToken} from '../localStorage';
 import jwtDecode from 'jwt-decode';
