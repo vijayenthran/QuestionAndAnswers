@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import likeImg from '../../../dist/images/Upvote.png';
 import {updateComment} from "../../action/ama";
 
 export const CommentLike = props => {
