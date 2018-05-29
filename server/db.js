@@ -12,7 +12,8 @@ function mongooseConnect(database){
 
 // Returns Promise
 function mongooseDisconnect(){
-    return mongoose.disconnect();
+    return mongoose.disconnect()
+        .then(logger.Info('Mongoose Connection disconnected Successfully'));
 }
 
 module.exports = {mongooseConnect, mongooseDisconnect};

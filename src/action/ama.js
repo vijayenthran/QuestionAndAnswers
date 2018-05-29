@@ -220,7 +220,7 @@ export const deletepost = postId => dispatch => {
             method: 'delete',
             url: `${config.BaseURL}/app/posts/${postId}`,
             headers: {authorization: `bearer ${authToken}`}
-        }).then(deleteRes => {
+        }).then(() => {
             dispatch(set_filter_post_list(postId));
             return;
         }).catch(error => console.log(error));
@@ -259,9 +259,6 @@ export const deletecommentsWithPostId = postId => dispatch => {
             method: 'delete',
             url: `${config.BaseURL}/app/comments/?postId=${postId}`,
             headers: {authorization: `bearer ${authToken}`}
-        }).then(deleteRes => {
-            console.log(deleteRes);
-            return;
         }).catch(error => console.log(error));
     } else {
         return;
@@ -368,9 +365,7 @@ export const addComments = (createCommentsObj, postObj) => dispatch => {
                 headers: {authorization: `bearer ${authToken}`},
                 data: {...cleansedpostObj}
             });
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+        }).catch(err => console.log(err));
 };
 
 
@@ -390,7 +385,7 @@ export const getPostsFilter = (filter, skipLimit) => dispatch => {
         //     dispatch(set_posts_list({posts: postsObj.data}));
         //     return;
         // }
-        if (postsObj.data.length >= 0) {
+        if (postsObj && postsObj.data.length >= 0) {
             if (filter === 'HOT') {
                 postsObj.data.sort((a, b) => b.commentsList.length - a.commentsList.length)
             }
@@ -418,7 +413,7 @@ export const getPosts = (categoryId, skipLimit) => dispatch => {
         // check if post Object contains an array of items returned
         // if no items are returned then just simply return without calling the dispatch action
         // My be When there are no items show that there is no content there. add that in the else block
-        if (postsObj.data.length >= 0) {
+        if (postsObj && postsObj.data.length >= 0) {
             dispatch(set_posts_list({posts: postsObj.data}));
             dispatch(set_shimmer(false));
             dispatch(set_loader_text(false));
@@ -446,16 +441,16 @@ function removeNotification(dispatch) {
 }
 
 export const deleteNotificationWrapper = (deleteValueFrom, postId, commentId, modifiedPostObj, posts) => dispatch => {
-    if (deleteValueFrom === 'AppPage' && postId && !commentId && !modifiedPostObj) {
+    if (deleteValueFrom && deleteValueFrom === 'AppPage' && postId && !commentId && !modifiedPostObj) {
         dispatch(deletepost(postId));
         dispatch(deletecommentsWithPostId(postId));
         removeNotification(dispatch);
         return;
-    } else if (deleteValueFrom === 'DetailPostPage' && postId && !commentId && !modifiedPostObj) {
+    } else if (deleteValueFrom && deleteValueFrom === 'DetailPostPage' && postId && !commentId && !modifiedPostObj) {
         dispatch(deleteDetailPostHelper(true, postId));
         removeNotification(dispatch);
         return;
-    } else if (deleteValueFrom === 'DeleteSingleComment' && postId && commentId && modifiedPostObj) {
+    } else if (deleteValueFrom && deleteValueFrom === 'DeleteSingleComment' && postId && commentId && modifiedPostObj) {
         dispatch(deleteSingleComment(commentId, postId, modifiedPostObj));
         removeNotification(dispatch);
         return;

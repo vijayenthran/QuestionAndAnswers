@@ -9,27 +9,18 @@ const {categoryRouter} = require('./Categories');
 const {postRouter} = require('./posts');
 const {commentsRouter} = require('./Comments');
 const bodyParser = require('body-parser');
-const config = require('../config/default');
 const logger = require('../logger');
 const db = require('./db');
+const cors = require('cors');
 let server;
+require('dotenv').config();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(path.resolve('./src')));
 
 // Note This Middle ware should be in the starting before making any calls. to the routes. Else it would fail Giving CORS Error.
-app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
-    if (req.method === "OPTIONS") {
-        return res.status(200).end();
-    }
-
-    return next();
-});
-
+app.use(cors());
 
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
@@ -44,11 +35,11 @@ app.use((error, req, res, next) => {
 });
 
 function startServer() {
-    return db.mongooseConnect(config.database)
+    return db.mongooseConnect(process.env.database)
         .then(() => {
             return new Promise((resolve, reject) => {
-                server = app.listen(config.Port, () => {
-                    logger.Info(`Server Started and Successfully listening on port ${config.Port}`);
+                server = app.listen(process.env.Port, () => {
+                    logger.Info(`Server Started and Successfully listening on port ${process.env.Port}`);
                     resolve();
                     return;
                 }).on('error', (err) => {

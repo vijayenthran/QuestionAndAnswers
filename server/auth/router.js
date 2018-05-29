@@ -1,7 +1,6 @@
 const express = require('express');
 const authRouter = express.Router();
 const jwt = require('jsonwebtoken');
-const config = require('../../config/default');
 const {User} = require('../user/model');
 
 
@@ -45,9 +44,9 @@ let errorObj = {
 
 
 const createAuthToken = function (user) {
-    return jwt.sign({user}, `${config.JWT_SECRET}`, {
+    return jwt.sign({user}, `${process.env.JWT_SECRET}`, {
         subject: user.username,
-        expiresIn: `${config.JWT_EXPIRY}`,
+        expiresIn: `${process.env.JWT_EXPIRY}`,
         algorithm: 'HS256'
     });
 };
@@ -60,7 +59,7 @@ const validateAuthToken = function (token) {
     let decodedObj;
     return new Promise((resolve, reject) => {
         try {
-            decodedObj = jwt.verify(token, config.JWT_SECRET);
+            decodedObj = jwt.verify(token, process.env.JWT_SECRET);
         } catch (err) {
             reject(errorObj.InvalidJWT())
         }
