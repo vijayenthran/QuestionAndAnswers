@@ -13,7 +13,17 @@ const logger = require('../logger');
 const db = require('./db');
 const cors = require('cors');
 let server;
-require('dotenv').config();
+let database, port;
+
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+    database = process.env[process.env.NODE_ENV + 'Database'];
+    port = process.env[process.env.NODE_ENV + 'PORT'];
+}else{
+    database = process.env.Database;
+    port = process.env.PORT;
+}
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -35,13 +45,12 @@ app.use((error, req, res, next) => {
 });
 
 function startServer() {
-    return db.mongooseConnect(process.env.database)
+    return db.mongooseConnect(database)
         .then(() => {
             return new Promise((resolve, reject) => {
-                server = app.listen(process.env.Port, () => {
-                    logger.Info(`Server Started and Successfully listening on port ${process.env.Port}`);
+                server = app.listen(port, () => {
+                    logger.Info(`Server Started and Successfully listening on port ${port}`);
                     resolve();
-                    return;
                 }).on('error', (err) => {
                     logger.Error(err);
                     reject(err);
@@ -59,7 +68,6 @@ function stopServer() {
                     reject(err);
                 } else {
                     resolve();
-                    return;
                 }
             });
         });
