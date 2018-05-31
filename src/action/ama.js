@@ -281,7 +281,7 @@ export const getSinglePost = postId => dispatch => {
     }).catch(error => console.log(error));
 };
 
-export const updatePosts = (postId, putObj) => dispatch => {
+export const updatePosts = (postId, putObj, fromMetaInfo) => dispatch => {
     let authToken = getAuthToken('auth');
     return axios({
         method: 'put',
@@ -289,8 +289,10 @@ export const updatePosts = (postId, putObj) => dispatch => {
         headers: {authorization: `bearer ${authToken}`},
         data: {...putObj}
     }).then(() =>{
-        dispatch(set_success_notification(true));
-        removeNotification(dispatch);
+        if(fromMetaInfo){
+            dispatch(set_success_notification(true));
+            removeNotification(dispatch);
+        }
     }).catch(error => console.log(error));
 };
 

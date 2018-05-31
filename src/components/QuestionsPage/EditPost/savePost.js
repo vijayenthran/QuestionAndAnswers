@@ -17,7 +17,7 @@ export const SavePost = props => {
         delete updatePostCardBody._id;
         updatePostCardBody['postBody'] = updateTextBody;
         updatePostCardBody['postTitle'] = updateTextTitle;
-        props.dispatch(updatePosts(postId, updatePostCardBody));
+        props.dispatch(updatePosts(postId, updatePostCardBody, 'SavePost'));
         return;
     }
 

@@ -7,7 +7,8 @@
         "test": "NODE_ENV=test jest",
         "start-server": "NODE_ENV=development nodemon server/server.js",
         "build": "NODE_ENV=production webpack --config webpack/productionConfig.js",
-        "start": "NODE_ENV=development webpack-dev-server --config webpack/devConfig.js",
+        "start-local-client": "NODE_ENV=development webpack-dev-server --config webpack/devConfig.js",
+        "start" : "node server/server.js",
         "deploy": "yarn run build"
     },
     "author": "Vijay",
