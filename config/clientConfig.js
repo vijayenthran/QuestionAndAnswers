@@ -1,7 +1,7 @@
 'use strict';
 
 const config = {
-    BaseURL: process.env.BaseURL || `http://localhost:3000`
+    BaseURL: 'https://frozen-shelf-33254.herokuapp.com'
 };
 
 module.exports = config;
