@@ -24,8 +24,7 @@ if (process.env.NODE_ENV !== 'production') {
     port = process.env.PORT;
 }
 
-console.log(database);
-console.log(port);
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -47,6 +46,8 @@ app.use((error, req, res, next) => {
 });
 
 function startServer() {
+    console.log(database);
+    console.log(port);
     return db.mongooseConnect(database)
         .then(() => {
             return new Promise((resolve, reject) => {
@@ -54,6 +55,7 @@ function startServer() {
                     logger.Info(`Server Started and Successfully listening on port ${port}`);
                     resolve();
                 }).on('error', (err) => {
+                    console.log(err);
                     logger.Error(err);
                     reject(err);
                 });
