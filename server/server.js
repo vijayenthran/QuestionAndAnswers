@@ -46,8 +46,6 @@ app.use((error, req, res, next) => {
 });
 
 function startServer() {
-    console.log(database);
-    console.log(port);
     return db.mongooseConnect(database)
         .then(() => {
             return new Promise((resolve, reject) => {
@@ -55,7 +53,6 @@ function startServer() {
                     logger.Info(`Server Started and Successfully listening on port ${port}`);
                     resolve();
                 }).on('error', (err) => {
-                    console.log(err);
                     logger.Error(err);
                     reject(err);
                 });
@@ -79,7 +76,7 @@ function stopServer() {
 }
 
 if (require.main === module) {
-    startServer().catch(err => {console.log(err);logger.Error(err)});
+    startServer().catch(err => logger.Error(err));
 }
 
 module.exports = {app, startServer, stopServer};
