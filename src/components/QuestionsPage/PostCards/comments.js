@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Link} from 'react-router-dom';
-import commentsImg from '../../../../dist/images/Comments.png';
+import commentsImg from '../../../images/Comments.png';
 
 
 export const Comments = props => {

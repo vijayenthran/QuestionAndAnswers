@@ -7,6 +7,7 @@ module.exports = {
         output: {
             path: path.resolve(__dirname, '../dist'), // Where the bundle should be.
             filename: 'bundle.js',
+            publicPath: '/' // This is important when the url is different to refer images.
         },
         module: {
             rules: [
@@ -24,10 +25,9 @@ module.exports = {
                 {
                     test: /\.(png|jp(e*)g|svg)$/,
                     use: [{
-                        loader: 'url-loader',
+                        loader: 'file-loader',
                         options: {
-                            limit: 8000, // Convert images < 8kb to base64 strings
-                            name: 'images/[hash]-[name].[ext]'
+                            name: '[path][name].[ext]'
                         }
                     }]
                 }

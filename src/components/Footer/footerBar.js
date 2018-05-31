@@ -2,7 +2,7 @@
 
 import React from 'react';
 import '../Styles/footer.scss';
-import githubOctaCat from '../../../dist/images/GitHub-Mark-32px.png'
+import githubOctaCat from '../../images/GitHub-Mark-32px.png'
 export const FooterBar = () => {
 
     function GithubLink() {

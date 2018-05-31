@@ -1,11 +1,11 @@
 'use strict';
 
 import React from 'react';
-import howitWorks from '../../../dist/images/page-how-it-works-3.png';
-import register from '../../../dist/images/reg.jpeg';
-import questions from '../../../dist/images/questions.jpg';
-import answer from '../../../dist/images/Answer.jpg';
-import ama from '../../../dist/images/Ask_Me_Anything.jpg';
+import howitWorks from '../../images/page-how-it-works-3.png';
+import register from '../../images/reg.jpeg';
+import questions from '../../images/questions.jpg';
+import answer from '../../images/Answer.jpg';
+import ama from '../../images/Ask_Me_Anything.jpg';
 
 export const AboutQues = porps => {
     return (

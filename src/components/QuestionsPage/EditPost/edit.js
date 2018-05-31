@@ -3,7 +3,8 @@
 import React from 'react';
 // Understand Why my images should only be in the Dist folder. If its places outside
 // it throws error.
-import editImg from '../../../../dist/images/EditIcon.png';
+console.log('Vijay');
+import editImg from '../../../images/EditIcon.png';
 import {findnextSibling} from "../../../util/domTraversal";
 
 export const Edit = props => {

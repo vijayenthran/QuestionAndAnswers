@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import editImg from '../../../dist/images/EditIcon.png';
+import editImg from '../../images/EditIcon.png';
 import {findAncestor, findpreviousSibling, findnextSibling} from '../../util/domTraversal';
 
 
