@@ -24,6 +24,8 @@ if (process.env.NODE_ENV !== 'production') {
     port = process.env.PORT;
 }
 
+console.log(database);
+console.log(port);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -75,7 +77,7 @@ function stopServer() {
 }
 
 if (require.main === module) {
-    startServer().catch(err => logger.Error(err));
+    startServer().catch(err => {console.log(err);logger.Error(err)});
 }
 
 module.exports = {app, startServer, stopServer};
