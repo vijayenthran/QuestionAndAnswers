@@ -39,7 +39,7 @@ export function SignUp(props) {
                 <Field name="PasswordSignUp" id="Password" type="password" component={input}/>
                 <div className="SignUp-Form-Footer">
                     <button className="SignUp-btn" type="submit" disabled={props.submitting}>SignUp</button>
-                    <Link className="Navigate-Back-To-LoginPage" to="/">Login</Link>
+                    <Link className="Navigate-Back-To-LoginPage" to="/">Back to loginPage</Link>
                 </div>
             </form>
         </section>
