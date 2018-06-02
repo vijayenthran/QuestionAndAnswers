@@ -123,7 +123,7 @@ function signToken(req, res, next) {
         .then(userInfo => {
             return createAuthToken(userInfo.serialize());
         }).then(jwtToken => {
-            res.status(201).send(jwtToken);
+            res.status(201).json(jwtToken);
         })
         .catch(err => {
             if (err) {
@@ -154,7 +154,7 @@ function verifyTokenforRefresh(req, res, next) {
         .then(userInfo => {
             return createAuthToken(userInfo.serialize());
         }).then(jwtToken => {
-            res.status(201).send(jwtToken);
+            res.status(201).json(jwtToken);
         })
         .catch(err => {
             if (err) {
@@ -180,7 +180,7 @@ function verifyTokenProtected(req, res, next) {
     }
     return validateAuthToken(token)
         .then(validateToken => {
-            return validateUserExistence(validateToken.user)
+            return validateUserExistence(validateToken.user);
         }).then(() => {
             return next();
         }).catch(err => {

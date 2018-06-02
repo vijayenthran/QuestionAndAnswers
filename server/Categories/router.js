@@ -18,5 +18,11 @@ categoryRouter.post('/', (req, res) => {
         .catch(error => res.status(500).json(error));
 });
 
+categoryRouter.delete('/', (req, res) => {
+    return Category.deleteOne({name : req.body.categoryName})
+        .then(() => res.status(200).end())
+        .catch(error => res.status(500).json(error));
+});
+
 
 module.exports = {categoryRouter};

@@ -135,7 +135,13 @@ userRouter.post('/signUp', (req, res, next) => {
             })
         }).then(doc => {
             res.status(201).json(doc.serialize());
-        });
+        }).catch(err => next(err));
+});
+
+userRouter.delete('/delete', (req, res, next) => {
+    return User.deleteOne({_id: req.body.userId})
+        .then(() => res.status(200).end())
+        .catch(err => next(err));
 });
 
 module.exports = {userRouter};
