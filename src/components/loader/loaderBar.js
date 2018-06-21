@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import styled, { keyframes }  from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 
 export class LoaderBar extends React.Component {
 
@@ -21,36 +21,35 @@ export class LoaderBar extends React.Component {
         const Loader = styled.div`
             width: 100%;
             // width: calc(100% - 10px);
-            height : 5px;
+            height : 3px;
             background-color: #00ff7e;
-            position: fixed;
-            top:0;
-            left:0;
+            //position: fixed;
+            //top:0;
+            //left:0;
             z-index: 100;
-            // animation: ${load} 3s ease infinite;
-            border-radius:20px
+             animation: ${load} 3s ease infinite;
+            border-radius:20px;
         `;
 
-        // if (this.props.loader) {
-        //     return (
-        //         <Loader>
-        //             <progressBarSpan>
-        //
-        //             </progressBarSpan>
-        //         </Loader>
-        //     )
-        // }
-        return (
-            <Loader>
-            </Loader>
-        )
+        if (this.props.loader) {
+            return (
+                <Loader>
+                </Loader>
+            )
+        } else {
+            return null;
+        }
+        // return (
+        //     <Loader>
+        //     </Loader>
+        // )
     }
 }
 
 const mapStateToProps = state => ({
     loginStatus: state.auth.loggedIn,
     postsFilter: state.ama.postsFilter,
-    loader: state.ama.loader,
+    loader: state.auth.loaderBar,
 });
 
 export default connect(mapStateToProps)(LoaderBar);

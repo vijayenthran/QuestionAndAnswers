@@ -31,7 +31,7 @@ import {
     SET_ROUTE_PATH,
     SET_SUCCESS_NOTIFICATION,
     SET_SUCCESS_NOTIFICATION_MESSAGE,
-    SET_FILTER_POST_FROM_POST_LIST
+    SET_FILTER_POST_FROM_POST_LIST,
 } from '../action/ama';
 
 const initialState = {
@@ -59,7 +59,7 @@ const initialState = {
     modifiedPostObj: null,
     routePath: null,
     successNotification: null,
-    successNotificationMessage : '',
+    successNotificationMessage : ''
 };
 
 export default function reducer(state = initialState, action) {

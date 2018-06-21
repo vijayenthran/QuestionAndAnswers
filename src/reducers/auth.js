@@ -3,7 +3,8 @@
 import {
     SET_AUTH_TOKEN,
     CLEAR_AUTH,
-    SET_LOGGED_IN
+    SET_LOGGED_IN,
+    SET_LOADER_BAR
 } from '../action/auth'
 
 const initialState = {
@@ -11,7 +12,8 @@ const initialState = {
     loading: false,
     loggedIn: null,
     error: null,
-    userInfo: null
+    userInfo: null,
+    loaderBar: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -29,6 +31,11 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             loggedIn: action.loggedIn,
             userInfo: action.userInfo
+        });
+    }
+    if (action.type === SET_LOADER_BAR) {
+        return Object.assign({}, state, {
+            loaderBar : action.loaderBar
         });
     }
     return state;

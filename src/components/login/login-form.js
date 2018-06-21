@@ -7,6 +7,7 @@ import input from '../reusableForm/inputField';
 import {login} from '../../action/auth'
 import '../Styles/LoginForm.scss';
 import {Link} from 'react-router-dom';
+import LoaderBar from "../loader/loaderBar";
 
 // TODO Understand Form Submit in detail. The dispatch is async because of the redux thunk Middleware
 export function LoginForm(props) {
@@ -26,6 +27,7 @@ export function LoginForm(props) {
                  <button className="Login-Button" type="submit" disabled={props.submitting}>Login</button>
                  <Link className="Create-Account-Link" to="/signUp">SignUp</Link>
             </form>
+            <LoaderBar/>
         </div>
     )
 }

@@ -20,6 +20,12 @@ export const setAuthToken = authToken => ({
     authToken
 });
 
+export const SET_LOADER_BAR = 'SET_LOADER_BAR';
+export const set_loader_bar = value => ({
+    type: SET_LOADER_BAR,
+    loaderBar: value
+});
+
 export const SET_LOGGED_IN = 'SET_LOGGED_IN';
 export const setLoggedIn = loggedInValue => ({
     type: SET_LOGGED_IN,
@@ -68,7 +74,7 @@ export const login = loginInfo => dispatch => {
     // need to decode the User Info because we need the user id to be stores in the posts collection(database) and comments collection(database)
     // In future If we need to filter out the posts specific to a user or comments specific to a user . It would be helpful
     // Putting it here because it is need only in this particular block no where else
-
+    dispatch(set_loader_bar(true));
     let userName = loginInfo.UserNameLogin || loginInfo.UserNameSignUp;
     let password = loginInfo.PasswordLogin || loginInfo.PasswordSignUp;
     return axios.post(`${config.BaseURL}/auth/login`, {
@@ -77,9 +83,13 @@ export const login = loginInfo => dispatch => {
     })
         .then(obj => {
             storeAuthInfo(obj, dispatch);
+            dispatch(set_loader_bar(false));
             return helpGettingUserInfo();
 
         })
         .then(userInfo => dispatch(setLoggedIn({userInfo: userInfo, loggedIn: true})))
-        .catch(error => Promise.reject(new SubmissionError({_error: 'Login Failed, Please Check your Credentials'})));
+        .catch(error => {
+            dispatch(set_loader_bar(false));
+            return Promise.reject(new SubmissionError({_error: 'Login Failed, Please Check your Credentials'}))
+        });
 };

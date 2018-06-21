@@ -7,6 +7,7 @@ import validate from '../../validation';
 import {registerUser} from '../../action/users';
 import {login} from '../../action/auth';
 import {Link} from 'react-router-dom';
+import LoaderBar from "../loader/loaderBar";
 
 // TODO Understand how this.props gets its value in the onSubmit method
 // export class SignUp extends React.Component {
@@ -42,6 +43,7 @@ export function SignUp(props) {
                     <Link className="Navigate-Back-To-LoginPage" to="/">Back to loginPage</Link>
                 </div>
             </form>
+            <LoaderBar/>
         </section>
 
     )
