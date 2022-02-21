@@ -1,6 +1,7 @@
 'use strict';
 const request = require('supertest');
 const {app, startServer, stopServer} = require('../../server/server');
+
 let authToken, userId;
 
 describe('Integration Tests - Examine if the Apis written are functioning correctly', () => {

@@ -13,7 +13,7 @@ jobs:
       - run: python --version
       - run: node --version
       - run: yarn install
-      - run: yarn test
+      # - run: yarn test
 
 workflows:
   heroku_deploy:
