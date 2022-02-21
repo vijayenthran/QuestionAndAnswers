@@ -10,6 +10,11 @@ jobs:
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    docker:      
+      - image: cimg/python:3.10.2
+        steps:
+          - checkout
+          - run: python --version    
     steps:
       - checkout # check out the code in the project directory
       - run: echo "hello world" # run the `echo` command
