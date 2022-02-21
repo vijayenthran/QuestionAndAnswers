@@ -32,6 +32,7 @@
         "redux": "^4.1.2",
         "redux-form": "^8.3.8",
         "redux-thunk": "^2.2.0",
+        "sass": "^1.49.8",
         "styled-components": "^5.3.3"
     },
     "devDependencies": {
@@ -44,7 +45,6 @@
         "css-loader": "^0.28.11",
         "file-loader": "^1.1.11",
         "jest": "^23.0.1",
-        "node-sass": "^6.0.1",
         "nodemon": "^1.17.3",
         "sass-loader": "^7.0.1",
         "style-loader": "^0.21.0",
