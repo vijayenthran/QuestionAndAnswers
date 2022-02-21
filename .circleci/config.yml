@@ -1,4 +1,8 @@
 version: 2.1
+
+orbs:
+   heroku: circleci/heroku@1.2.6 # Invoke the Heroku orb
+
 jobs:
   build:
     docker:
@@ -9,4 +13,16 @@ jobs:
     steps:
       - checkout # check out the code in the project directory
       - run: echo "hello world" # run the `echo` command
+      - run: yarn install
       - run: yarn test
+
+workflows:
+  heroku_deploy:
+    jobs:
+      - build
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+          requires:
+            - build
+          filters:
+            branches:
+              only: revive
