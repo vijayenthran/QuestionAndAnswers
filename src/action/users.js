@@ -26,14 +26,14 @@ const _registerUser = userInfo => dispatch => {
         firstName: userInfo.FirstNameSignUp,
         lastName: userInfo.LastNameSignUp,
     })
-        // .then(value => )
-        .catch(error => {
-            if (Object.keys(error.response.data).length > 0 && error.response.data.reason === 'ValidationError') {
-                return Promise.reject(new SubmissionError(errorMappingUtil(error)));
-            } else {
-                return Promise.reject(new SubmissionError({_error: 'SignUp Failed, Please correct the errors and try again'}));
-            }
-        });
+    // .then(value => )
+    .catch(error => {
+        if (Object.keys(error.response.data).length > 0 && error.response.data.reason === 'ValidationError') {
+            return Promise.reject(new SubmissionError(errorMappingUtil(error)));
+        } else {
+            return Promise.reject(new SubmissionError({_error: 'SignUp Failed, Please correct the errors and try again'}));
+        }
+    });
 
 };
 

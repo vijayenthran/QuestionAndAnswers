@@ -1,4 +1,5 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux'
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import { composeWithDevTools } from '@redux-devtools/extension';
 import {reducer as formReducer} from 'redux-form';
 import authReducer from './reducers/auth';
 import amaReducer from './reducers/ama';
@@ -28,11 +29,15 @@ if (authToken) {
     userInfo = null;
 }
 
+const store = createStore(
+    reducers, 
+    composeWithDevTools(
+        // other store enhancers if any
+        applyMiddleware(thunk)
+    )
+);
 
-
-const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
-
-// Need this step tp check if there is already auth Token that is created.
+// Need this step to check if there is already auth Token that is created.
 // If the Auth token is present then we should be able to automatically send the User to the App page
 if (authToken) {
     store.dispatch(setLoggedIn({userInfo: userInfo, loggedIn: true}));
