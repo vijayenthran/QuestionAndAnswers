@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/python:3.10.2-node # the primary container, where your job's commands are run
+      - image: cimg/python:2.7.16-node # the primary container, where your job's commands are run
 
     steps:
       - checkout # check out the code in the project directory
